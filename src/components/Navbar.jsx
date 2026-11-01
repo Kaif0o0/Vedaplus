@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { NavLink, Link, useLocation } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Mail, MapPin } from 'lucide-react';
 import Logo from './Logo';
 import styles from './Navbar.module.css';
@@ -7,6 +7,9 @@ import styles from './Navbar.module.css';
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
+  const isManualClickRef = useRef(false);
+  const clickTimerRef = useRef(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -17,12 +20,90 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Clear any pending click scroll lock on unmount
+  useEffect(() => {
+    return () => {
+      if (clickTimerRef.current) clearTimeout(clickTimerRef.current);
+    };
+  }, []);
+
+  // Sync active section based on URL hash or path changes
+  useEffect(() => {
+    if (location.pathname === '/') {
+      if (location.hash) {
+        const hashId = location.hash.replace('#', '');
+        if (['services', 'our-work', 'about-us', 'home'].includes(hashId)) {
+          setActiveSection(hashId);
+        }
+      } else if (window.scrollY < 120) {
+        setActiveSection('home');
+      }
+    }
+  }, [location.pathname, location.hash]);
+
+  // Scroll spy for home page sections
+  useEffect(() => {
+    if (location.pathname !== '/') return;
+
+    const sections = ['home', 'services', 'our-work', 'about-us']
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+
+    if (sections.length === 0) return;
+
+    const handleScrollSpy = () => {
+      if (isManualClickRef.current) return;
+
+      if (window.scrollY < 120) {
+        setActiveSection('home');
+        return;
+      }
+
+      // Check sections from bottom to top to identify which is active
+      const scrollPosition = window.scrollY + 220;
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const sec = sections[i];
+        if (sec.offsetTop <= scrollPosition) {
+          setActiveSection(sec.id);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScrollSpy, { passive: true });
+    return () => window.removeEventListener('scroll', handleScrollSpy);
+  }, [location.pathname]);
+
   // Close mobile drawer upon route change
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [location.pathname]);
 
   const closeDrawer = () => setMobileMenuOpen(false);
+
+  const handleSectionClick = (e, sectionId) => {
+    setActiveSection(sectionId);
+    closeDrawer();
+
+    if (location.pathname === '/') {
+      if (e) e.preventDefault();
+      isManualClickRef.current = true;
+      if (clickTimerRef.current) clearTimeout(clickTimerRef.current);
+      clickTimerRef.current = setTimeout(() => {
+        isManualClickRef.current = false;
+      }, 1000);
+
+      window.history.pushState(null, '', sectionId === 'home' ? '/' : `/#${sectionId}`);
+      if (sectionId === 'home') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        const target = document.getElementById(sectionId);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
+  };
 
   return (
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
@@ -31,7 +112,7 @@ export default function Navbar() {
         <div className={`container ${styles.topBarContainer}`}>
           <div className={styles.topBarLocation}>
             <MapPin size={13} className={styles.topBarIcon} />
-            <span>Front of Rajgurunagar Sarkari Bank, Khed, Rajgurunagar</span>
+            <span>Opp. Rajgurunagar Sarkari Bank, Rajgurunagar, Khed, Pune, Maharashtra – 410505</span>
           </div>
           <div className={styles.topBarRight}>
             <a href="mailto:vedaplus76@gmail.com" className={styles.topBarLink}>
@@ -48,7 +129,7 @@ export default function Navbar() {
           to="/"
           className={styles.brandLink}
           aria-label="VedaPlus Home"
-          onClick={closeDrawer}
+          onClick={(e) => handleSectionClick(e, 'home')}
         >
           <Logo size="medium" />
         </Link>
@@ -56,32 +137,59 @@ export default function Navbar() {
         {/* Desktop Navigation Links matching exact requested terms:
             Home | Services | Our Work | About Us | Contact */}
         <nav className={styles.navMenu} aria-label="Main Navigation">
-          <NavLink
+          <Link
             to="/"
-            end
-            className={({ isActive }) =>
-              `${styles.navLink} ${isActive ? styles.activeNavLink : ''}`
-            }
+            onClick={(e) => handleSectionClick(e, 'home')}
+            className={`${styles.navLink} ${
+              location.pathname === '/' && activeSection === 'home'
+                ? styles.activeNavLink
+                : ''
+            }`}
           >
             Home
-          </NavLink>
-          <a href="/#services" className={styles.navLink}>
+          </Link>
+          <Link
+            to="/#services"
+            onClick={(e) => handleSectionClick(e, 'services')}
+            className={`${styles.navLink} ${
+              location.pathname === '/' && activeSection === 'services'
+                ? styles.activeNavLink
+                : ''
+            }`}
+          >
             Services
-          </a>
-          <a href="/#our-work" className={styles.navLink}>
+          </Link>
+          <Link
+            to="/#our-work"
+            onClick={(e) => handleSectionClick(e, 'our-work')}
+            className={`${styles.navLink} ${
+              location.pathname === '/' && activeSection === 'our-work'
+                ? styles.activeNavLink
+                : ''
+            }`}
+          >
             Our Work
-          </a>
-          <a href="/#about-us" className={styles.navLink}>
+          </Link>
+          <Link
+            to="/#about-us"
+            onClick={(e) => handleSectionClick(e, 'about-us')}
+            className={`${styles.navLink} ${
+              location.pathname === '/' && activeSection === 'about-us'
+                ? styles.activeNavLink
+                : ''
+            }`}
+          >
             About Us
-          </a>
-          <NavLink
+          </Link>
+          <Link
             to="/contact"
-            className={({ isActive }) =>
-              `${styles.navLink} ${isActive ? styles.activeNavLink : ''}`
-            }
+            onClick={closeDrawer}
+            className={`${styles.navLink} ${
+              location.pathname === '/contact' ? styles.activeNavLink : ''
+            }`}
           >
             Contact
-          </NavLink>
+          </Link>
         </nav>
 
         {/* Action Button & Status Pill */}
@@ -114,34 +222,59 @@ export default function Navbar() {
         }`}
       >
         <div className={styles.mobileDrawerContent}>
-          <NavLink
+          <Link
             to="/"
-            end
-            onClick={closeDrawer}
-            className={({ isActive }) =>
-              `${styles.mobileNavLink} ${isActive ? styles.mobileActive : ''}`
-            }
+            onClick={(e) => handleSectionClick(e, 'home')}
+            className={`${styles.mobileNavLink} ${
+              location.pathname === '/' && activeSection === 'home'
+                ? styles.mobileActive
+                : ''
+            }`}
           >
             Home
-          </NavLink>
-          <a href="/#services" onClick={closeDrawer} className={styles.mobileNavLink}>
+          </Link>
+          <Link
+            to="/#services"
+            onClick={(e) => handleSectionClick(e, 'services')}
+            className={`${styles.mobileNavLink} ${
+              location.pathname === '/' && activeSection === 'services'
+                ? styles.mobileActive
+                : ''
+            }`}
+          >
             Services
-          </a>
-          <a href="/#our-work" onClick={closeDrawer} className={styles.mobileNavLink}>
+          </Link>
+          <Link
+            to="/#our-work"
+            onClick={(e) => handleSectionClick(e, 'our-work')}
+            className={`${styles.mobileNavLink} ${
+              location.pathname === '/' && activeSection === 'our-work'
+                ? styles.mobileActive
+                : ''
+            }`}
+          >
             Our Work
-          </a>
-          <a href="/#about-us" onClick={closeDrawer} className={styles.mobileNavLink}>
+          </Link>
+          <Link
+            to="/#about-us"
+            onClick={(e) => handleSectionClick(e, 'about-us')}
+            className={`${styles.mobileNavLink} ${
+              location.pathname === '/' && activeSection === 'about-us'
+                ? styles.mobileActive
+                : ''
+            }`}
+          >
             About Us
-          </a>
-          <NavLink
+          </Link>
+          <Link
             to="/contact"
             onClick={closeDrawer}
-            className={({ isActive }) =>
-              `${styles.mobileNavLink} ${isActive ? styles.mobileActive : ''}`
-            }
+            className={`${styles.mobileNavLink} ${
+              location.pathname === '/contact' ? styles.mobileActive : ''
+            }`}
           >
             Contact
-          </NavLink>
+          </Link>
 
           {/* Direct Mobile Contact Details */}
           <div className={styles.mobileContactSection}>
@@ -151,7 +284,7 @@ export default function Navbar() {
             </div>
             <div className={styles.mobileContactItem}>
               <MapPin size={15} className={styles.drawerAmberIcon} />
-              <span>Front of Rajgurunagar Sarkari Bank, Khed, Rajgurunagar</span>
+              <span>Opp. Rajgurunagar Sarkari Bank, Rajgurunagar, Khed, Pune, Maharashtra – 410505</span>
             </div>
           </div>
 

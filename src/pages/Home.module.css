@@ -8,6 +8,7 @@
 .heroSection {
   padding: 4.5rem 0 5.5rem;
   position: relative;
+  scroll-margin-top: 110px;
 }
 
 .heroContainer {
@@ -223,6 +224,7 @@
 .solutionsSection {
   padding: 6rem 0;
   position: relative;
+  scroll-margin-top: 110px;
 }
 
 .filterPills {
@@ -307,6 +309,7 @@
   background: rgba(15, 23, 42, 0.02);
   border-top: 1px solid rgba(15, 23, 42, 0.05);
   border-bottom: 1px solid rgba(15, 23, 42, 0.05);
+  scroll-margin-top: 110px;
 }
 
 .projectsGrid {
@@ -441,7 +444,7 @@
 .projectFooter {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   margin-top: auto;
   padding-top: 1.15rem;
   border-top: 1px dashed rgba(15, 23, 42, 0.08);
@@ -492,6 +495,7 @@
 .aboutSection {
   padding: 6rem 0;
   position: relative;
+  scroll-margin-top: 110px;
 }
 
 .aboutGrid {

@@ -38,8 +38,6 @@ const SERVICES_DATA = [
     tagline: 'Turn casual foot traffic into loyal regulars.',
     description: 'Blazing-fast mobile menus, table reservation engines, and zero-wait QR ordering designed to delight customers during morning rushes.',
     badge: '0.2s Menu Load',
-    metric: '+54%',
-    metricLabel: 'Weekend Table Turnover',
     features: [
       'Interactive visual digital menu (Zero PDF bloat)',
       '1-Click WhatsApp & Instagram reservation bridge',
@@ -56,8 +54,6 @@ const SERVICES_DATA = [
     tagline: 'Instill trust before patients even step through the door.',
     description: 'HIPAA-grade appointment scheduling, digital medical intake, practitioner credential showcases, and automated calendar synchronization.',
     badge: 'HIPAA Protected',
-    metric: '+68%',
-    metricLabel: 'New Patient Inquiries',
     features: [
       'Seamless slot selection & calendar sync',
       'Paperless mobile pre-registration forms',
@@ -74,8 +70,6 @@ const SERVICES_DATA = [
     tagline: 'Streamline prescription fulfillments with zero friction.',
     description: 'Mobile-first prescription photo uploads, medicine refill alerts, OTC product directories, and rapid neighborhood delivery triggers.',
     badge: 'Instant Rx Engine',
-    metric: '< 15min',
-    metricLabel: 'Average Refill Turnaround',
     features: [
       'Encrypted prescription photo & PDF intake',
       'Automated refill reminder push notifications',
@@ -92,8 +86,6 @@ const SERVICES_DATA = [
     tagline: 'Critical infrastructure engineered for absolute uptime.',
     description: 'Multi-department doctor directory with availability filters, 24/7 trauma alert banners, diagnostic lab report portals, and multi-location guides.',
     badge: 'High Availability',
-    metric: '99.99%',
-    metricLabel: 'Critical Infrastructure Uptime',
     features: [
       '24/7 Red-alert emergency & ambulance hotline',
       'Searchable doctor directory by specialty & ward',
@@ -110,8 +102,6 @@ const SERVICES_DATA = [
     tagline: 'Compete with e-commerce giants right on your street.',
     description: 'Weightless digital storefronts featuring live local inventory, 2-tap Apple/Google Pay, curbside reservation, and hyper-local shopping incentives.',
     badge: 'Zero Cart Friction',
-    metric: '2.8x',
-    metricLabel: 'Store Visit Intent',
     features: [
       'Instant-loading seasonal lookbook & collections',
       'In-store reserve & curbside pickup checkout',
@@ -128,8 +118,6 @@ const SERVICES_DATA = [
     tagline: 'Eliminate booking phone tags with automated schedules.',
     description: 'Self-serve booking matrices for salons, spas, physiotherapy, and artisan studios with client preference tracking and SMS reminders.',
     badge: 'Smart Calendar',
-    metric: '82%',
-    metricLabel: 'Self-Serve Bookings',
     features: [
       'Staff member & treatment duration selection',
       'Automated SMS & calendar appointment reminder',
@@ -145,7 +133,6 @@ const PROJECTS_DATA = [
     id: 'roast-bloom',
     title: 'Roast & Bloom Bistro',
     category: 'Artisan Cafe & Bakery',
-    impact: '+54% Table Turnover',
     speed: '0.28s First Paint',
     description: 'A custom cafe website featuring an interactive zero-wait mobile menu, live weekend table booking, and direct Google Maps geo-routing.',
     tech: ['React', 'Instant QR Menu', 'WhatsApp Bridge', 'Geo-Schema'],
@@ -155,7 +142,6 @@ const PROJECTS_DATA = [
     id: 'aura-dental',
     title: 'Aura Dental Specialists',
     category: 'Dental & Health Clinic',
-    impact: '+68% Patient Inquiries',
     speed: 'HIPAA Grade',
     description: 'Custom clinic website with paperless patient appointment booking, practitioner showcases, and 1-tap emergency call button.',
     tech: ['HIPAA Secure', '1-Click Intake', 'Doctor Calendar Sync', 'SSL Mesh'],
@@ -165,7 +151,6 @@ const PROJECTS_DATA = [
     id: 'apex-rx',
     title: 'Apex Hospital & Pharmacy',
     category: 'Hospital & Medical Store',
-    impact: '< 15min Refill Dispatch',
     speed: '99.99% Monitored',
     description: 'Modern hospital & pharmacy website featuring 24/7 emergency hotline banner, multi-department doctor directory, and prescription photo upload.',
     tech: ['Trauma Alert Bar', 'Rx Photo Upload', 'Multi-Ward Search'],
@@ -175,7 +160,6 @@ const PROJECTS_DATA = [
     id: 'kite-timber',
     title: 'Kite & Timber Merchants',
     category: 'Boutique Retail & Goods',
-    impact: '2.8x In-Store Visits',
     speed: 'Apple & G-Pay',
     description: 'Sleek local merchant retail website with live storefront stock indicators, curbside reservation, and friction-free mobile experience.',
     tech: ['Realtime Stock Sync', 'Curbside Reserve', 'Google Merchant Tag'],
@@ -371,11 +355,6 @@ export default function Home() {
                     </div>
 
                     <div className={styles.projectFooter}>
-                      <div className={styles.projectImpactBox}>
-                        <span className={styles.impactValue}>{project.impact}</span>
-                        <span className={styles.impactLabel}>Client Result</span>
-                      </div>
-
                       <Link
                         to={`/contact?type=${encodeURIComponent(project.targetType)}`}
                         className={styles.projectDeployBtn}

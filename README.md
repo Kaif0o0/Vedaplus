@@ -49,7 +49,7 @@ Managed seamlessly with **React Router v7**:
 - **Studio Command Details**:
   - **Phone Numbers**: `+91 9503956026`, `+91 9226115976`, `+91 9762874676`
   - **Email**: `vedaplus76@gmail.com`
-  - **Location**: Front of Rajgurunagar Sarkari Bank, Khed, Rajgurunagar
+  - **Location**: Opp. Rajgurunagar Sarkari Bank, Rajgurunagar, Khed, Pune, Maharashtra – 410505
   - Response SLA guarantee badge (< 24h).
 
 ---

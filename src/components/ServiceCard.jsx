@@ -11,8 +11,6 @@ export default function ServiceCard({
   tagline,
   description,
   features = [],
-  metric,
-  metricLabel,
   targetType,
   badge = 'Custom Website',
 }) {
@@ -55,13 +53,8 @@ export default function ServiceCard({
           ))}
         </div>
 
-        {/* Metric Strip & Action */}
+        {/* Action Button Centered at Bottom */}
         <div className={styles.cardFooter}>
-          <div className={styles.metricBox}>
-            <span className={styles.metricValue}>{metric}</span>
-            <span className={styles.metricLabel}>{metricLabel}</span>
-          </div>
-
           <Link
             to={`/contact?type=${encodeURIComponent(targetType)}`}
             className={styles.actionBtn}

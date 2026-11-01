@@ -90,7 +90,7 @@ export default function Footer() {
           </div>
           <div className={styles.contactItem}>
             <MapPin size={16} className={styles.contactIcon} />
-            <span>Front of Rajgurunagar Sarkari Bank, Khed, Rajgurunagar</span>
+            <span>Opp. Rajgurunagar Sahakari Bank, Rajgurunagar, Khed, Pune, Maharashtra – 410505</span>
           </div>
 
           <div className={styles.ctaMiniBox}>

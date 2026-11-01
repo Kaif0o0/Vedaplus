@@ -254,7 +254,7 @@ export default function Contact() {
               </div>
               <div className={styles.directItem}>
                 <MapPin size={16} className={styles.amberIcon} />
-                <span>Front of Rajgurunagar Sarkari Bank, Khed, Rajgurunagar</span>
+                <span>Opp. Rajgurunagar Sarkari Bank, Rajgurunagar, Khed, Pune, Maharashtra – 410505</span>
               </div>
             </div>
           </div>
