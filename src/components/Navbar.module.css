@@ -1,0 +1,434 @@
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgba(248, 250, 252, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  transition: all var(--transition-normal);
+}
+
+/* Top Utility Bar */
+.topBar {
+  background-color: #0F172A;
+  color: #F8FAFC;
+  font-size: 0.78rem;
+  border-bottom: 1px solid rgba(245, 158, 11, 0.25);
+  padding: 0.42rem 0;
+  transition: all var(--transition-normal);
+}
+
+.scrolled .topBar {
+  padding: 0.25rem 0;
+}
+
+.topBarContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.topBarLocation {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: rgba(248, 250, 252, 0.85);
+  font-size: 0.75rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.topBarIcon {
+  color: var(--color-secondary);
+  flex-shrink: 0;
+}
+
+.topBarRight {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.topBarLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: rgba(248, 250, 252, 0.88);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.topBarLink:hover {
+  color: var(--color-secondary);
+}
+
+.topBarSep {
+  color: rgba(248, 250, 252, 0.3);
+}
+
+.topBarPhones {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.slash {
+  color: rgba(248, 250, 252, 0.35);
+  font-size: 0.75rem;
+}
+
+.scrolled {
+  background-color: rgba(248, 250, 252, 0.98);
+  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.08);
+  border-bottom: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.navContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  transition: height var(--transition-normal);
+}
+
+.scrolled .navContainer {
+  height: 68px;
+}
+
+.brandLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+/* Nav Menu */
+.navMenu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.navLink {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-primary);
+  text-decoration: none;
+  padding: 0.5rem 0.2rem;
+  transition: color var(--transition-fast);
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--color-secondary);
+  border-radius: 2px;
+  transition: all var(--transition-normal);
+  transform: translateX(-50%);
+}
+
+.navLink:hover {
+  color: var(--color-secondary);
+}
+
+.navLink:hover::after,
+.activeNavLink::after {
+  width: 100%;
+}
+
+.activeNavLink {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+/* Actions Section */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navPhonePill {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(15, 23, 42, 0.04);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  padding: 0.38rem 0.8rem;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+}
+
+.navPhonePill:hover {
+  border-color: rgba(245, 158, 11, 0.5);
+  background: rgba(245, 158, 11, 0.06);
+}
+
+.phonePillIcon {
+  color: var(--color-secondary);
+  flex-shrink: 0;
+}
+
+.phonePillNumbers {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.phonePillLink {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  white-space: nowrap;
+}
+
+.phonePillLink:hover {
+  color: var(--color-secondary);
+}
+
+.phonePillDivider {
+  color: rgba(15, 23, 42, 0.25);
+}
+
+/* Call to Action Button */
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-secondary);
+  color: #0F172A;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.92rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3);
+  transition: all var(--transition-normal);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ctaButton:hover {
+  background-color: var(--color-secondary-hover);
+  color: #0F172A;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-amber-glow);
+}
+
+.ctaIcon {
+  transition: transform var(--transition-fast);
+}
+
+.ctaButton:hover .ctaIcon {
+  transform: translate(2px, -2px);
+}
+
+/* Hamburger toggle for mobile */
+.hamburgerBtn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  color: var(--color-primary);
+  background: rgba(15, 23, 42, 0.05);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  transition: background var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.hamburgerBtn:hover {
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--color-secondary);
+}
+
+/* Mobile Drawer */
+.mobileDrawer {
+  display: none;
+  position: fixed;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background: rgba(248, 250, 252, 0.98);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 2px solid rgba(245, 158, 11, 0.3);
+  box-shadow: 0 25px 50px rgba(15, 23, 42, 0.15);
+  padding: 1.5rem 1.25rem 2rem;
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  z-index: 999;
+}
+
+.scrolled .mobileDrawer {
+  top: 68px;
+  max-height: calc(100vh - 68px);
+}
+
+.mobileDrawerOpen {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobileDrawerContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mobileNavLink {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  text-decoration: none;
+  display: block;
+}
+
+.mobileActive {
+  color: var(--color-secondary);
+  font-weight: 700;
+}
+
+.mobileContactSection {
+  margin-top: 0.5rem;
+  padding: 1rem;
+  background: rgba(15, 23, 42, 0.03);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.mobileContactItem {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.82rem;
+  color: var(--color-primary);
+}
+
+.drawerAmberIcon {
+  color: var(--color-secondary);
+  flex-shrink: 0;
+}
+
+.mobilePhoneGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.mobilePhoneGroup a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.mobilePhoneGroup a:hover {
+  color: var(--color-secondary);
+}
+
+.drawerPhoneSep {
+  color: rgba(15, 23, 42, 0.3);
+}
+
+.mobileCtaBox {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.mobileCtaButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--color-secondary);
+  color: #0F172A;
+  font-family: var(--font-display);
+  font-weight: 800;
+  padding: 0.95rem;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-size: 1rem;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3);
+}
+
+.mobileHelperText {
+  font-size: 0.8rem;
+  color: var(--color-primary-muted);
+  text-align: center;
+}
+
+@media (max-width: 960px) {
+  .navMenu {
+    display: none;
+  }
+
+  .navPhonePill {
+    display: none;
+  }
+
+  .topBarLocation {
+    display: none;
+  }
+
+  .topBarContainer {
+    justify-content: center;
+  }
+
+  .hamburgerBtn {
+    display: flex;
+  }
+
+  .mobileDrawer {
+    display: block;
+  }
+}
+
+@media (max-width: 600px) {
+  .topBar {
+    display: none;
+  }
+
+  .navContainer {
+    height: 70px;
+  }
+
+  .ctaButton {
+    display: none; /* Prominent CTA is in the mobile drawer */
+  }
+}

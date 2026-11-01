@@ -1,0 +1,14 @@
+.appLayout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: var(--color-base);
+  color: var(--color-primary);
+}
+
+.mainContent {
+  flex: 1 0 auto;
+  position: relative;
+  z-index: 1;
+}

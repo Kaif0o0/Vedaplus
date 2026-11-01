@@ -1,0 +1,223 @@
+:root {
+  /* Strict 3-Color Palette */
+  --color-primary: #0F172A; /* Royal Midnight Blue */
+  --color-secondary: #F59E0B; /* Marigold Amber */
+  --color-base: #F8FAFC; /* Soft Chalk White */
+
+  /* Strict Harmonic Nuances & Opacities derived from the 3 colors */
+  --color-primary-deep: #080D1A;
+  --color-primary-card: #141E33;
+  --color-primary-border: rgba(15, 23, 42, 0.08);
+  --color-primary-subtle: rgba(15, 23, 42, 0.03);
+  --color-primary-text: #0F172A;
+  --color-primary-muted: rgba(15, 23, 42, 0.68);
+  --color-primary-faint: rgba(15, 23, 42, 0.42);
+
+  --color-secondary-hover: #D97706;
+  --color-secondary-glow: rgba(245, 158, 11, 0.35);
+  --color-secondary-subtle: rgba(245, 158, 11, 0.12);
+  --color-secondary-border: rgba(245, 158, 11, 0.32);
+
+  --color-base-pure: #FFFFFF;
+  --color-base-card: #FFFFFF;
+  --color-base-muted: #F1F5F9;
+
+  /* Typography */
+  --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Weightless Anti-Gravity Elevation Shadows */
+  --shadow-float-sm: 0 4px 14px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.02);
+  --shadow-float-md: 0 14px 34px -4px rgba(15, 23, 42, 0.07), 0 6px 14px -2px rgba(15, 23, 42, 0.04);
+  --shadow-float-lg: 0 28px 60px -12px rgba(15, 23, 42, 0.11), 0 14px 28px -6px rgba(15, 23, 42, 0.05);
+  --shadow-float-xl: 0 35px 80px -15px rgba(15, 23, 42, 0.16);
+  --shadow-amber-glow: 0 0 32px rgba(245, 158, 11, 0.36), 0 12px 24px -6px rgba(245, 158, 11, 0.28);
+  --shadow-dark-float: 0 25px 60px -12px rgba(8, 13, 26, 0.5), 0 0 0 1px rgba(245, 158, 11, 0.12);
+
+  /* Transitions & Curves */
+  --transition-fast: 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-float: 4s ease-in-out infinite;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-base);
+  color: var(--color-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+  width: 100%;
+}
+
+/* Background Anti-Gravity Grid Texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.05) 0%, transparent 60%),
+    linear-gradient(to right, rgba(15, 23, 42, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 48px 48px, 48px 48px;
+  z-index: 0;
+}
+
+/* Typography Defaults */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  color: var(--color-primary);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+p {
+  color: var(--color-primary-muted);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+button {
+  font-family: var(--font-display);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+input, textarea, select {
+  font-family: var(--font-body);
+  font-size: 16px; /* Prevents auto-zoom on iOS mobile */
+}
+
+/* Keyframes for Anti-Gravity Floating */
+@keyframes antiGravityDrift {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(1.2deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+@keyframes antiGravityDriftReverse {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(14px) rotate(-1.2deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes orbitSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes wavePulse {
+  0% {
+    stroke-dashoffset: 100;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Global utility classes */
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
+
+/* Custom Scrollbar adhering to palette */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-base);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.2);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-base);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-secondary);
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 3px;
+}
