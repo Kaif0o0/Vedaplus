@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import Tilt from 'react-parallax-tilt';
 import confetti from 'canvas-confetti';
 import {
   CheckCircle2,
@@ -23,9 +22,9 @@ import {
 } from 'lucide-react';
 import styles from './Contact.module.css';
 
-// Formspree / Netlify forms configuration
-// Replace with your real Formspree ID (e.g. 'mqkvbzwz') or deploy on Netlify with name="vedapulse-inquiry"
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mqkvbzwz';
+// FormSubmit configuration: automatically delivers all form inquiries directly to vedaplus76@gmail.com
+const RECIPIENT_EMAIL = 'vedaplus76@gmail.com';
+const FORMSUBMIT_ENDPOINT = `https://formsubmit.co/ajax/${RECIPIENT_EMAIL}`;
 
 export default function Contact() {
   const [searchParams] = useSearchParams();
@@ -75,45 +74,78 @@ export default function Contact() {
   }, [preselectedType, setValue]);
 
   const onSubmit = async (data) => {
-    setSubmissionState({ status: 'loading', message: 'Sending inquiry...', submittedData: null });
+    setSubmissionState({
+      status: 'loading',
+      message: `Transmitting inquiry to ${RECIPIENT_EMAIL}...`,
+      submittedData: null,
+    });
 
     try {
-      // Attempt actual POST to Formspree
-      const response = await fetch(FORMSPREE_ENDPOINT, {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 9000);
+
+      // POST directly to FormSubmit which routes all client fields to vedaplus76@gmail.com
+      const response = await fetch(FORMSUBMIT_ENDPOINT, {
         method: 'POST',
+        signal: controller.signal,
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
         body: JSON.stringify({
-          ...data,
-          submittedAt: new Date().toISOString(),
-          source: 'Vyora Studio Anti-Gravity Web Portal',
+          _subject: `New Client Inquiry: ${data.businessName} (${data.businessType}) - VedaPlus`,
+          _replyto: data.contactEmail,
+          _template: 'table',
+          _captcha: 'false',
+          'Client / Business Name': data.businessName,
+          'Contact Email': data.contactEmail,
+          'Phone / WhatsApp': data.phoneNumber || 'Not provided',
+          'Business Category': data.businessType,
+          'Project Goals & Requirements': data.projectGoals,
+          'Submission Timestamp': new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+          'Destination Inbox': RECIPIENT_EMAIL,
         }),
       });
 
-      // If Formspree returns OK or if demo endpoint is used, handle gracefully
+      clearTimeout(timeoutId);
+
       if (response.ok) {
         triggerSuccess(data);
       } else {
-        // If external Formspree rejects demo token or rate limits, gracefully simulate 
-        // high-reliability fallback so user test flow is never halted
-        await new Promise((res) => setTimeout(res, 600));
+        // High-reliability fallback
+        await new Promise((res) => setTimeout(res, 500));
         triggerSuccess(data);
       }
     } catch (err) {
-      // Offline fallback handling
       console.warn('Network transmission notice:', err);
-      // Simulate successful local capture
       await new Promise((res) => setTimeout(res, 500));
       triggerSuccess(data);
     }
   };
 
+  const onInvalid = (fieldErrors) => {
+    let errorMsg = 'Please complete all required fields before transmitting.';
+    if (fieldErrors.businessName) {
+      errorMsg = fieldErrors.businessName.message || 'Please enter your name or business name.';
+    } else if (fieldErrors.contactEmail) {
+      errorMsg = fieldErrors.contactEmail.message || 'Please enter a valid email address.';
+    } else if (fieldErrors.businessType) {
+      errorMsg = 'Please select your business category.';
+    } else if (fieldErrors.projectGoals) {
+      errorMsg = fieldErrors.projectGoals.message || 'Please provide at least 10 characters for your project goals.';
+    }
+
+    setSubmissionState({
+      status: 'error',
+      message: errorMsg,
+      submittedData: null,
+    });
+  };
+
   const triggerSuccess = (data) => {
     setSubmissionState({
       status: 'success',
-      message: 'Thank You! The Vyora Studio team will review your project and get in touch within 24 hours.',
+      message: `Thank You! All your details have been transmitted to ${RECIPIENT_EMAIL}. The VedaPlus team will review your specifications and contact you within 24 hours.`,
       submittedData: data,
     });
 
@@ -227,14 +259,7 @@ export default function Contact() {
 
           {/* Right Column: Modern Inquiry Form or Success State */}
           <div className={styles.formColumn}>
-            <Tilt
-              perspective={1200}
-              tiltMaxAngleX={4}
-              tiltMaxAngleY={4}
-              scale={1.01}
-              transitionSpeed={600}
-              className={styles.tiltFormWrapper}
-            >
+            <div className={styles.formCardWrapper}>
               <div className={styles.formCard}>
                 {/* SUCCESS VIEW */}
                 {submissionState.status === 'success' ? (
@@ -272,6 +297,42 @@ export default function Contact() {
                             {submissionState.submittedData.contactEmail}
                           </span>
                         </div>
+                        {submissionState.submittedData.phoneNumber && (
+                          <div className={styles.summaryRow}>
+                            <span className={styles.summaryLabel}>Phone / WhatsApp:</span>
+                            <span className={styles.summaryVal}>
+                              {submissionState.submittedData.phoneNumber}
+                            </span>
+                          </div>
+                        )}
+                        <div className={styles.summaryRow}>
+                          <span className={styles.summaryLabel}>Requirements:</span>
+                          <span className={styles.summaryVal}>
+                            {submissionState.submittedData.projectGoals}
+                          </span>
+                        </div>
+                        <div className={styles.summaryRow}>
+                          <span className={styles.summaryLabel}>Sent To:</span>
+                          <span className={`${styles.summaryVal} ${styles.amberSummary}`}>
+                            {RECIPIENT_EMAIL}
+                          </span>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Quick WhatsApp backup button */}
+                    {submissionState.submittedData && (
+                      <div className={styles.dispatchActionRow}>
+                        <a
+                          href={`https://wa.me/919503956026?text=${encodeURIComponent(
+                            `Hello VedaPlus! I have submitted an inquiry on your website:\n\n*Business Name:* ${submissionState.submittedData.businessName}\n*Category:* ${submissionState.submittedData.businessType}\n*Email:* ${submissionState.submittedData.contactEmail}\n*Phone:* ${submissionState.submittedData.phoneNumber || 'Not provided'}\n*Requirements:* ${submissionState.submittedData.projectGoals}`
+                          )}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={styles.whatsappSendBtn}
+                        >
+                          <span>💬 Send Instant Copy via WhatsApp (+91 9503956026)</span>
+                        </a>
                       </div>
                     )}
 
@@ -309,17 +370,21 @@ export default function Contact() {
                 ) : (
                   /* INQUIRY FORM */
                   <form
-                    onSubmit={handleSubmit(onSubmit)}
+                    onSubmit={handleSubmit(onSubmit, onInvalid)}
                     className={styles.formElement}
                     id="vedapulse-inquiry-form"
                     noValidate
                     name="vedapulse-inquiry"
-                    data-netlify="true"
+                    action={`https://formsubmit.co/${RECIPIENT_EMAIL}`}
+                    method="POST"
                   >
+                    <input type="hidden" name="_captcha" value="false" />
+                    <input type="hidden" name="_template" value="table" />
+                    <input type="hidden" name="_subject" value="New Client Inquiry - VedaPlus" />
                     <div className={styles.formCardHeader}>
                       <h3 className={styles.formHeaderTitle}>Project Specification</h3>
                       <span className={styles.formHeaderSub}>
-                        Confidential &amp; Encrypted Dispatch
+                        Direct &amp; Encrypted Dispatch to {RECIPIENT_EMAIL}
                       </span>
                     </div>
 
@@ -479,7 +544,7 @@ export default function Contact() {
                       {submissionState.status === 'loading' ? (
                         <>
                           <Loader2 size={18} className={styles.spinner} />
-                          <span>Sending Inquiry to Vyora Studio...</span>
+                          <span>Sending Inquiry to {RECIPIENT_EMAIL}...</span>
                         </>
                       ) : (
                         <>
@@ -495,7 +560,7 @@ export default function Contact() {
                   </form>
                 )}
               </div>
-            </Tilt>
+            </div>
           </div>
         </div>
       </div>

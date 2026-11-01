@@ -42,7 +42,7 @@ Managed seamlessly with **React Router v7**:
   - Launch Timeline Selector (Fast-Track, Standard, Flexible)
   - Project Goals & Specific Requirements (character length validation)
 - **Form Validation & State Handling**: Built with `react-hook-form` with custom focus rings in Marigold Amber and inline validation error notices.
-- **Secure Submissions**: Wired for Formspree (`https://formspree.io/f/mqkvbzwz`) or Netlify Forms (`data-netlify="true"`) with simulated high-reliability fallback.
+- **Secure Direct Email Delivery**: Wired to send all client inquiries directly to `vedaplus76@gmail.com` via FormSubmit AJAX service (`https://formsubmit.co/ajax/vedaplus76@gmail.com`) with table formatting, direct reply-to, and instant WhatsApp copy dispatch.
 - **Interactive Loading & Confirmation**:
   - Live animated pulse spinner during `"Sending..."` state.
   - Confetti burst powered by `canvas-confetti`.
@@ -87,6 +87,13 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 npm run build
 ```
 Generates production-optimized static assets in the `dist/` directory.
+
+### 5. Deploy to Vercel
+The repository includes [`vercel.json`](./vercel.json) pre-configured with SPA route rewrites and asset caching.
+1. Push this project to your GitHub repository.
+2. In [Vercel Dashboard](https://vercel.com/new), click **Import Project** and select this repo.
+3. Vercel automatically detects **Vite** and runs `npm run build` with output directory `dist`.
+4. Click **Deploy**! Direct URLs (like `/contact`) and page refreshes work out-of-the-box.
 
 ---
 
