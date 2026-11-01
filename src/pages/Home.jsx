@@ -177,10 +177,7 @@ export default function Home() {
                 <span className={styles.statLabel}>Mobile First Paint</span>
               </div>
               <div className={styles.statDivider} />
-              <div className={styles.statItem}>
-                <span className={styles.statNum}>+64%</span>
-                <span className={styles.statLabel}>Avg In-Store Conversion</span>
-              </div>
+              
               <div className={styles.statDivider} />
               <div className={styles.statItem}>
                 <span className={styles.statNum}>100%</span>
