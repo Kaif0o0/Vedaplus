@@ -14,7 +14,7 @@ export default function ServiceCard({
   metric,
   metricLabel,
   targetType,
-  badge = 'Zero-G Blueprint',
+  badge = 'Custom Website',
 }) {
   return (
     <Tilt
@@ -65,9 +65,9 @@ export default function ServiceCard({
           <Link
             to={`/contact?type=${encodeURIComponent(targetType)}`}
             className={styles.actionBtn}
-            title={`Build digital presence for ${title}`}
+            title={`Build website for ${title}`}
           >
-            <span>Deploy</span>
+            <span>Get Website</span>
             <ArrowUpRight size={16} />
           </Link>
         </div>

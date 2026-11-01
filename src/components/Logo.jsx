@@ -7,7 +7,7 @@ export default function Logo({ size = 'medium', showTagline = true }) {
       <div className={styles.iconWrapper}>
         <img
           src="/logo.png"
-          alt="Vyora Studio"
+          alt="VedaPlus Studios"
           className={styles.logoImg}
         />
         {/* Ambient Amber Core Beacon */}
@@ -16,12 +16,12 @@ export default function Logo({ size = 'medium', showTagline = true }) {
 
       <div className={styles.textWrapper}>
         <div className={styles.brandTitle}>
-          <span className={styles.brandName}>Vyora Studio</span>
+          <span className={styles.brandName}>VedaPlus</span>
           <span className={styles.brandBadge}>STUDIOS</span>
         </div>
         {showTagline && (
           <span className={styles.brandSubtitle}>
-            Anti-Gravity Web Systems
+            Website Development
           </span>
         )}
       </div>

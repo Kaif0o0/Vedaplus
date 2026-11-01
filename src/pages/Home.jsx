@@ -147,7 +147,7 @@ const PROJECTS_DATA = [
     category: 'Artisan Cafe & Bakery',
     impact: '+54% Table Turnover',
     speed: '0.28s First Paint',
-    description: 'A weightless web app featuring an interactive zero-wait mobile menu, live weekend table booking, and direct Google Maps geo-routing.',
+    description: 'A custom cafe website featuring an interactive zero-wait mobile menu, live weekend table booking, and direct Google Maps geo-routing.',
     tech: ['React', 'Instant QR Menu', 'WhatsApp Bridge', 'Geo-Schema'],
     targetType: 'Cafe / Restaurant & Dining',
   },
@@ -157,7 +157,7 @@ const PROJECTS_DATA = [
     category: 'Dental & Health Clinic',
     impact: '+68% Patient Inquiries',
     speed: 'HIPAA Grade',
-    description: 'Custom clinic portal with paperless patient pre-registration, automated slot scheduling, and 1-tap emergency toothache hotline.',
+    description: 'Custom clinic website with paperless patient appointment booking, practitioner showcases, and 1-tap emergency call button.',
     tech: ['HIPAA Secure', '1-Click Intake', 'Doctor Calendar Sync', 'SSL Mesh'],
     targetType: 'Doctor / Dental & Healthcare Clinic',
   },
@@ -167,7 +167,7 @@ const PROJECTS_DATA = [
     category: 'Hospital & Medical Store',
     impact: '< 15min Refill Dispatch',
     speed: '99.99% Monitored',
-    description: 'Dual-purpose medical platform featuring 24/7 trauma emergency banner, multi-department doctor directory, and prescription photo upload.',
+    description: 'Modern hospital & pharmacy website featuring 24/7 emergency hotline banner, multi-department doctor directory, and prescription photo upload.',
     tech: ['Trauma Alert Bar', 'Rx Photo Upload', 'Multi-Ward Search'],
     targetType: 'Hospital & Multi-Specialty Facility',
   },
@@ -177,7 +177,7 @@ const PROJECTS_DATA = [
     category: 'Boutique Retail & Goods',
     impact: '2.8x In-Store Visits',
     speed: 'Apple & G-Pay',
-    description: 'Sleek local merchant digital showroom with live storefront stock indicators, curbside reservation, and friction-free payment.',
+    description: 'Sleek local merchant retail website with live storefront stock indicators, curbside reservation, and friction-free mobile experience.',
     tech: ['Realtime Stock Sync', 'Curbside Reserve', 'Google Merchant Tag'],
     targetType: 'Small Shop / Retail & Boutique',
   }
@@ -204,15 +204,15 @@ export default function Home() {
           <div className={styles.heroCopy}>
             <div className={styles.pillBadge}>
               <span className={styles.pillPulse} />
-              <span className={styles.pillText}>Vyora Studio • Anti-Gravity Web Systems</span>
+              <span className={styles.pillText}>VedaPlus • Custom Website Development</span>
             </div>
 
             <h1 className={styles.heroHeadline}>
-              Weightless Web Systems for <span className={styles.accentText}>Grounded Local Businesses.</span>
+              Fast, Modern Websites Built for <span className={styles.accentText}>Growing Local Businesses.</span>
             </h1>
 
             <p className={styles.heroSubheadline}>
-              Vyora Studio builds high-end, futuristic websites tailored for cafes, dental clinics, medical stores, hospitals, and neighborhood retail shops. Zero bloat, instant local bookings, and frictionless speed.
+              VedaPlus builds high-speed, modern websites tailored for cafes, dental clinics, medical stores, hospitals, and neighborhood retail shops. Zero bloat, instant customer inquiries, and mobile-friendly design.
             </p>
 
             {/* CTAs */}
@@ -265,7 +265,7 @@ export default function Home() {
               Website Development Services for Small Businesses
             </h2>
             <p className={styles.sectionDesc}>
-              No slow templates or generic site builders. Every Vyora Studio web solution is custom-architected around the exact booking, menu, prescription, or retail workflows of your local trade.
+              No slow templates or generic site builders. Every VedaPlus website is custom-crafted around the exact booking, menu, prescription, or retail workflows of your local trade.
             </p>
 
             {/* Service Category Filter Tabs */}
@@ -325,7 +325,7 @@ export default function Home() {
               Sample Websites &amp; Featured Projects
             </h2>
             <p className={styles.sectionDesc}>
-              Inspect live blueprints of anti-gravity websites we have built for local merchants, specialty doctors, cafes, and healthcare stores.
+              Inspect live previews of custom websites we have built for local merchants, specialty doctors, cafes, and healthcare stores.
             </p>
           </div>
 
@@ -352,7 +352,7 @@ export default function Home() {
                       <span className={styles.dotGreen} />
                     </div>
                     <span className={styles.projectUrlPill}>
-                      {project.id}.vyora.studio
+                      {project.id}.vedaplus.in
                     </span>
                     <span className={styles.projectSpeedTag}>{project.speed}</span>
                   </div>
@@ -402,13 +402,13 @@ export default function Home() {
                 <span>About Us</span>
               </div>
               <h2 className={styles.aboutHeading}>
-                We Engineer Weightless Growth for Local Heroes.
+                We Build Fast, Modern Websites for Local Businesses.
               </h2>
               <p className={styles.aboutLeadText}>
-                Vyora Studio was founded on a simple truth: small business owners shouldn't have to tolerate clunky, bloated websites that crash and take 8 seconds to load on mobile phones.
+                VedaPlus was founded on a simple truth: small business owners shouldn't have to tolerate clunky, bloated websites that crash and take 8 seconds to load on mobile phones.
               </p>
               <p className={styles.aboutBodyText}>
-                We combine futuristic anti-gravity engineering with down-to-earth business sense. Whether you manage a bustling 40-seat neighborhood cafe, an urgent care dental clinic, or a legacy retail shop, we build websites that turn local passersby into lifelong customers.
+                We combine modern web design with down-to-earth business sense. Whether you manage a bustling 40-seat neighborhood cafe, an urgent care dental clinic, or a legacy retail shop, we build websites that turn local passersby into lifelong customers.
               </p>
 
               <div className={styles.aboutCheckGrid}>
@@ -437,13 +437,13 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right Approach Column: The Anti-Gravity Tech Engine */}
+            {/* Right Approach Column: The Modern Website Advantage */}
             <div className={styles.aboutApproachCol}>
               <div className={styles.approachCard}>
-                <div className={styles.approachBadge}>The Vyora Studio Approach</div>
-                <h3 className={styles.approachTitle}>Why "Anti-Gravity" Tech?</h3>
+                <div className={styles.approachBadge}>The VedaPlus Approach</div>
+                <h3 className={styles.approachTitle}>Why Custom Website Development?</h3>
                 <p className={styles.approachDesc}>
-                  Traditional web builders bundle 40 heavy plugins, outdated database queries, and uncompressed assets that weigh down your site. Our architecture cuts away every milligram of friction.
+                  Traditional website builders bundle 40 heavy plugins, slow database queries, and uncompressed assets that weigh down your site. We handcraft clean, blazing-fast websites that load instantly on every device.
                 </p>
 
                 <div className={styles.approachPillars}>
@@ -503,13 +503,13 @@ export default function Home() {
               <div className={styles.ctaContent}>
                 <div className={styles.ctaPill}>
                   <Award size={14} />
-                  <span>Vyora Studio • Accepting New Small Business Projects</span>
+                  <span>VedaPlus • Accepting New Website Development Projects</span>
                 </div>
                 <h2 className={styles.ctaHeadline}>
-                  Ready to elevate your local business presence?
+                  Ready to elevate your local business with a modern website?
                 </h2>
                 <p className={styles.ctaSub}>
-                  Get a comprehensive digital speed audit and custom architecture blueprint for your cafe, clinic, medical store, or shop within 24 hours.
+                  Get a comprehensive website speed audit and custom website blueprint for your cafe, clinic, medical store, or shop within 24 hours.
                 </p>
 
                 <div className={styles.ctaBtnRow}>

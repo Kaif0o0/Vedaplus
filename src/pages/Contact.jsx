@@ -186,16 +186,16 @@ export default function Contact() {
           {/* Left Column: Studio Command & Small Business Reassurance */}
           <div className={styles.infoColumn}>
             <div className={styles.headerBox}>
-              <div className={styles.subTag}>Vyora Studio Client Intake</div>
+              <div className={styles.subTag}>VedaPlus Client Inquiry</div>
               <h1 className={styles.pageTitle}>
-                Initiate Your <span className={styles.amberText}>Anti-Gravity</span> Presence
+                Get Your <span className={styles.amberText}>Custom Website</span> Built
               </h1>
               <p className={styles.pageSubtitle}>
-                Tell us about your clinic, cafe, medical store, or retail business. We will draft an operational architecture blueprint and speed audit within 24 hours.
+                Tell us about your clinic, cafe, medical store, or retail business. We will create a custom website proposal and speed audit within 24 hours.
               </p>
             </div>
 
-            {/* Why Small Businesses Trust Vyora Studio */}
+            {/* Why Small Businesses Trust VedaPlus */}
             <div className={styles.guaranteeCards}>
               <div className={styles.guaranteeCard}>
                 <div className={styles.gIconBox}>
@@ -216,7 +216,7 @@ export default function Contact() {
                 <div>
                   <h4 className={styles.gTitle}>14-Day Delivery Sprint</h4>
                   <p className={styles.gDesc}>
-                    From blueprint confirmation to live production deployment with custom domain and booking workflows.
+                    From design confirmation to live production website launch with custom domain and booking workflows.
                   </p>
                 </div>
               </div>
@@ -228,7 +228,7 @@ export default function Contact() {
                 <div>
                   <h4 className={styles.gTitle}>Direct Lead Dispatch</h4>
                   <p className={styles.gDesc}>
-                    Inquiries and table reservations land straight into your WhatsApp, SMS, or clinic receptionist mailbox.
+                    Inquiries and customer orders land straight into your WhatsApp, SMS, or clinic receptionist mailbox.
                   </p>
                 </div>
               </div>
@@ -236,7 +236,7 @@ export default function Contact() {
 
             {/* Direct Studio Contact Info */}
             <div className={styles.directContactBox}>
-              <h4 className={styles.directTitle}>Vyora Studio Command Center</h4>
+              <h4 className={styles.directTitle}>VedaPlus Command Center</h4>
               <div className={styles.directItem}>
                 <Mail size={16} className={styles.amberIcon} />
                 <a href="mailto:vedaplus76@gmail.com">vedaplus76@gmail.com</a>
@@ -270,7 +270,7 @@ export default function Contact() {
                       <CheckCircle2 size={48} className={styles.successCheck} />
                     </div>
 
-                    <div className={styles.successPill}>Blueprint Request Received</div>
+                    <div className={styles.successPill}>Website Proposal Request Received</div>
                     <h2 className={styles.successHeading}>
                       Thank You!
                     </h2>
@@ -348,11 +348,11 @@ export default function Contact() {
                         </div>
                         <div className={styles.stepMini}>
                           <span className={styles.stepMiniNum}>2</span>
-                          <span>Interactive wireframe blueprint sent to your email</span>
+                          <span>Interactive website preview sent to your email</span>
                         </div>
                         <div className={styles.stepMini}>
                           <span className={styles.stepMiniNum}>3</span>
-                          <span>15-minute alignment call with our Lead Architect</span>
+                          <span>15-minute alignment call with our Lead Developer</span>
                         </div>
                       </div>
                     </div>
@@ -384,7 +384,7 @@ export default function Contact() {
                     <input type="hidden" name="_template" value="table" />
                     <input type="hidden" name="_subject" value="New Client Inquiry - VedaPlus" />
                     <div className={styles.formCardHeader}>
-                      <h3 className={styles.formHeaderTitle}>Project Specification</h3>
+                      <h3 className={styles.formHeaderTitle}>Website Specification</h3>
                       <span className={styles.formHeaderSub}>
                         Direct &amp; Encrypted Dispatch to {RECIPIENT_EMAIL}
                       </span>
@@ -550,7 +550,7 @@ export default function Contact() {
                         </>
                       ) : (
                         <>
-                          <span>Transmit Project Blueprint</span>
+                          <span>Transmit Website Inquiry</span>
                           <Send size={18} />
                         </>
                       )}

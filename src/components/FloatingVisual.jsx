@@ -80,11 +80,11 @@ export default function FloatingVisual() {
           <div className={styles.hubHeader}>
             <div className={styles.hubStatus}>
               <span className={styles.hubPulseDot} />
-              <span className={styles.hubTag}>VEDAPULSE V-3.4 / ACTIVE</span>
+              <span className={styles.hubTag}>VEDAPLUS / ACTIVE</span>
             </div>
             <div className={styles.hubSpecs}>
               <Wifi size={14} className={styles.specIcon} />
-              <span>0G Latency Mesh</span>
+              <span>Ultra-Fast Load Speed</span>
             </div>
           </div>
 
@@ -92,11 +92,11 @@ export default function FloatingVisual() {
           <div className={styles.hubBody}>
             <div className={styles.hubBadge}>
               <Cpu size={16} />
-              <span>Local Business Digital Architecture</span>
+              <span>Local Business Website Development</span>
             </div>
-            <h3 className={styles.hubHeading}>Weightless Performance Core</h3>
+            <h3 className={styles.hubHeading}>High-Speed Website Engine</h3>
             <p className={styles.hubDesc}>
-              Dynamic routing, real-time client booking, and automated local search indexers floating on isolated micro-containers.
+              Fast mobile menus, instant appointment forms, and local Google Maps search visibility built into every website.
             </p>
 
             {/* Live Metrics Telemetry Strip */}

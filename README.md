@@ -1,6 +1,6 @@
-# VedaPulse Studios | Anti-Gravity Tech Premium Website
+# VedaPlus Studios | Custom Website Development for Local Businesses
 
-A futuristic, high-end React web application engineered for **VedaPulse Studios**, a digital agency providing website development for local enterprises such as cafes, dental clinics, hospitals, medical stores, and retail shops.
+A fast, modern React web application built for **VedaPlus Studios**, a web agency specializing in website development for local enterprises such as cafes, dental clinics, hospitals, pharmacies, and retail shops.
 
 ---
 
@@ -16,22 +16,21 @@ The entire design system strictly adheres to the requested 3-color palette:
 
 ---
 
-## 🪐 Core Pages & Architecture
+## 🪐 Core Pages & Website Features
 
 Managed seamlessly with **React Router v7**:
 
 ### 1. Home Page (`/`)
-- **Sticky Glassmorphism Navbar**: Features the custom abstract VedaPulse monogram combining high-tech pulse/growth vectors in Marigold Amber over Royal Midnight Blue, telemetry status indicator, and direct call-to-action button.
-- **Anti-Gravity Hero Section**: Bold headline, subheadline, telemetry stats (`< 0.3s`, `+64%`, `100%`), and a centerpiece visual element built with `react-spring` and `react-parallax-tilt` featuring 4 orbiting local business satellites:
+- **Sticky Glassmorphism Navbar**: Features the custom abstract VedaPlus logo, active page routing, status indicator, and direct call-to-action button.
+- **Hero Section**: Bold headline, subheadline, speed telemetry stats (`< 0.3s`, `+64%`, `100%`), and a centerpiece visual element featuring 4 local business websites:
   - ☕ **Artisan Cafe & Bakery**: *Roast & Bloom Bistro*
   - 🩺 **Dental & Health Clinic**: *Aura Dental Specialists*
   - 🛍️ **Boutique Retail & Shop**: *Kite & Timber Merchants*
   - 🛡️ **Hospital & Medical Store**: *Apex Care & Pharmacy*
-- **Tailored Archetype Service Cards**: Interactive 3D tilt cards showcasing dedicated solutions for cafes, dentists, doctors, hospitals, pharmacies, and retail shops with pre-selected query param links (`/contact?type=...`).
-- **Anti-Gravity Architecture Deep-Dive**: Dark command section explaining the sub-second speed, frictionless local conversion, and Google Maps local schema advantage.
-- **Legacy vs. VedaPulse Comparison Matrix**: Clear contrast showing why small businesses lose customers on clunky legacy sites vs. VedaPulse zero-gravity tech.
-- **14-Day Rapid Velocity Roadmap**: 3-step transparent deployment cycle.
-- **Conversion Banner**: Magnetic Amber button leading directly to inquiry.
+- **Tailored Archetype Service Cards**: Interactive 3D tilt cards showcasing dedicated website solutions for cafes, dentists, doctors, hospitals, pharmacies, and retail shops with pre-selected query param links (`/contact?type=...`).
+- **High-Speed Website Advantage**: Clean architecture explaining sub-second loading speed, frictionless local customer inquiries, and Google Maps local schema advantage.
+- **14-Day Rapid Delivery Cycle**: 3-step transparent website development roadmap.
+- **Conversion Banner**: Direct hotline and inquiry button.
 
 ### 2. Contact / Inquiry Page (`/contact`)
 - **Responsive Small Business Inquiry Form**:

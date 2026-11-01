@@ -15,7 +15,7 @@ export default function Footer() {
         <div className={styles.brandCol}>
           <Logo size="medium" />
           <p className={styles.brandMission}>
-            Vyora Studio engineers anti-gravity digital architectures for high-performing local enterprises. We eliminate technical friction, giving neighborhood businesses the weightless speed and prestige of modern tech leaders.
+            VedaPlus builds high-performance, modern websites for local businesses. We create fast, clean, and mobile-friendly websites that turn local visitors into regular customers.
           </p>
 
           <div className={styles.statusBox}>
@@ -106,13 +106,13 @@ export default function Footer() {
       <div className={styles.subFooter}>
         <div className={`container ${styles.subFooterContainer}`}>
           <div className={styles.copyright}>
-            © {new Date().getFullYear()} Vyora Studio Inc. All Rights Reserved. Engineered with Anti-Gravity Tech Premium.
+            © {new Date().getFullYear()} VedaPlus Studios. All Rights Reserved. Custom Website Development.
           </div>
           <div className={styles.paletteBadge}>
             <span className={styles.swatchPrimary} title="Royal Midnight Blue (#0F172A)" />
             <span className={styles.swatchSecondary} title="Marigold Amber (#F59E0B)" />
             <span className={styles.swatchBase} title="Soft Chalk White (#F8FAFC)" />
-            <span className={styles.paletteLabel}>Vyora 3-Spectrum Standard</span>
+            <span className={styles.paletteLabel}>VedaPlus 3-Spectrum Standard</span>
           </div>
         </div>
       </div>

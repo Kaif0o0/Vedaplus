@@ -43,11 +43,11 @@ export default function Navbar() {
       </div>
 
       <div className={`container ${styles.navContainer}`}>
-        {/* Brand Monogram & Name: Logo — Vyora Studio */}
+        {/* Brand Monogram & Name: Logo — VedaPlus */}
         <Link
           to="/"
           className={styles.brandLink}
-          aria-label="Vyora Studio Home"
+          aria-label="VedaPlus Home"
           onClick={closeDrawer}
         >
           <Logo size="medium" />
@@ -86,9 +86,9 @@ export default function Navbar() {
 
         {/* Action Button & Status Pill */}
         <div className={styles.actions}>
-          <div className={styles.systemStatusPill} title="Gravity Engine: Zero Resistance">
+          <div className={styles.systemStatusPill} title="Fast Website Development">
             <span className={styles.statusDot} />
-            <span className={styles.statusLabel}>Zero-G Engine</span>
+            <span className={styles.statusLabel}>Fast Websites</span>
           </div>
 
           <Link to="/contact" className={styles.ctaButton} id="nav-get-website-cta">
