@@ -38,9 +38,6 @@ export default function Footer() {
               <a href="/#services">Services</a>
             </li>
             <li>
-              <a href="/#our-work">Our Work</a>
-            </li>
-            <li>
               <a href="/#about-us">About Us</a>
             </li>
             <li>
@@ -71,9 +68,9 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Column 4: Studio Command */}
+        {/* Column 4: Direct Contact */}
         <div className={styles.contactCol}>
-          <h4 className={styles.colTitle}>Studio Command</h4>
+          <h4 className={styles.colTitle}>Direct Contact</h4>
           <div className={styles.contactItem}>
             <Mail size={16} className={styles.contactIcon} />
             <a href="mailto:vedaplus76@gmail.com">vedaplus76@gmail.com</a>
@@ -90,7 +87,7 @@ export default function Footer() {
           </div>
           <div className={styles.contactItem}>
             <MapPin size={16} className={styles.contactIcon} />
-            <span>Opp. Rajgurunagar Sahakari Bank, Rajgurunagar, Khed, Pune, Maharashtra – 410505</span>
+            <span>Opp. Rajgurunagar Sarkari Bank, Rajgurunagar, Khed, Pune, Maharashtra – 410505</span>
           </div>
 
           <div className={styles.ctaMiniBox}>
@@ -106,7 +103,7 @@ export default function Footer() {
       <div className={styles.subFooter}>
         <div className={`container ${styles.subFooterContainer}`}>
           <div className={styles.copyright}>
-            © {new Date().getFullYear()} VedaPlus Studios. All Rights Reserved. Custom Website Development.
+            © {new Date().getFullYear()} VedaPlus. All Rights Reserved. Custom Website Development.
           </div>
           <div className={styles.paletteBadge}>
             <span className={styles.swatchPrimary} title="Royal Midnight Blue (#0F172A)" />

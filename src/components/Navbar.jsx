@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Mail, MapPin } from 'lucide-react';
-import Logo from './Logo';
 import styles from './Navbar.module.css';
 
 export default function Navbar() {
@@ -32,7 +31,7 @@ export default function Navbar() {
     if (location.pathname === '/') {
       if (location.hash) {
         const hashId = location.hash.replace('#', '');
-        if (['services', 'our-work', 'about-us', 'home'].includes(hashId)) {
+        if (['services', 'about-us', 'home'].includes(hashId)) {
           setActiveSection(hashId);
         }
       } else if (window.scrollY < 120) {
@@ -45,7 +44,7 @@ export default function Navbar() {
   useEffect(() => {
     if (location.pathname !== '/') return;
 
-    const sections = ['home', 'services', 'our-work', 'about-us']
+    const sections = ['home', 'services', 'about-us']
       .map((id) => document.getElementById(id))
       .filter(Boolean);
 
@@ -112,7 +111,7 @@ export default function Navbar() {
         <div className={`container ${styles.topBarContainer}`}>
           <div className={styles.topBarLocation}>
             <MapPin size={13} className={styles.topBarIcon} />
-            <span>Opp. Rajgurunagar Sarkari Bank, Rajgurunagar, Khed, Pune, Maharashtra – 410505</span>
+            <span>Opp. Rajgurunagar Sahakari Bank, Rajgurunagar, Khed, Pune, Maharashtra – 410505</span>
           </div>
           <div className={styles.topBarRight}>
             <a href="mailto:vedaplus76@gmail.com" className={styles.topBarLink}>
@@ -124,18 +123,18 @@ export default function Navbar() {
       </div>
 
       <div className={`container ${styles.navContainer}`}>
-        {/* Brand Monogram & Name: Logo — VedaPlus */}
+        {/* Brand Name Text: VedaPlus (Logo image removed) */}
         <Link
           to="/"
           className={styles.brandLink}
           aria-label="VedaPlus Home"
           onClick={(e) => handleSectionClick(e, 'home')}
         >
-          <Logo size="medium" />
+          <span className={styles.brandNameText}>VedaPlus</span>
         </Link>
 
         {/* Desktop Navigation Links matching exact requested terms:
-            Home | Services | Our Work | About Us | Contact */}
+            Home | Services | About Us | Contact */}
         <nav className={styles.navMenu} aria-label="Main Navigation">
           <Link
             to="/"
@@ -158,17 +157,6 @@ export default function Navbar() {
             }`}
           >
             Services
-          </Link>
-          <Link
-            to="/#our-work"
-            onClick={(e) => handleSectionClick(e, 'our-work')}
-            className={`${styles.navLink} ${
-              location.pathname === '/' && activeSection === 'our-work'
-                ? styles.activeNavLink
-                : ''
-            }`}
-          >
-            Our Work
           </Link>
           <Link
             to="/#about-us"
@@ -243,17 +231,6 @@ export default function Navbar() {
             }`}
           >
             Services
-          </Link>
-          <Link
-            to="/#our-work"
-            onClick={(e) => handleSectionClick(e, 'our-work')}
-            className={`${styles.mobileNavLink} ${
-              location.pathname === '/' && activeSection === 'our-work'
-                ? styles.mobileActive
-                : ''
-            }`}
-          >
-            Our Work
           </Link>
           <Link
             to="/#about-us"

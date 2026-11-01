@@ -92,6 +92,20 @@
   display: flex;
   align-items: center;
   text-decoration: none;
+  user-select: none;
+}
+
+.brandNameText {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  letter-spacing: -0.03em;
+  transition: color var(--transition-fast);
+}
+
+.brandLink:hover .brandNameText {
+  color: var(--color-secondary);
 }
 
 /* Nav Menu */

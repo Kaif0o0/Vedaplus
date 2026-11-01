@@ -20,7 +20,6 @@ import {
   Award,
   Users,
   ExternalLink,
-  Laptop,
   Check
 } from 'lucide-react';
 import FloatingVisual from '../components/FloatingVisual';
@@ -127,46 +126,6 @@ const SERVICES_DATA = [
   }
 ];
 
-// Sample Websites and Projects Data for "Our Work"
-const PROJECTS_DATA = [
-  {
-    id: 'roast-bloom',
-    title: 'Roast & Bloom Bistro',
-    category: 'Artisan Cafe & Bakery',
-    speed: '0.28s First Paint',
-    description: 'A custom cafe website featuring an interactive zero-wait mobile menu, live weekend table booking, and direct Google Maps geo-routing.',
-    tech: ['React', 'Instant QR Menu', 'WhatsApp Bridge', 'Geo-Schema'],
-    targetType: 'Cafe / Restaurant & Dining',
-  },
-  {
-    id: 'aura-dental',
-    title: 'Aura Dental Specialists',
-    category: 'Dental & Health Clinic',
-    speed: 'HIPAA Grade',
-    description: 'Custom clinic website with paperless patient appointment booking, practitioner showcases, and 1-tap emergency call button.',
-    tech: ['HIPAA Secure', '1-Click Intake', 'Doctor Calendar Sync', 'SSL Mesh'],
-    targetType: 'Doctor / Dental & Healthcare Clinic',
-  },
-  {
-    id: 'apex-rx',
-    title: 'Apex Hospital & Pharmacy',
-    category: 'Hospital & Medical Store',
-    speed: '99.99% Monitored',
-    description: 'Modern hospital & pharmacy website featuring 24/7 emergency hotline banner, multi-department doctor directory, and prescription photo upload.',
-    tech: ['Trauma Alert Bar', 'Rx Photo Upload', 'Multi-Ward Search'],
-    targetType: 'Hospital & Multi-Specialty Facility',
-  },
-  {
-    id: 'kite-timber',
-    title: 'Kite & Timber Merchants',
-    category: 'Boutique Retail & Goods',
-    speed: 'Apple & G-Pay',
-    description: 'Sleek local merchant retail website with live storefront stock indicators, curbside reservation, and friction-free mobile experience.',
-    tech: ['Realtime Stock Sync', 'Curbside Reserve', 'Google Merchant Tag'],
-    targetType: 'Small Shop / Retail & Boutique',
-  }
-];
-
 export default function Home() {
   const [selectedFilter, setSelectedFilter] = useState('all');
 
@@ -205,8 +164,8 @@ export default function Home() {
                 <span>Get a Website →</span>
               </Link>
 
-              <a href="#our-work" className={styles.secondaryCta} id="hero-our-work-btn">
-                <span>Explore Our Work</span>
+              <a href="#services" className={styles.secondaryCta} id="hero-services-btn">
+                <span>Explore Services</span>
                 <ArrowUpRight size={18} />
               </a>
             </div>
@@ -297,80 +256,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ================= 3. OUR WORK SECTION ================= */}
-      <section id="our-work" className={styles.workSection}>
-        <div className="container">
-          <div className={styles.sectionHeader}>
-            <div className={styles.sectionTag}>
-              <Laptop size={14} />
-              <span>Our Work</span>
-            </div>
-            <h2 className={styles.sectionTitle}>
-              Sample Websites &amp; Featured Projects
-            </h2>
-            <p className={styles.sectionDesc}>
-              Inspect live previews of custom websites we have built for local merchants, specialty doctors, cafes, and healthcare stores.
-            </p>
-          </div>
-
-          <div className={styles.projectsGrid}>
-            {PROJECTS_DATA.map((project) => (
-              <Tilt
-                key={project.id}
-                perspective={1200}
-                glareEnable={true}
-                glareMaxOpacity={0.12}
-                glareColor="#F59E0B"
-                tiltMaxAngleX={6}
-                tiltMaxAngleY={6}
-                scale={1.01}
-                transitionSpeed={600}
-                className={styles.projectTiltCard}
-              >
-                <div className={styles.projectCard}>
-                  {/* Top Bar resembling high-tech browser chrome */}
-                  <div className={styles.projectTopBar}>
-                    <div className={styles.projectDotRow}>
-                      <span className={styles.dotRed} />
-                      <span className={styles.dotYellow} />
-                      <span className={styles.dotGreen} />
-                    </div>
-                    <span className={styles.projectUrlPill}>
-                      {project.id}.vedaplus.in
-                    </span>
-                    <span className={styles.projectSpeedTag}>{project.speed}</span>
-                  </div>
-
-                  <div className={styles.projectBody}>
-                    <span className={styles.projectCategory}>{project.category}</span>
-                    <h3 className={styles.projectTitle}>{project.title}</h3>
-                    <p className={styles.projectDesc}>{project.description}</p>
-
-                    <div className={styles.projectTechTags}>
-                      {project.tech.map((t, idx) => (
-                        <span key={idx} className={styles.techTag}>
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-
-                    <div className={styles.projectFooter}>
-                      <Link
-                        to={`/contact?type=${encodeURIComponent(project.targetType)}`}
-                        className={styles.projectDeployBtn}
-                      >
-                        <span>Build Similar →</span>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </Tilt>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ================= 4. ABOUT US SECTION ================= */}
+      {/* ================= 3. ABOUT US SECTION ================= */}
       <section id="about-us" className={styles.aboutSection}>
         <div className="container">
           <div className={styles.aboutGrid}>

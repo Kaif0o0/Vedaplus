@@ -7,7 +7,7 @@ export default function Logo({ size = 'medium', showTagline = true }) {
       <div className={styles.iconWrapper}>
         <img
           src="/logo.png"
-          alt="VedaPlus Studios"
+          alt="VedaPlus"
           className={styles.logoImg}
         />
         {/* Ambient Amber Core Beacon */}
@@ -17,7 +17,6 @@ export default function Logo({ size = 'medium', showTagline = true }) {
       <div className={styles.textWrapper}>
         <div className={styles.brandTitle}>
           <span className={styles.brandName}>VedaPlus</span>
-          <span className={styles.brandBadge}>STUDIOS</span>
         </div>
         {showTagline && (
           <span className={styles.brandSubtitle}>
