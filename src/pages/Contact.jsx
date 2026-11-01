@@ -247,6 +247,8 @@ export default function Contact() {
                   <a href="tel:+919503956026">+91 9503956026</a>
                   <span className={styles.phoneDivider}>/</span>
                   <a href="tel:+919226115976">+91 9226115976</a>
+                  <span className={styles.phoneDivider}>/</span>
+                  <a href="tel:+919762874676">+91 9762874676</a>
                   <span className={styles.hoursNote}>(Mon - Sat, 9am - 8pm)</span>
                 </div>
               </div>

@@ -84,6 +84,8 @@ export default function Footer() {
               <a href="tel:+919503956026">+91 9503956026</a>
               <span className={styles.footerPhoneDivider}>/</span>
               <a href="tel:+919226115976">+91 9226115976</a>
+              <span className={styles.footerPhoneDivider}>/</span>
+              <a href="tel:+919762874676">+91 9762874676</a>
             </div>
           </div>
           <div className={styles.contactItem}>

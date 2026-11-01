@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, Mail, MapPin } from 'lucide-react';
+import { Menu, X, Mail, MapPin } from 'lucide-react';
 import Logo from './Logo';
 import styles from './Navbar.module.css';
 
@@ -38,13 +38,6 @@ export default function Navbar() {
               <Mail size={13} className={styles.topBarIcon} />
               <span>vedaplus76@gmail.com</span>
             </a>
-            <span className={styles.topBarSep}>•</span>
-            <div className={styles.topBarPhones}>
-              <Phone size={13} className={styles.topBarIcon} />
-              <a href="tel:+919503956026" className={styles.topBarLink}>+91 9503956026</a>
-              <span className={styles.slash}>/</span>
-              <a href="tel:+919226115976" className={styles.topBarLink}>+91 9226115976</a>
-            </div>
           </div>
         </div>
       </div>
@@ -91,15 +84,11 @@ export default function Navbar() {
           </NavLink>
         </nav>
 
-        {/* Action Button & Contact Phones */}
+        {/* Action Button & Status Pill */}
         <div className={styles.actions}>
-          <div className={styles.navPhonePill} title="Call Direct (+91)">
-            <Phone size={14} className={styles.phonePillIcon} />
-            <div className={styles.phonePillNumbers}>
-              <a href="tel:+919503956026" className={styles.phonePillLink}>+91 9503956026</a>
-              <span className={styles.phonePillDivider}>/</span>
-              <a href="tel:+919226115976" className={styles.phonePillLink}>+91 9226115976</a>
-            </div>
+          <div className={styles.systemStatusPill} title="Gravity Engine: Zero Resistance">
+            <span className={styles.statusDot} />
+            <span className={styles.statusLabel}>Zero-G Engine</span>
           </div>
 
           <Link to="/contact" className={styles.ctaButton} id="nav-get-website-cta">
@@ -156,14 +145,6 @@ export default function Navbar() {
 
           {/* Direct Mobile Contact Details */}
           <div className={styles.mobileContactSection}>
-            <div className={styles.mobileContactItem}>
-              <Phone size={15} className={styles.drawerAmberIcon} />
-              <div className={styles.mobilePhoneGroup}>
-                <a href="tel:+919503956026">+91 9503956026</a>
-                <span className={styles.drawerPhoneSep}>/</span>
-                <a href="tel:+919226115976">+91 9226115976</a>
-              </div>
-            </div>
             <div className={styles.mobileContactItem}>
               <Mail size={15} className={styles.drawerAmberIcon} />
               <a href="mailto:vedaplus76@gmail.com">vedaplus76@gmail.com</a>

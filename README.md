@@ -48,7 +48,7 @@ Managed seamlessly with **React Router v7**:
   - Confetti burst powered by `canvas-confetti`.
   - Confirmation view: *"Thank You! The VedaPulse team will review your project and get in touch within 24 hours."* with submitted business summary and 3-step next actions roadmap.
 - **Studio Command Details**:
-  - **Phone Numbers**: `+91 9503956026`, `+91 9226115976`
+  - **Phone Numbers**: `+91 9503956026`, `+91 9226115976`, `+91 9762874676`
   - **Email**: `vedaplus76@gmail.com`
   - **Location**: Front of Rajgurunagar Sarkari Bank, Khed, Rajgurunagar
   - Response SLA guarantee badge (< 24h).
