@@ -113,7 +113,7 @@
 .navMenu {
   display: flex;
   align-items: center;
-  gap: 4rem;
+  gap: clamp(1.5rem, 2.8vw, 3rem);
 }
 
 .navLink {

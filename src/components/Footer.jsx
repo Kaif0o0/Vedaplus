@@ -41,6 +41,9 @@ export default function Footer() {
               <a href="/#about-us">About Us</a>
             </li>
             <li>
+              <Link to="/reviews">Reviews</Link>
+            </li>
+            <li>
               <Link to="/contact">Contact</Link>
             </li>
           </ul>

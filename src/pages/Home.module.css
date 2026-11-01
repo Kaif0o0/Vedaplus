@@ -369,6 +369,10 @@
 
 .aboutCtaBox {
   margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 /* Right Approach Card */

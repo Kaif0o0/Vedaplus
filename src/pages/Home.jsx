@@ -249,6 +249,9 @@ export default function Home() {
                 <Link to="/contact" className={styles.primaryCta}>
                   <span>Get a Website →</span>
                 </Link>
+                <Link to="/reviews" className={styles.secondaryCta}>
+                  <span>Read Client Reviews ★</span>
+                </Link>
               </div>
             </div>
 

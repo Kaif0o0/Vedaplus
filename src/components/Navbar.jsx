@@ -170,6 +170,15 @@ export default function Navbar() {
             About Us
           </Link>
           <Link
+            to="/reviews"
+            onClick={closeDrawer}
+            className={`${styles.navLink} ${
+              location.pathname === '/reviews' ? styles.activeNavLink : ''
+            }`}
+          >
+            Reviews
+          </Link>
+          <Link
             to="/contact"
             onClick={closeDrawer}
             className={`${styles.navLink} ${
@@ -242,6 +251,15 @@ export default function Navbar() {
             }`}
           >
             About Us
+          </Link>
+          <Link
+            to="/reviews"
+            onClick={closeDrawer}
+            className={`${styles.mobileNavLink} ${
+              location.pathname === '/reviews' ? styles.mobileActive : ''
+            }`}
+          >
+            Reviews
           </Link>
           <Link
             to="/contact"
