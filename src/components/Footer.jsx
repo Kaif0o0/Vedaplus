@@ -51,19 +51,13 @@ export default function Footer() {
           <h4 className={styles.colTitle}>Services</h4>
           <ul className={styles.linksList}>
             <li>
-              <Link to="/contact?type=cafe">Cafes &amp; Bakeries</Link>
+              <Link to="/contact?type=hospitality">01. Food &amp; Hospitality</Link>
             </li>
             <li>
-              <Link to="/contact?type=dental">Dental &amp; Doctor Clinics</Link>
+              <Link to="/contact?type=retail">02. Retail &amp; E-commerce</Link>
             </li>
             <li>
-              <Link to="/contact?type=pharmacy">Pharmacies &amp; Rx</Link>
-            </li>
-            <li>
-              <Link to="/contact?type=hospital">Hospitals &amp; Healthcare</Link>
-            </li>
-            <li>
-              <Link to="/contact?type=retail">Local Retail &amp; Boutiques</Link>
+              <Link to="/contact?type=services">03. Professional &amp; Local Services</Link>
             </li>
           </ul>
         </div>

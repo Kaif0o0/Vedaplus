@@ -1,6 +1,6 @@
-# VedaPlus Studios | Custom Website Development for Local Businesses
+# VedaPlus | Custom Website Development for Local Businesses
 
-A fast, modern React web application built for **VedaPlus Studios**, a web agency specializing in website development for local enterprises such as cafes, dental clinics, hospitals, pharmacies, and retail shops.
+A fast, modern React web application built for **VedaPlus**, a web agency specializing in website development for local enterprises such as cafes, bakeries, retail shops, boutiques, and wellness studios.
 
 ---
 
@@ -24,10 +24,10 @@ Managed seamlessly with **React Router v7**:
 - **Sticky Glassmorphism Navbar**: Features the custom abstract VedaPlus logo, active page routing, status indicator, and direct call-to-action button.
 - **Hero Section**: Bold headline, subheadline, speed telemetry stats (`< 0.3s`, `+64%`, `100%`), and a centerpiece visual element featuring 4 local business websites:
   - ☕ **Artisan Cafe & Bakery**: *Roast & Bloom Bistro*
-  - 🩺 **Dental & Health Clinic**: *Aura Dental Specialists*
+  - ✨ **Wellness & Beauty Studio**: *Aura Beauty Studio*
   - 🛍️ **Boutique Retail & Shop**: *Kite & Timber Merchants*
-  - 🛡️ **Hospital & Medical Store**: *Apex Care & Pharmacy*
-- **Tailored Archetype Service Cards**: Interactive 3D tilt cards showcasing dedicated website solutions for cafes, dentists, doctors, hospitals, pharmacies, and retail shops with pre-selected query param links (`/contact?type=...`).
+  - 🥐 **Artisan Bakery & Goods**: *Apex Gourmet Bakery*
+- **Tailored Archetype Service Cards**: Interactive 3D tilt cards showcasing dedicated website solutions for cafes, retail shops, boutiques, and wellness studios with pre-selected query param links (`/contact?type=...`).
 - **High-Speed Website Advantage**: Clean architecture explaining sub-second loading speed, frictionless local customer inquiries, and Google Maps local schema advantage.
 - **14-Day Rapid Delivery Cycle**: 3-step transparent website development roadmap.
 - **Conversion Banner**: Direct hotline and inquiry button.
@@ -36,7 +36,7 @@ Managed seamlessly with **React Router v7**:
 - **Responsive Small Business Inquiry Form**:
   - Full Name / Business Name (with validation)
   - Email Address (format validation)
-  - Business Category Dropdown (Cafe/Restaurant, Doctor/Dental Clinic, Hospital, Pharmacy, Small Shop/Retail, Other)
+  - Business Category Dropdown (Cafe/Restaurant, Small Shop/Retail, Wellness Studio, Other)
   - Direct Phone / WhatsApp
   - Launch Timeline Selector (Fast-Track, Standard, Flexible)
   - Project Goals & Specific Requirements (character length validation)

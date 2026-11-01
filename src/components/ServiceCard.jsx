@@ -8,6 +8,7 @@ export default function ServiceCard({
   icon: Icon,
   archetype,
   title,
+  subcategories,
   tagline,
   description,
   features = [],
@@ -40,7 +41,17 @@ export default function ServiceCard({
         {/* Archetype Label */}
         <span className={styles.archetypeLabel}>{archetype}</span>
         <h3 className={styles.title}>{title}</h3>
-        <p className={styles.tagline}>{tagline}</p>
+
+        {/* Subcategories Box */}
+        {subcategories && (
+          <div className={styles.subcategoriesBox}>
+            <span className={styles.subcategoriesText}>
+              {Array.isArray(subcategories) ? subcategories.join(' · ') : subcategories}
+            </span>
+          </div>
+        )}
+
+        {tagline && <p className={styles.tagline}>{tagline}</p>}
         <p className={styles.description}>{description}</p>
 
         {/* Features Checklist */}

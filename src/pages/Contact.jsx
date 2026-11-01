@@ -58,16 +58,34 @@ export default function Contact() {
       // Map short keys or exact strings
       const lower = preselectedType.toLowerCase();
       let matched = 'Other Commercial Business';
-      if (lower.includes('cafe') || lower.includes('restaurant')) {
-        matched = 'Cafe / Restaurant & Dining';
-      } else if (lower.includes('dental') || lower.includes('doctor') || lower.includes('clinic')) {
-        matched = 'Doctor / Dental & Healthcare Clinic';
-      } else if (lower.includes('hospital')) {
-        matched = 'Hospital & Multi-Specialty Facility';
-      } else if (lower.includes('pharmacy') || lower.includes('medical store')) {
-        matched = 'Pharmacy & Medical Store';
-      } else if (lower.includes('retail') || lower.includes('shop') || lower.includes('boutique')) {
-        matched = 'Small Shop / Retail & Boutique';
+      if (
+        lower.includes('food') ||
+        lower.includes('hospitality') ||
+        lower.includes('cafe') ||
+        lower.includes('restaurant') ||
+        lower.includes('hotel') ||
+        lower.includes('bakery')
+      ) {
+        matched = '01. Food & Hospitality (Cafes, Restaurants, Hotels, Bakeries)';
+      } else if (
+        lower.includes('retail') ||
+        lower.includes('commerce') ||
+        lower.includes('clothing') ||
+        lower.includes('cosmetic') ||
+        lower.includes('grocery') ||
+        lower.includes('jewel') ||
+        lower.includes('shop')
+      ) {
+        matched = '02. Retail & E-commerce (Clothing, Cosmetics, Grocery, Jewellery)';
+      } else if (
+        lower.includes('professional') ||
+        lower.includes('service') ||
+        lower.includes('salon') ||
+        lower.includes('repair') ||
+        lower.includes('cleaning') ||
+        lower.includes('consult')
+      ) {
+        matched = '03. Professional & Local Services (Salons, Repair, Cleaning, Consulting)';
       }
       setValue('businessType', matched);
     }
@@ -191,7 +209,7 @@ export default function Contact() {
                 Get Your <span className={styles.amberText}>Custom Website</span> Built
               </h1>
               <p className={styles.pageSubtitle}>
-                Tell us about your clinic, cafe, medical store, or retail business. We will create a custom website proposal and speed audit within 24 hours.
+                Tell us about your business across Food &amp; Hospitality, Retail &amp; E-commerce, or Professional Services. We will create a custom website proposal and consultation within 24 hours.
               </p>
             </div>
 
@@ -228,7 +246,7 @@ export default function Contact() {
                 <div>
                   <h4 className={styles.gTitle}>Direct Lead Dispatch</h4>
                   <p className={styles.gDesc}>
-                    Inquiries and customer orders land straight into your WhatsApp, SMS, or clinic receptionist mailbox.
+                    Inquiries and customer orders land straight into your WhatsApp, SMS, or business mailbox.
                   </p>
                 </div>
               </div>
@@ -406,7 +424,7 @@ export default function Contact() {
                       <input
                         id="businessName"
                         type="text"
-                        placeholder="e.g. Dr. Maya Patel / Velvet Roast Cafe"
+                        placeholder="e.g. Rajesh Sharma / Velvet Roast Cafe"
                         className={`${styles.formInput} ${
                           errors.businessName ? styles.inputError : ''
                         }`}
@@ -468,20 +486,14 @@ export default function Contact() {
                           })}
                         >
                           <option value="">Select your business category...</option>
-                          <option value="Cafe / Restaurant & Dining">
-                            Cafe / Restaurant &amp; Dining
+                          <option value="01. Food & Hospitality (Cafes, Restaurants, Hotels, Bakeries)">
+                            01. Food &amp; Hospitality (Cafes, Restaurants, Hotels, Bakeries)
                           </option>
-                          <option value="Doctor / Dental & Healthcare Clinic">
-                            Doctor / Dental &amp; Healthcare Clinic
+                          <option value="02. Retail & E-commerce (Clothing, Cosmetics, Grocery, Jewellery)">
+                            02. Retail &amp; E-commerce (Clothing, Cosmetics, Grocery, Jewellery)
                           </option>
-                          <option value="Hospital & Multi-Specialty Facility">
-                            Hospital &amp; Multi-Specialty Facility
-                          </option>
-                          <option value="Pharmacy & Medical Store">
-                            Pharmacy &amp; Medical Store
-                          </option>
-                          <option value="Small Shop / Retail & Boutique">
-                            Small Shop / Retail &amp; Boutique
+                          <option value="03. Professional & Local Services (Salons, Repair, Cleaning, Consulting)">
+                            03. Professional &amp; Local Services (Salons, Repair, Cleaning, Consulting)
                           </option>
                           <option value="Other Commercial Business">
                             Other Commercial Business

@@ -3,9 +3,9 @@ import Tilt from 'react-parallax-tilt';
 import { useSpring, animated } from '@react-spring/web';
 import {
   Coffee,
-  Stethoscope,
+  Sparkles,
   Store,
-  ShieldPlus,
+  Wrench,
   Cpu,
   Wifi,
 } from 'lucide-react';
@@ -99,19 +99,19 @@ export default function FloatingVisual() {
               Fast mobile menus, instant appointment forms, and local Google Maps search visibility built into every website.
             </p>
 
-            {/* Live Metrics Telemetry Strip */}
+            {/* Live Performance & Feature Strip */}
             <div className={styles.telemetryGrid}>
               <div className={styles.telemetryCard}>
-                <span className={styles.telemetryVal}>0.24s</span>
-                <span className={styles.telemetryKey}>Time to Interactive</span>
+                <span className={styles.telemetryVal}>Fast</span>
+                <span className={styles.telemetryKey}>Mobile-First Loading</span>
               </div>
               <div className={styles.telemetryCard}>
-                <span className={styles.telemetryVal}>99.98%</span>
-                <span className={styles.telemetryKey}>Edge Availability</span>
+                <span className={styles.telemetryVal}>Clean</span>
+                <span className={styles.telemetryKey}>SEO &amp; Code Quality</span>
               </div>
               <div className={styles.telemetryCard}>
-                <span className={styles.telemetryVal}>+73%</span>
-                <span className={styles.telemetryKey}>Walk-in Conversion</span>
+                <span className={styles.telemetryVal}>Direct</span>
+                <span className={styles.telemetryKey}>WhatsApp &amp; Calls</span>
               </div>
             </div>
 
@@ -135,7 +135,7 @@ export default function FloatingVisual() {
 
       {/* Orbiting Satellites Group */}
       <div className={styles.satellitesWrapper}>
-        {/* Orbiting Satellite 1: Cafe & Restaurant */}
+        {/* Orbiting Satellite 1: Food & Hospitality */}
         <animated.div
           style={{
             transform: floatSpring1.y.to(
@@ -158,17 +158,17 @@ export default function FloatingVisual() {
               </div>
               <div className={styles.satContent}>
                 <div className={styles.satHeader}>
-                  <span className={styles.satArchetype}>Artisan Cafe</span>
-                  <span className={styles.satSpeed}>0.28s</span>
+                  <span className={styles.satArchetype}>Food &amp; Hospitality</span>
+                  <span className={styles.satSpeed}>Digital Menu</span>
                 </div>
-                <h4 className={styles.satTitle}>Roast &amp; Bloom Bistro</h4>
-                <p className={styles.satSub}>Live Booking • QR Menu</p>
+                <h4 className={styles.satTitle}>Cafes &amp; Bakeries</h4>
+                <p className={styles.satSub}>Online Menus • Table Booking</p>
               </div>
             </div>
           </Tilt>
         </animated.div>
 
-        {/* Orbiting Satellite 2: Medical & Dental Clinic */}
+        {/* Orbiting Satellite 2: Professional & Local Services */}
         <animated.div
           style={{
             transform: floatSpring2.y.to(
@@ -176,7 +176,7 @@ export default function FloatingVisual() {
             ),
           }}
           className={`${styles.satelliteCard} ${styles.satClinic}`}
-          onMouseEnter={() => setActiveNode('clinic')}
+          onMouseEnter={() => setActiveNode('wellness')}
           onMouseLeave={() => setActiveNode(null)}
         >
           <Tilt
@@ -187,21 +187,21 @@ export default function FloatingVisual() {
           >
             <div className={styles.satInner}>
               <div className={styles.satIconBubble}>
-                <Stethoscope size={18} className={styles.satIcon} />
+                <Sparkles size={18} className={styles.satIcon} />
               </div>
               <div className={styles.satContent}>
                 <div className={styles.satHeader}>
-                  <span className={styles.satArchetype}>Dental &amp; Health</span>
-                  <span className={styles.satSpeed}>HIPAA Safe</span>
+                  <span className={styles.satArchetype}>Local Services</span>
+                  <span className={styles.satSpeed}>Appointments</span>
                 </div>
-                <h4 className={styles.satTitle}>Aura Dental Care</h4>
-                <p className={styles.satSub}>1-Click Intake • Slot Sync</p>
+                <h4 className={styles.satTitle}>Salons &amp; Wellness</h4>
+                <p className={styles.satSub}>Direct WhatsApp • Quick Inquiries</p>
               </div>
             </div>
           </Tilt>
         </animated.div>
 
-        {/* Orbiting Satellite 3: Retail Storefront */}
+        {/* Orbiting Satellite 3: Retail & E-commerce */}
         <animated.div
           style={{
             transform: floatSpring3.y.to(
@@ -224,17 +224,17 @@ export default function FloatingVisual() {
               </div>
               <div className={styles.satContent}>
                 <div className={styles.satHeader}>
-                  <span className={styles.satArchetype}>Boutique Retail</span>
-                  <span className={styles.satSpeed}>Live Stock</span>
+                  <span className={styles.satArchetype}>Retail &amp; E-commerce</span>
+                  <span className={styles.satSpeed}>Live Catalog</span>
                 </div>
-                <h4 className={styles.satTitle}>Kite &amp; Timber Store</h4>
-                <p className={styles.satSub}>Curbside Pickup • Fast Pay</p>
+                <h4 className={styles.satTitle}>Clothing &amp; Jewellery</h4>
+                <p className={styles.satSub}>Product Showcase • WhatsApp Orders</p>
               </div>
             </div>
           </Tilt>
         </animated.div>
 
-        {/* Orbiting Satellite 4: Hospital & Medical Store */}
+        {/* Orbiting Satellite 4: Professional & Local Services */}
         <animated.div
           style={{
             transform: floatSpring4.y.to(
@@ -242,7 +242,7 @@ export default function FloatingVisual() {
             ),
           }}
           className={`${styles.satelliteCard} ${styles.satHospital}`}
-          onMouseEnter={() => setActiveNode('hospital')}
+          onMouseEnter={() => setActiveNode('repair')}
           onMouseLeave={() => setActiveNode(null)}
         >
           <Tilt
@@ -253,15 +253,15 @@ export default function FloatingVisual() {
           >
             <div className={styles.satInner}>
               <div className={styles.satIconBubble}>
-                <ShieldPlus size={18} className={styles.satIcon} />
+                <Wrench size={18} className={styles.satIcon} />
               </div>
               <div className={styles.satContent}>
                 <div className={styles.satHeader}>
-                  <span className={styles.satArchetype}>Hospital &amp; Rx</span>
-                  <span className={styles.satSpeed}>24/7 Hotline</span>
+                  <span className={styles.satArchetype}>Professional Services</span>
+                  <span className={styles.satSpeed}>Instant Calls</span>
                 </div>
-                <h4 className={styles.satTitle}>Apex Care &amp; Pharmacy</h4>
-                <p className={styles.satSub}>Instant Refill • Emergency</p>
+                <h4 className={styles.satTitle}>Repair &amp; Cleaning</h4>
+                <p className={styles.satSub}>Local Inquiries • Fast Response</p>
               </div>
             </div>
           </Tilt>

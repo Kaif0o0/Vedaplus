@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Tilt from 'react-parallax-tilt';
 import {
-  Coffee,
-  Stethoscope,
+  Utensils,
+  ShoppingBag,
+  Briefcase,
   Store,
-  ShieldPlus,
-  Pill,
   Sparkles,
+  Coffee,
   ArrowRight,
   ArrowUpRight,
   CheckCircle2,
@@ -26,102 +26,57 @@ import FloatingVisual from '../components/FloatingVisual';
 import ServiceCard from '../components/ServiceCard';
 import styles from './Home.module.css';
 
-// Website Development Services Data
+// Website Development Services Data (3 Core Pillars with Subcategories)
 const SERVICES_DATA = [
   {
-    id: 'cafe',
-    targetType: 'Cafe / Restaurant & Dining',
-    icon: Coffee,
-    archetype: 'Dining & Hospitality',
-    title: 'Cafes, Bakeries & Bistros',
-    tagline: 'Turn casual foot traffic into loyal regulars.',
-    description: 'Blazing-fast mobile menus, table reservation engines, and zero-wait QR ordering designed to delight customers during morning rushes.',
-    badge: '0.2s Menu Load',
+    id: 'hospitality',
+    targetType: 'Food & Hospitality (Cafes, Restaurants, Hotels, Bakeries)',
+    icon: Utensils,
+    archetype: '01. Food & Hospitality',
+    title: 'Food & Hospitality',
+    subcategories: ['Cafes', 'Restaurants', 'Hotels', 'Bakeries'],
+    tagline: 'Turn casual foot traffic and online visitors into loyal regulars.',
+    description: 'Custom websites designed for dining and stay experiences featuring interactive mobile menus, direct table & room booking inquiries, and instant Google Maps geo-routing.',
+    badge: 'Digital Menu & Booking',
     features: [
-      'Interactive visual digital menu (Zero PDF bloat)',
-      '1-Click WhatsApp & Instagram reservation bridge',
-      'Instant curbside pickup & takeaway dispatch',
-      'Optimized Google Maps local SEO geo-tags'
-    ]
-  },
-  {
-    id: 'dental',
-    targetType: 'Doctor / Dental & Healthcare Clinic',
-    icon: Stethoscope,
-    archetype: 'Healthcare & Specialists',
-    title: 'Dental & Doctor Clinics',
-    tagline: 'Instill trust before patients even step through the door.',
-    description: 'HIPAA-grade appointment scheduling, digital medical intake, practitioner credential showcases, and automated calendar synchronization.',
-    badge: 'HIPAA Protected',
-    features: [
-      'Seamless slot selection & calendar sync',
-      'Paperless mobile pre-registration forms',
-      'Emergency 1-tap call & guidance banner',
-      'Verified patient reviews & doctor certification badges'
-    ]
-  },
-  {
-    id: 'pharmacy',
-    targetType: 'Pharmacy & Medical Store',
-    icon: Pill,
-    archetype: 'Pharmaceutical & Care',
-    title: 'Pharmacies & Medical Stores',
-    tagline: 'Streamline prescription fulfillments with zero friction.',
-    description: 'Mobile-first prescription photo uploads, medicine refill alerts, OTC product directories, and rapid neighborhood delivery triggers.',
-    badge: 'Instant Rx Engine',
-    features: [
-      'Encrypted prescription photo & PDF intake',
-      'Automated refill reminder push notifications',
-      'Fast OTC medicine & equipment inventory search',
-      'Direct pharmacist chat & WhatsApp ordering'
-    ]
-  },
-  {
-    id: 'hospital',
-    targetType: 'Hospital & Multi-Specialty Facility',
-    icon: ShieldPlus,
-    archetype: 'Institutional Medicine',
-    title: 'Hospitals & Care Centers',
-    tagline: 'Critical infrastructure engineered for absolute uptime.',
-    description: 'Multi-department doctor directory with availability filters, 24/7 trauma alert banners, diagnostic lab report portals, and multi-location guides.',
-    badge: 'High Availability',
-    features: [
-      '24/7 Red-alert emergency & ambulance hotline',
-      'Searchable doctor directory by specialty & ward',
-      'Patient lab report download drawer',
-      'Campus interactive parking & navigation map'
+      'Interactive visual digital menu (Fast, zero PDF bloat)',
+      '1-Click WhatsApp & phone table reservation bridge',
+      'Curbside pickup, takeaway, and room inquiry workflows',
+      'Optimized Google Maps local SEO geo-tagging'
     ]
   },
   {
     id: 'retail',
-    targetType: 'Small Shop / Retail & Boutique',
-    icon: Store,
-    archetype: 'Local Retail & Merchants',
-    title: 'Shops & Specialty Boutiques',
-    tagline: 'Compete with e-commerce giants right on your street.',
-    description: 'Weightless digital storefronts featuring live local inventory, 2-tap Apple/Google Pay, curbside reservation, and hyper-local shopping incentives.',
-    badge: 'Zero Cart Friction',
+    targetType: 'Retail & E-commerce (Clothing, Cosmetics, Grocery, Jewellery)',
+    icon: ShoppingBag,
+    archetype: '02. Retail & E-commerce',
+    title: 'Retail & E-commerce',
+    subcategories: ['Clothing', 'Cosmetics', 'Grocery', 'Jewellery'],
+    tagline: 'Modern digital storefronts built to showcase your products and drive local sales.',
+    description: 'Fast, lightweight online catalogs and storefronts with organized product collections, local stock inquiry buttons, and seamless customer ordering channels.',
+    badge: 'Catalog & Storefront',
     features: [
-      'Instant-loading seasonal lookbook & collections',
-      'In-store reserve & curbside pickup checkout',
-      'Local inventory stock status live indicator',
-      'Integrated Google Merchant & local map sync'
+      'Interactive product lookbooks & collection showcases',
+      'Curbside reserve and in-store pickup inquiry flow',
+      'Fast mobile browsing with instant image previews',
+      'Integrated Google Merchant & local search discovery'
     ]
   },
   {
-    id: 'wellness',
-    targetType: 'Other Commercial Business',
-    icon: Sparkles,
-    archetype: 'Wellness & Salons',
-    title: 'Wellness & Specialty Studios',
-    tagline: 'Eliminate booking phone tags with automated schedules.',
-    description: 'Self-serve booking matrices for salons, spas, physiotherapy, and artisan studios with client preference tracking and SMS reminders.',
-    badge: 'Smart Calendar',
+    id: 'services',
+    targetType: 'Professional & Local Services (Salons, Repair, Cleaning, Consulting)',
+    icon: Briefcase,
+    archetype: '03. Professional & Local Services',
+    title: 'Professional & Local Services',
+    subcategories: ['Salons', 'Repair', 'Cleaning', 'Consulting'],
+    tagline: 'Clean, professional websites that build credibility and capture bookings.',
+    description: 'Transparent service catalogs, direct appointment booking forms, verified client testimonials, and instant contact funnels tailored for local service providers.',
+    badge: 'Service Menu & Inquiries',
     features: [
-      'Staff member & treatment duration selection',
-      'Automated SMS & calendar appointment reminder',
-      'Gift card & recurring package checkout',
-      'Gallery showcase with before-after sliders'
+      'Clear service listings with pricing and duration details',
+      'Easy client appointment and estimate request forms',
+      'Direct call and WhatsApp consultation funnels',
+      'Client reviews showcase and service area mapping'
     ]
   }
 ];
@@ -131,12 +86,7 @@ export default function Home() {
 
   const filteredServices = selectedFilter === 'all'
     ? SERVICES_DATA
-    : SERVICES_DATA.filter(service => {
-        if (selectedFilter === 'health') return ['dental', 'pharmacy', 'hospital'].includes(service.id);
-        if (selectedFilter === 'dining') return ['cafe'].includes(service.id);
-        if (selectedFilter === 'retail') return ['retail', 'wellness'].includes(service.id);
-        return true;
-      });
+    : SERVICES_DATA.filter(service => service.id === selectedFilter);
 
   return (
     <div className={styles.homeWrapper}>
@@ -151,11 +101,11 @@ export default function Home() {
             </div>
 
             <h1 className={styles.heroHeadline}>
-              Fast, Modern Websites Built for <span className={styles.accentText}>Growing Local Businesses.</span>
+              Fast, Modern Websites Built for <span className={styles.accentText}>Local Businesses.</span>
             </h1>
 
             <p className={styles.heroSubheadline}>
-              VedaPlus builds high-speed, modern websites tailored for cafes, dental clinics, medical stores, hospitals, and neighborhood retail shops. Zero bloat, instant customer inquiries, and mobile-friendly design.
+              VedaPlus builds high-speed, modern websites across Food &amp; Hospitality (cafes, restaurants, hotels, bakeries), Retail &amp; E-commerce (clothing, cosmetics, grocery, jewellery), and Professional Local Services (salons, repair, cleaning, consulting). Zero bloat, instant customer inquiries, and clean responsive design.
             </p>
 
             {/* CTAs */}
@@ -170,18 +120,21 @@ export default function Home() {
               </a>
             </div>
 
-            {/* Live Reliability Metrics */}
+            {/* Clean Capability Highlights */}
             <div className={styles.heroStatsBar}>
               <div className={styles.statItem}>
-                <span className={styles.statNum}>&lt; 0.3s</span>
-                <span className={styles.statLabel}>Mobile First Paint</span>
+                <span className={styles.statNum}>Fast</span>
+                <span className={styles.statLabel}>Mobile-First Loading</span>
               </div>
-              <div className={styles.statDivider} />
-              
               <div className={styles.statDivider} />
               <div className={styles.statItem}>
                 <span className={styles.statNum}>100%</span>
-                <span className={styles.statLabel}>Local SEO Schema</span>
+                <span className={styles.statLabel}>Responsive &amp; SEO Ready</span>
+              </div>
+              <div className={styles.statDivider} />
+              <div className={styles.statItem}>
+                <span className={styles.statNum}>Direct</span>
+                <span className={styles.statLabel}>WhatsApp &amp; Call Inquiries</span>
               </div>
             </div>
           </div>
@@ -205,34 +158,34 @@ export default function Home() {
               Website Development Services for Small Businesses
             </h2>
             <p className={styles.sectionDesc}>
-              No slow templates or generic site builders. Every VedaPlus website is custom-crafted around the exact booking, menu, prescription, or retail workflows of your local trade.
+              No slow templates or generic site builders. Every VedaPlus website is custom-crafted around the exact booking, menu, catalog, or retail workflows of your local trade.
             </p>
 
-            {/* Service Category Filter Tabs */}
+            {/* Service Category Filter Tabs matching exact user specifications */}
             <div className={styles.filterPills}>
               <button
                 className={`${styles.filterBtn} ${selectedFilter === 'all' ? styles.filterActive : ''}`}
                 onClick={() => setSelectedFilter('all')}
               >
-                All Services
+                All Categories
               </button>
               <button
-                className={`${styles.filterBtn} ${selectedFilter === 'dining' ? styles.filterActive : ''}`}
-                onClick={() => setSelectedFilter('dining')}
+                className={`${styles.filterBtn} ${selectedFilter === 'hospitality' ? styles.filterActive : ''}`}
+                onClick={() => setSelectedFilter('hospitality')}
               >
-                Cafes &amp; Bistros
-              </button>
-              <button
-                className={`${styles.filterBtn} ${selectedFilter === 'health' ? styles.filterActive : ''}`}
-                onClick={() => setSelectedFilter('health')}
-              >
-                Clinics, Hospitals &amp; Rx
+                01. Food &amp; Hospitality
               </button>
               <button
                 className={`${styles.filterBtn} ${selectedFilter === 'retail' ? styles.filterActive : ''}`}
                 onClick={() => setSelectedFilter('retail')}
               >
-                Retail Shops &amp; Boutiques
+                02. Retail &amp; E-commerce
+              </button>
+              <button
+                className={`${styles.filterBtn} ${selectedFilter === 'services' ? styles.filterActive : ''}`}
+                onClick={() => setSelectedFilter('services')}
+              >
+                03. Professional &amp; Local Services
               </button>
             </div>
           </div>
@@ -270,25 +223,25 @@ export default function Home() {
                 VedaPlus was founded on a simple truth: small business owners shouldn't have to tolerate clunky, bloated websites that crash and take 8 seconds to load on mobile phones.
               </p>
               <p className={styles.aboutBodyText}>
-                We combine modern web design with down-to-earth business sense. Whether you manage a bustling 40-seat neighborhood cafe, an urgent care dental clinic, or a legacy retail shop, we build websites that turn local passersby into lifelong customers.
+                We combine modern web design with down-to-earth business sense. Whether you operate in Food &amp; Hospitality, Retail &amp; E-commerce, or Professional &amp; Local Services, we build fast, clean websites that turn local passersby into lifelong customers.
               </p>
 
               <div className={styles.aboutCheckGrid}>
                 <div className={styles.aboutCheckItem}>
                   <CheckCircle2 size={18} className={styles.amberCheck} />
-                  <span>Sub-300ms cellular mobile loading speed</span>
+                  <span>Fast cellular mobile loading speed on all devices</span>
                 </div>
                 <div className={styles.aboutCheckItem}>
                   <CheckCircle2 size={18} className={styles.amberCheck} />
-                  <span>Integrated WhatsApp &amp; 1-tap call funnels</span>
+                  <span>Integrated WhatsApp &amp; 1-tap direct call funnels</span>
                 </div>
                 <div className={styles.aboutCheckItem}>
                   <CheckCircle2 size={18} className={styles.amberCheck} />
-                  <span>Top 3 Google Maps Local Pack schema</span>
+                  <span>Optimized Google Maps local SEO discovery</span>
                 </div>
                 <div className={styles.aboutCheckItem}>
                   <CheckCircle2 size={18} className={styles.amberCheck} />
-                  <span>14-day guaranteed rapid delivery cycle</span>
+                  <span>Dedicated 14-day rapid delivery sprint</span>
                 </div>
               </div>
 
@@ -328,7 +281,7 @@ export default function Home() {
                     <div>
                       <h4 className={styles.pillarMiniTitle}>Mobile First Touch</h4>
                       <p className={styles.pillarMiniText}>
-                        Designed specifically for thumb ergonomics: 1-click patient intake, tap-to-call, and fast pay.
+                        Designed specifically for thumb ergonomics: 1-tap WhatsApp chat, instant call button, and streamlined ordering.
                       </p>
                     </div>
                   </div>
@@ -340,7 +293,7 @@ export default function Home() {
                     <div>
                       <h4 className={styles.pillarMiniTitle}>Zero Maintenance Panic</h4>
                       <p className={styles.pillarMiniText}>
-                        No WordPress plugin breakdowns, no server vulnerability alerts. 99.98% monitored uptime.
+                        No bloated WordPress plugins, no server crash alerts. High reliability on modern cloud hosting.
                       </p>
                     </div>
                   </div>
@@ -371,7 +324,7 @@ export default function Home() {
                   Ready to elevate your local business with a modern website?
                 </h2>
                 <p className={styles.ctaSub}>
-                  Get a comprehensive website speed audit and custom website blueprint for your cafe, clinic, medical store, or shop within 24 hours.
+                  Get a comprehensive website consultation and custom blueprint for your business across Food &amp; Hospitality, Retail &amp; E-commerce, or Professional Services within 24 hours.
                 </p>
 
                 <div className={styles.ctaBtnRow}>
