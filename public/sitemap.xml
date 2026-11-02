@@ -2,23 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://your-project.vercel.app/</loc>
+    <loc>https://vedaplus-website.vercel.app/</loc>
   </url>
 
   <url>
-    <loc>https://your-project.vercel.app/about</loc>
+    <loc>https://vedaplus-website.vercel.app/about</loc>
   </url>
 
   <url>
-    <loc>https://your-project.vercel.app/services</loc>
+    <loc>https://vedaplus-website.vercel.app/services</loc>
   </url>
 
   <url>
-    <loc>https://your-project.vercel.app/reviews</loc>
+    <loc>https://vedaplus-website.vercel.app/reviews</loc>
   </url>
 
   <url>
-    <loc>https://your-project.vercel.app/contact</loc>
+    <loc>https://vedaplus-website.vercel.app/contact</loc>
   </url>
 
 </urlset>
