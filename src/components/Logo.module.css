@@ -1,118 +1,92 @@
-.logoContainer {
+.logoLink {
   display: inline-flex;
   align-items: center;
-  gap: 0.85rem;
-  user-select: none;
   text-decoration: none;
-}
-
-.iconWrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+  user-select: none;
+  width: fit-content;
   transition: transform var(--transition-normal);
 }
 
-.logoContainer:hover .iconWrapper {
-  transform: translateY(-2px) scale(1.04);
+.logoLink:hover {
+  transform: translateY(-2px);
+}
+
+.imageCard {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  border: 1.5px solid rgba(245, 158, 11, 0.35);
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.4), 0 0 14px rgba(245, 158, 11, 0.12);
+  transition: all var(--transition-normal);
+  background: #09142A;
+  overflow: visible;
+}
+
+.logoLink:hover .imageCard {
+  border-color: var(--color-secondary);
+  box-shadow: 0 8px 26px rgba(15, 23, 42, 0.5), 0 0 24px rgba(245, 158, 11, 0.28);
 }
 
 .logoImg {
-  height: 44px;
+  display: block;
+  height: 82px;
   width: auto;
-  max-width: 80px;
+  max-width: 275px;
+  padding:10px ;
   object-fit: cover;
-  border-radius: 10px;
-  border: 1.5px solid rgba(245, 158, 11, 0.45);
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25), 0 0 12px rgba(245, 158, 11, 0.15);
-  transition: all var(--transition-normal);
+  border-radius: calc(var(--radius-md) - 2px);
+  transition: transform var(--transition-normal);
 }
 
-.logoContainer:hover .logoImg {
-  border-color: var(--color-secondary);
-  box-shadow: 0 6px 18px rgba(245, 158, 11, 0.35);
+.logoLink:hover .logoImg {
+  transform: scale(1.02);
 }
 
 .beaconGlow {
   position: absolute;
-  top: -2px;
-  right: -2px;
-  width: 8px;
-  height: 8px;
+  top: -3px;
+  right: -3px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   background-color: var(--color-secondary);
   box-shadow: 0 0 10px var(--color-secondary);
   animation: pulseGlow 2s infinite ease-in-out;
 }
 
-.textWrapper {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.15;
-}
-
-.brandTitle {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.brandName {
-  font-family: var(--font-display);
-  font-size: 1.28rem;
-  font-weight: 800;
-  color: var(--color-primary);
-  letter-spacing: -0.03em;
-  white-space: nowrap;
-}
-
-.brandSubtitle {
-  font-family: var(--font-body);
-  font-size: 0.72rem;
-  font-weight: 500;
-  color: var(--color-primary-muted);
-  letter-spacing: 0.02em;
-  margin-top: 0.15rem;
-  white-space: nowrap;
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.5;
+  }
 }
 
 /* Size Variants */
 .small .logoImg {
-  height: 36px;
-  max-width: 65px;
+  height: 60px;
+  max-width: 130px;
 }
 
-.small .brandName {
-  font-size: 1.1rem;
+.medium .logoImg {
+  height: 82px;
+  max-width: 175px;
 }
 
 .large .logoImg {
-  height: 52px;
-  max-width: 95px;
-}
-
-.large .brandName {
-  font-size: 1.55rem;
+  height: 98px;
+  max-width: 215px;
 }
 
 /* Mobile Responsiveness */
 @media (max-width: 480px) {
-  .logoContainer {
-    gap: 0.65rem;
-  }
-
   .logoImg {
-    height: 38px;
-    max-width: 68px;
-  }
-
-  .brandName {
-    font-size: 1.15rem;
-  }
-
-  .brandSubtitle {
-    display: none;
+    height: 72px;
+    max-width: 155px;
   }
 }
