@@ -17,6 +17,8 @@ export default function App() {
         <main className="mainContent">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/about" element={<Home />} />
+            <Route path="/services" element={<Home />} />
             <Route path="/reviews" element={<Reviews />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<Navigate to="/" replace />} />

@@ -28,7 +28,11 @@ export default function Navbar() {
 
   // Sync active section based on URL hash or path changes
   useEffect(() => {
-    if (location.pathname === '/') {
+    if (location.pathname === '/about') {
+      setActiveSection('about-us');
+    } else if (location.pathname === '/services') {
+      setActiveSection('services');
+    } else if (location.pathname === '/') {
       if (location.hash) {
         const hashId = location.hash.replace('#', '');
         if (['services', 'about-us', 'home'].includes(hashId)) {
@@ -151,7 +155,7 @@ export default function Navbar() {
             to="/#services"
             onClick={(e) => handleSectionClick(e, 'services')}
             className={`${styles.navLink} ${
-              location.pathname === '/' && activeSection === 'services'
+              location.pathname === '/services' || (location.pathname === '/' && activeSection === 'services')
                 ? styles.activeNavLink
                 : ''
             }`}
@@ -162,7 +166,7 @@ export default function Navbar() {
             to="/#about-us"
             onClick={(e) => handleSectionClick(e, 'about-us')}
             className={`${styles.navLink} ${
-              location.pathname === '/' && activeSection === 'about-us'
+              location.pathname === '/about' || (location.pathname === '/' && activeSection === 'about-us')
                 ? styles.activeNavLink
                 : ''
             }`}
@@ -234,7 +238,7 @@ export default function Navbar() {
             to="/#services"
             onClick={(e) => handleSectionClick(e, 'services')}
             className={`${styles.mobileNavLink} ${
-              location.pathname === '/' && activeSection === 'services'
+              location.pathname === '/services' || (location.pathname === '/' && activeSection === 'services')
                 ? styles.mobileActive
                 : ''
             }`}
@@ -245,7 +249,7 @@ export default function Navbar() {
             to="/#about-us"
             onClick={(e) => handleSectionClick(e, 'about-us')}
             className={`${styles.mobileNavLink} ${
-              location.pathname === '/' && activeSection === 'about-us'
+              location.pathname === '/about' || (location.pathname === '/' && activeSection === 'about-us')
                 ? styles.mobileActive
                 : ''
             }`}

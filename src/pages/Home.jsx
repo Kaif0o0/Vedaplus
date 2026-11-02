@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import Tilt from 'react-parallax-tilt';
 import {
   Utensils,
@@ -83,6 +83,27 @@ const SERVICES_DATA = [
 
 export default function Home() {
   const [selectedFilter, setSelectedFilter] = useState('all');
+  const location = useLocation();
+
+  useEffect(() => {
+    let targetId = null;
+    if (location.pathname === '/about') {
+      targetId = 'about-us';
+    } else if (location.pathname === '/services') {
+      targetId = 'services';
+    } else if (location.hash) {
+      targetId = location.hash.replace('#', '');
+    }
+
+    if (targetId) {
+      const el = document.getElementById(targetId);
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [location.pathname, location.hash]);
 
   const filteredServices = selectedFilter === 'all'
     ? SERVICES_DATA
