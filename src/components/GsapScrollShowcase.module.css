@@ -1,0 +1,469 @@
+/* ==========================================================================
+   GSAP Pinned Scroll Showcase Module
+   Royal Midnight Blue (#0F172A) | Marigold Amber (#F59E0B) | Soft Chalk White (#F8FAFC)
+   ========================================================================== */
+
+.scrollShowcaseSection {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 720px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.03) 0%,
+    rgba(245, 158, 11, 0.04) 50%,
+    rgba(15, 23, 42, 0.03) 100%
+  );
+  overflow: hidden;
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.ambientBackdrop {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.14) 0%, transparent 68%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.showcaseContainer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  max-height: 820px;
+  justify-content: space-between;
+  padding: 3.5rem 0 2rem;
+}
+
+/* Header Block */
+.headerBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 750px;
+}
+
+.sectionBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.85rem;
+  background: rgba(15, 23, 42, 0.05);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #B45309;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.85rem;
+}
+
+.badgeIcon {
+  color: var(--color-secondary);
+}
+
+.mainTitle {
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  font-weight: 800;
+  color: var(--color-primary);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin-bottom: 0.5rem;
+}
+
+.accentText {
+  color: var(--color-secondary);
+}
+
+.subTitle {
+  font-size: 0.95rem;
+  color: var(--color-primary-muted);
+  max-width: 580px;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+}
+
+/* Stepper Progress Row */
+.stepperRow {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.stepPill {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.85rem;
+  background: #FFFFFF;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-primary-muted);
+  transition: all var(--transition-normal);
+}
+
+.stepPillActive {
+  background: #0F172A;
+  border-color: var(--color-secondary);
+  color: #F8FAFC;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.25);
+  transform: scale(1.05);
+}
+
+.stepNum {
+  font-weight: 800;
+  color: var(--color-secondary);
+}
+
+.stepLabel {
+  font-weight: 600;
+}
+
+/* Cards Stage (Horizontal Runway) */
+.cardsStage {
+  position: relative;
+  width: 100%;
+  max-width: 920px;
+  height: 410px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+}
+
+.slidingCard {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform, opacity;
+  pointer-events: auto;
+}
+
+.cardInner {
+  width: 100%;
+  height: 100%;
+  background: #FFFFFF;
+  border: 1.5px solid rgba(15, 23, 42, 0.12);
+  box-shadow: 0 24px 50px -10px rgba(15, 23, 42, 0.14), 0 0 0 1px rgba(245, 158, 11, 0.18);
+  border-radius: var(--radius-xl);
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Left Column: Archetype Details */
+.cardDetailsCol {
+  padding: 2.25rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px dashed rgba(15, 23, 42, 0.1);
+}
+
+.cardTopBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.65rem;
+}
+
+.iconCircle {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: #0F172A;
+  color: var(--color-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
+}
+
+.iconAmber {
+  color: var(--color-secondary);
+}
+
+.blueprintTag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #B45309;
+  background: rgba(245, 158, 11, 0.14);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-sm);
+}
+
+.archetypeLabel {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.2rem;
+}
+
+.cardHeadline {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 0.55rem;
+}
+
+.subcategoriesPill {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  padding: 0.35rem 0.7rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #B45309;
+  margin-bottom: 0.85rem;
+}
+
+.cardDescription {
+  font-size: 0.88rem;
+  color: var(--color-primary-muted);
+  line-height: 1.55;
+  margin-bottom: 1.25rem;
+}
+
+.cardCtaBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+  padding: 0.75rem 1.35rem;
+  background: var(--color-secondary);
+  color: #0F172A;
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 800;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3);
+  transition: all var(--transition-fast);
+}
+
+.cardCtaBtn:hover {
+  background: #D97706;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.45);
+}
+
+/* Right Column: Features Checklist */
+.cardFeaturesCol {
+  background: rgba(15, 23, 42, 0.02);
+  padding: 2.25rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.featuresHeadingRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.15rem;
+}
+
+.sparkleIcon {
+  color: var(--color-secondary);
+}
+
+.featuresHeading {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.featuresList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-size: 0.85rem;
+  color: var(--color-primary);
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.checkIcon {
+  color: var(--color-secondary);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.verifiedTechBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  background: #FFFFFF;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-sm);
+  width: fit-content;
+}
+
+.techPulseDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-secondary);
+  box-shadow: 0 0 6px var(--color-secondary);
+}
+
+/* Scroll Guide Indicator */
+.scrollGuide {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--color-primary-muted);
+}
+
+.mouseWheelIcon {
+  width: 18px;
+  height: 28px;
+  border-radius: 12px;
+  border: 1.5px solid var(--color-primary-muted);
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.mouseWheelDot {
+  width: 3px;
+  height: 6px;
+  background: var(--color-secondary);
+  border-radius: 2px;
+  position: absolute;
+  top: 4px;
+  animation: wheelRoll 1.6s infinite ease-in-out;
+}
+
+@keyframes wheelRoll {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+/* ================= RESPONSIVE MEDIA QUERIES ================= */
+@media (max-width: 860px) {
+  .scrollShowcaseSection {
+    height: auto;
+    min-height: auto;
+    padding: 3rem 0;
+  }
+
+  .showcaseContainer {
+    max-height: none;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+  }
+
+  .cardsStage {
+    height: 480px;
+    max-width: 95vw;
+  }
+
+  .cardInner {
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+  }
+
+  .cardDetailsCol {
+    padding: 1.5rem;
+    border-right: none;
+    border-bottom: 1px dashed rgba(15, 23, 42, 0.1);
+  }
+
+  .cardFeaturesCol {
+    padding: 1.5rem;
+  }
+
+  .cardHeadline {
+    font-size: 1.15rem;
+  }
+
+  .cardDescription {
+    font-size: 0.82rem;
+  }
+
+  .cardCtaBtn {
+    font-size: 0.82rem;
+    padding: 0.65rem 1.1rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .cardsStage {
+    height: 520px;
+  }
+
+  .cardDetailsCol,
+  .cardFeaturesCol {
+    padding: 1.15rem 1rem;
+  }
+
+  .mainTitle {
+    font-size: 1.5rem;
+  }
+}
+

@@ -2,9 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Tilt from 'react-parallax-tilt';
 import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import Service3DEmblem from './Service3DEmblem';
 import styles from './ServiceCard.module.css';
 
 export default function ServiceCard({
+  id,
   icon: Icon,
   archetype,
   title,
@@ -30,10 +32,10 @@ export default function ServiceCard({
       className={styles.tiltCard}
     >
       <div className={styles.cardContainer}>
-        {/* Top Header */}
+        {/* Top Header with 3D Category Model */}
         <div className={styles.cardTop}>
           <div className={styles.iconBadge}>
-            <Icon size={24} className={styles.iconSvg} />
+            <Service3DEmblem type={id || 'hospitality'} size={44} />
           </div>
           <span className={styles.blueprintBadge}>{badge}</span>
         </div>

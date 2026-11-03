@@ -402,6 +402,18 @@
   pointer-events: none;
 }
 
+.approachHeaderRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.approach3DBox {
+  flex-shrink: 0;
+}
+
 .approachBadge {
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -706,6 +718,17 @@
   .approachCard {
     padding: 1.75rem 1.25rem;
     border-radius: 20px;
+  }
+
+  .approachHeaderRow {
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+    gap: 0.75rem;
+  }
+
+  .approach3DBox {
+    margin: 0 auto;
   }
 
   .ctaBanner {

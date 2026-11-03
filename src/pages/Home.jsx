@@ -24,7 +24,14 @@ import {
 } from 'lucide-react';
 import FloatingVisual from '../components/FloatingVisual';
 import ServiceCard from '../components/ServiceCard';
+import Marquee3D from '../components/Marquee3D';
+import TechGlobe3D from '../components/TechGlobe3D';
+import Cta3DPortal from '../components/Cta3DPortal';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './Home.module.css';
+
+gsap.registerPlugin(ScrollTrigger);
 
 // Website Development Services Data (3 Core Pillars with Subcategories)
 const SERVICES_DATA = [
@@ -105,6 +112,92 @@ export default function Home() {
     }
   }, [location.pathname, location.hash]);
 
+  // Simple, Smooth & Lightweight GSAP Scroll Animations (100% Mobile Responsive)
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // 1. Hero Reveal Animation (Stagger up cleanly)
+      gsap.from('.gsap-hero-item', {
+        y: 25,
+        opacity: 0,
+        stagger: 0.1,
+        duration: 0.7,
+        ease: 'power2.out',
+      });
+
+      // 2. Services Section Reveal (Clean vertical stagger)
+      gsap.from('.gsap-service-card', {
+        scrollTrigger: {
+          trigger: '#services',
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        },
+        y: 30,
+        opacity: 0,
+        stagger: 0.12,
+        duration: 0.65,
+        ease: 'power2.out',
+      });
+
+      // 3. About Us Section Vertical Reveals (No horizontal shifts to prevent mobile overflow)
+      gsap.from('.gsap-about-story', {
+        scrollTrigger: {
+          trigger: '#about-us',
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        },
+        y: 25,
+        opacity: 0,
+        duration: 0.7,
+        ease: 'power2.out',
+      });
+
+      gsap.from('.gsap-about-card', {
+        scrollTrigger: {
+          trigger: '#about-us',
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        },
+        y: 25,
+        opacity: 0,
+        duration: 0.7,
+        delay: 0.1,
+        ease: 'power2.out',
+      });
+
+      // 4. CTA Banner Reveal
+      gsap.from('.gsap-cta-banner', {
+        scrollTrigger: {
+          trigger: '#contact',
+          start: 'top 88%',
+          toggleActions: 'play none none none',
+        },
+        scale: 0.97,
+        y: 20,
+        opacity: 0,
+        duration: 0.7,
+        ease: 'power2.out',
+      });
+    });
+
+    const refreshTimer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 150);
+
+    return () => {
+      clearTimeout(refreshTimer);
+      ctx.revert();
+    };
+  }, []);
+
+  // Smooth micro-fade when category filter changes
+  useEffect(() => {
+    gsap.fromTo(
+      '.gsap-service-card',
+      { opacity: 0, y: 15 },
+      { opacity: 1, y: 0, duration: 0.4, stagger: 0.08, ease: 'power2.out' }
+    );
+  }, [selectedFilter]);
+
   const filteredServices = selectedFilter === 'all'
     ? SERVICES_DATA
     : SERVICES_DATA.filter(service => service.id === selectedFilter);
@@ -116,21 +209,21 @@ export default function Home() {
         <div className={`container ${styles.heroContainer}`}>
           {/* Left Column: Bold Copy & Call-To-Action */}
           <div className={styles.heroCopy}>
-            <div className={styles.pillBadge}>
+            <div className={`${styles.pillBadge} gsap-hero-item`}>
               <span className={styles.pillPulse} />
               <span className={styles.pillText}>VedaPlus • Custom Website Development</span>
             </div>
 
-            <h1 className={styles.heroHeadline}>
+            <h1 className={`${styles.heroHeadline} gsap-hero-item`}>
               Fast, Modern Websites Built for <span className={styles.accentText}>Local Businesses.</span>
             </h1>
 
-            <p className={styles.heroSubheadline}>
+            <p className={`${styles.heroSubheadline} gsap-hero-item`}>
               VedaPlus builds high-speed, modern websites across Food &amp; Hospitality (cafes, restaurants, hotels, bakeries), Retail &amp; E-commerce (clothing, cosmetics, grocery, jewellery), and Professional Local Services (salons, repair, cleaning, consulting). Zero bloat, instant customer inquiries, and clean responsive design.
             </p>
 
             {/* CTAs */}
-            <div className={styles.heroActions}>
+            <div className={`${styles.heroActions} gsap-hero-item`}>
               <Link to="/contact" className={styles.primaryCta} id="hero-get-website-cta">
                 <span>Get a Website →</span>
               </Link>
@@ -142,7 +235,7 @@ export default function Home() {
             </div>
 
             {/* Clean Capability Highlights */}
-            <div className={styles.heroStatsBar}>
+            <div className={`${styles.heroStatsBar} gsap-hero-item`}>
               <div className={styles.statItem}>
                 <span className={styles.statNum}>Fast</span>
                 <span className={styles.statLabel}>Mobile-First Loading</span>
@@ -166,6 +259,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ================= 1.5 3D MARQUEE SHOWCASE ================= */}
+      <Marquee3D />
 
       {/* ================= 2. SERVICES SECTION ================= */}
       <section id="services" className={styles.solutionsSection}>
@@ -214,7 +310,9 @@ export default function Home() {
           {/* Services Grid */}
           <div className={styles.cardsGrid}>
             {filteredServices.map((service) => (
-              <ServiceCard key={service.id} {...service} />
+              <div key={service.id} className="gsap-service-card">
+                <ServiceCard {...service} />
+              </div>
             ))}
           </div>
 
@@ -232,7 +330,7 @@ export default function Home() {
         <div className="container">
           <div className={styles.aboutGrid}>
             {/* Left Story Column */}
-            <div className={styles.aboutStoryCol}>
+            <div className={`${styles.aboutStoryCol} gsap-about-story`}>
               <div className={styles.sectionTag}>
                 <Users size={14} />
                 <span>About Us</span>
@@ -277,10 +375,17 @@ export default function Home() {
             </div>
 
             {/* Right Approach Column: The Modern Website Advantage */}
-            <div className={styles.aboutApproachCol}>
+            <div className={`${styles.aboutApproachCol} gsap-about-card`}>
               <div className={styles.approachCard}>
-                <div className={styles.approachBadge}>The VedaPlus Approach</div>
-                <h3 className={styles.approachTitle}>Why Custom Website Development?</h3>
+                <div className={styles.approachHeaderRow}>
+                  <div>
+                    <div className={styles.approachBadge}>The VedaPlus Approach</div>
+                    <h3 className={styles.approachTitle}>Why Custom Website Development?</h3>
+                  </div>
+                  <div className={styles.approach3DBox}>
+                    <TechGlobe3D size={135} />
+                  </div>
+                </div>
                 <p className={styles.approachDesc}>
                   Traditional website builders bundle 40 heavy plugins, slow database queries, and uncompressed assets that weigh down your site. We handcraft clean, blazing-fast websites that load instantly on every device.
                 </p>
@@ -338,8 +443,11 @@ export default function Home() {
             transitionSpeed={800}
             className={styles.ctaTilt}
           >
-            <div className={styles.ctaBanner}>
+            <div className={`${styles.ctaBanner} gsap-cta-banner`}>
               <div className={styles.ctaContent}>
+                {/* 3D Interactive Launch Portal Model */}
+                <Cta3DPortal size={115} />
+
                 <div className={styles.ctaPill}>
                   <Award size={14} />
                   <span>VedaPlus • Accepting New Website Development Projects</span>

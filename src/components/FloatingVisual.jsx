@@ -9,6 +9,7 @@ import {
   Cpu,
   Wifi,
 } from 'lucide-react';
+import Interactive3DCore from './Interactive3DCore';
 import styles from './FloatingVisual.module.css';
 
 export default function FloatingVisual() {
@@ -99,6 +100,11 @@ export default function FloatingVisual() {
               Fast mobile menus, instant appointment forms, and local Google Maps search visibility built into every website.
             </p>
 
+            {/* Central Three.js Interactive 3D Model (Touch & Mouse Interactive on Mobile & Desktop) */}
+            <div className={styles.interactive3DCoreBox}>
+              <Interactive3DCore />
+            </div>
+
             {/* Live Performance & Feature Strip */}
             <div className={styles.telemetryGrid}>
               <div className={styles.telemetryCard}>
@@ -113,21 +119,6 @@ export default function FloatingVisual() {
                 <span className={styles.telemetryVal}>Direct</span>
                 <span className={styles.telemetryKey}>WhatsApp &amp; Calls</span>
               </div>
-            </div>
-
-            {/* Glowing Pulse Line Vector */}
-            <div className={styles.pulseGraph}>
-              <svg viewBox="0 0 320 40" fill="none" className={styles.pulseSvg}>
-                <path
-                  d="M0 20H40L60 8L80 34L100 20H150L170 6L190 32L210 20H260L275 12L285 28L295 20H320"
-                  stroke="#F59E0B"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <circle cx="170" cy="6" r="3" fill="#F59E0B" />
-                <circle cx="275" cy="12" r="3" fill="#F59E0B" />
-              </svg>
             </div>
           </div>
         </div>

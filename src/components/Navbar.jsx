@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Mail, MapPin } from 'lucide-react';
+import Navbar3DBeacon from './Navbar3DBeacon';
 import styles from './Navbar.module.css';
 
 export default function Navbar() {
@@ -127,13 +128,14 @@ export default function Navbar() {
       </div>
 
       <div className={`container ${styles.navContainer}`}>
-        {/* Brand Name Text: VedaPlus (Logo image removed) */}
+        {/* Brand Name Text: VedaPlus with 3D Tech Beacon */}
         <Link
           to="/"
           className={styles.brandLink}
           aria-label="VedaPlus Home"
           onClick={(e) => handleSectionClick(e, 'home')}
         >
+          <Navbar3DBeacon size={32} />
           <span className={styles.brandNameText}>VedaPlus</span>
         </Link>
 

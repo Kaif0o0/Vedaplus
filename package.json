@@ -12,13 +12,15 @@
   "dependencies": {
     "@react-spring/web": "^10.1.2",
     "canvas-confetti": "^1.9.4",
+    "gsap": "^3.15.0",
     "lucide-react": "^1.64.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "react-hook-form": "^7.91.0",
     "react-parallax-tilt": "^1.7.349",
     "react-router-dom": "^7.18.5",
-    "react-spring": "^10.0.4"
+    "react-spring": "^10.0.4",
+    "three": "^0.187.0"
   },
   "devDependencies": {
     "@types/react": "^19.3.0",

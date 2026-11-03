@@ -1,0 +1,35 @@
+.portalContainer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: grab;
+  touch-action: pan-y;
+  margin: 0 auto 0.75rem;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 16px rgba(245, 158, 11, 0.45));
+  transition: transform var(--transition-fast);
+}
+
+.portalContainer:hover {
+  transform: scale(1.12);
+  filter: drop-shadow(0 0 24px rgba(245, 158, 11, 0.7));
+}
+
+.portalContainer:active {
+  cursor: grabbing;
+}
+
+.portalContainer canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .portalContainer {
+    width: 90px !important;
+    height: 90px !important;
+  }
+}
+

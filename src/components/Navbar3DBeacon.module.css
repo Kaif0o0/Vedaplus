@@ -1,0 +1,22 @@
+.beaconContainer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+  border-radius: 50%;
+  transition: transform var(--transition-fast);
+  filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.45));
+}
+
+.beaconContainer:hover {
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.7));
+}
+
+.beaconContainer canvas {
+  display: block;
+  pointer-events: none;
+}
+

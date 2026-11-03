@@ -1,0 +1,28 @@
+.emblemContainer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: grab;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.45));
+  transition: transform var(--transition-fast);
+}
+
+.emblemContainer:hover {
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 14px rgba(245, 158, 11, 0.75));
+}
+
+.emblemContainer:active {
+  cursor: grabbing;
+}
+
+.emblemContainer canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  pointer-events: none;
+}
+

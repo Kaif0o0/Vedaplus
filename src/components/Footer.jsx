@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, ShieldCheck, Mail, MapPin, Phone } from 'lucide-react';
+import { ArrowUpRight, Mail, MapPin, Phone } from 'lucide-react';
 import Logo from './Logo';
+import Footer3DUptime from './Footer3DUptime';
+import Footer3DLaunch from './Footer3DLaunch';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -19,7 +21,7 @@ export default function Footer() {
           </p>
 
           <div className={styles.statusBox}>
-            <ShieldCheck size={18} className={styles.statusIcon} />
+            <Footer3DUptime size={44} />
             <div className={styles.statusText}>
               <span className={styles.statusTitle}>Zero-Downtime Guarantee</span>
               <span className={styles.statusSub}>Local business continuity 24/7/365</span>
@@ -88,7 +90,10 @@ export default function Footer() {
           </div>
 
           <div className={styles.ctaMiniBox}>
-            <span className={styles.ctaMiniLabel}>Ready to launch?</span>
+            <div className={styles.ctaMiniHeader}>
+              <Footer3DLaunch size={38} />
+              <span className={styles.ctaMiniLabel}>Ready to launch?</span>
+            </div>
             <Link to="/contact" className={styles.ctaMiniBtn}>
               <span>Get a Website →</span>
             </Link>

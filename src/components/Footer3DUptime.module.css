@@ -1,0 +1,31 @@
+.uptimeContainer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: grab;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.35));
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.uptimeContainer:hover {
+  transform: scale(1.1);
+  border-color: var(--color-secondary);
+  filter: drop-shadow(0 0 16px rgba(245, 158, 11, 0.6));
+}
+
+.uptimeContainer:active {
+  cursor: grabbing;
+}
+
+.uptimeContainer canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  pointer-events: none;
+}
+
