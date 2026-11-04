@@ -1,12 +1,12 @@
 /* ==========================================================================
-   Hero Visual Component — 3D High-Performance Titanium Suit Stage
+   Hero Visual Component — 3D Full-Body Titanium Suit Stage
    VedaPlus Strict 3-Color Standard: Midnight Blue (#0F172A), Marigold Amber (#F59E0B), Soft White (#F8FAFC)
    ========================================================================== */
 
 .heroVisualWrapper {
   position: relative;
   width: 100%;
-  max-width: 520px;
+  max-width: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,7 +21,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 440px;
-  height: 440px;
+  height: 480px;
   background: radial-gradient(circle, rgba(245, 158, 11, 0.22) 0%, transparent 68%);
   filter: blur(55px);
   pointer-events: none;
@@ -34,7 +34,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 380px;
-  height: 380px;
+  height: 420px;
   background: radial-gradient(circle, rgba(15, 23, 42, 0.35) 0%, transparent 72%);
   filter: blur(40px);
   pointer-events: none;
@@ -60,7 +60,7 @@
     0 25px 60px -15px rgba(15, 23, 42, 0.55),
     0 0 35px rgba(245, 158, 11, 0.18),
     inset 0 1px 0 rgba(248, 250, 252, 0.15);
-  padding: 1.5rem 1.4rem 1.3rem;
+  padding: 1.4rem 1.3rem 1.2rem;
   overflow: hidden;
   color: #F8FAFC;
   transform-style: preserve-3d;
@@ -72,8 +72,8 @@
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid rgba(248, 250, 252, 0.1);
-  padding-bottom: 0.85rem;
-  margin-bottom: 0.75rem;
+  padding-bottom: 0.8rem;
+  margin-bottom: 0.6rem;
   position: relative;
   z-index: 10;
   transform: translateZ(25px);
@@ -119,7 +119,7 @@
 /* Spatial Layer 1: Background Holographic Rings & Grid */
 .holoRingOuter {
   position: absolute;
-  top: 45%;
+  top: 48%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 380px;
@@ -133,7 +133,7 @@
 
 .holoRingInner {
   position: absolute;
-  top: 45%;
+  top: 48%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 270px;
@@ -160,30 +160,39 @@
 .suitFigureContainer {
   position: relative;
   width: 100%;
-  height: 380px;
+  height: 460px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0.5rem 0;
+  margin: 0.25rem 0;
   z-index: 5;
+  transform-style: preserve-3d;
+}
+
+/* Container that holds the image and pinned light nodes */
+.suitArtWrapper {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transform-style: preserve-3d;
 }
 
 .suitImage {
   display: block;
-  max-width: 92%;
-  max-height: 360px;
+  height: 100%;
+  max-height: 440px;
   width: auto;
-  height: auto;
   object-fit: contain;
-  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 20px rgba(245, 158, 11, 0.2));
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 24px rgba(245, 158, 11, 0.25));
   transform: translateZ(30px);
   transition: transform var(--transition-normal);
 }
 
 /* Anti-Gravity Floating Physics */
 .antiGravityFloat {
-  animation: antiGravitySuit 4.5s ease-in-out infinite;
+  animation: antiGravitySuit 4.8s ease-in-out infinite;
 }
 
 @keyframes antiGravitySuit {
@@ -191,22 +200,22 @@
     transform: translateY(0px) rotate(0deg);
   }
   50% {
-    transform: translateY(-10px) rotate(0.8deg);
+    transform: translateY(-10px) rotate(0.6deg);
   }
   100% {
     transform: translateY(0px) rotate(0deg);
   }
 }
 
-/* Suit Shadow Cushion */
+/* Suit Shadow Cushion under boots */
 .suitShadowCushion {
   position: absolute;
-  bottom: 5px;
+  bottom: 0px;
   left: 50%;
   transform: translateX(-50%);
-  width: 220px;
-  height: 24px;
-  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.6) 0%, transparent 70%);
+  width: 200px;
+  height: 20px;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.65) 0%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
   z-index: 4;
@@ -217,15 +226,115 @@
   position: absolute;
   pointer-events: none;
   z-index: 8;
-  transform: translate(-50%, -50%) translateZ(42px);
+  transform: translate(-50%, -50%) translateZ(44px);
 }
 
-/* 1. Chest Arc Reactor (Left: 16.5%, Top: 66.2% on image bounds) */
+/* 1. Helmet Optical Sensors (Left: 56.4%, Top: 8.5%) */
+.helmetEyesLight {
+  top: 8.5%;
+  left: 56.4%;
+  width: 18px;
+  height: 8px;
+}
+
+.eyeGlow {
+  position: absolute;
+  inset: 0;
+  border-radius: 4px;
+  background: radial-gradient(ellipse, #FFFFFF 0%, #A5F3FC 50%, transparent 85%);
+  box-shadow: 0 0 12px #38BDF8, 0 0 20px rgba(56, 189, 248, 0.85);
+  animation: eyeBlink 4s infinite ease-in-out;
+}
+
+@keyframes eyeBlink {
+  0%, 94%, 98%, 100% {
+    opacity: 0.95;
+    transform: scale(1);
+  }
+  96% {
+    opacity: 0.3;
+    transform: scale(0.95);
+  }
+}
+
+/* 2. Raised Palm Repulsor Light (Left: 80.8%, Top: 12.4%) */
+.palmRepulsorLight {
+  top: 12.4%;
+  left: 80.8%;
+  width: 36px;
+  height: 36px;
+}
+
+.repulsorCore {
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #FFFFFF 20%, #A5F3FC 50%, #06B6D4 75%, transparent 100%);
+  filter: blur(1px);
+  box-shadow: 0 0 20px #22D3EE, 0 0 38px rgba(6, 182, 212, 0.85);
+  animation: repulsorBeam 2.8s infinite ease-in-out;
+}
+
+.repulsorRays {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #FFFFFF, transparent);
+  box-shadow: 0 0 12px #38BDF8;
+  animation: rayShimmer 2.8s infinite ease-in-out;
+}
+
+.repulsorWave {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px solid rgba(165, 243, 252, 0.8);
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.65);
+  animation: repulsorRipple 2.8s infinite ease-out;
+}
+
+@keyframes repulsorBeam {
+  0%, 100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 16px #22D3EE, 0 0 32px rgba(6, 182, 212, 0.7);
+  }
+  50% {
+    transform: scale(1.15);
+    box-shadow: 0 0 26px #A5F3FC, 0 0 48px rgba(34, 211, 238, 0.95);
+  }
+}
+
+@keyframes rayShimmer {
+  0%, 100% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) rotate(0deg) scaleX(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(15deg) scaleX(1.2);
+  }
+}
+
+@keyframes repulsorRipple {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+/* 3. Chest Arc Reactor (Left: 36.8%, Top: 20.0%) */
 .arcReactorLight {
-  top: 66.2%;
-  left: 20%;
-  width: 32px;
-  height: 32px;
+  top: 20.0%;
+  left: 36.8%;
+  width: 28px;
+  height: 28px;
 }
 
 .coreFlare {
@@ -239,7 +348,7 @@
 
 .energyPulseWave {
   position: absolute;
-  inset: -8px;
+  inset: -6px;
   border-radius: 50%;
   border: 1.5px solid rgba(103, 232, 249, 0.7);
   box-shadow: 0 0 16px rgba(6, 182, 212, 0.8), 0 0 28px rgba(245, 158, 11, 0.4);
@@ -272,104 +381,21 @@
   }
 }
 
-/* 2. Palm Repulsor Light (Left: 86.4%, Top: 33.9%) */
-.palmRepulsorLight {
-  top: 33.9%;
-  left: 81%;
-  width: 44px;
-  height: 44px;
+/* 4. Lower Hand Repulsor Light (Left: 18.6%, Top: 40.9%) */
+.lowerRepulsorLight {
+  top: 40.9%;
+  left: 18.6%;
+  width: 18px;
+  height: 18px;
 }
 
-.repulsorCore {
+.coreFlareSmall {
   position: absolute;
-  inset: 6px;
+  inset: 2px;
   border-radius: 50%;
-  background: radial-gradient(circle, #FFFFFF 15%, #A5F3FC 45%, #06B6D4 75%, transparent 100%);
-  filter: blur(1px);
-  box-shadow: 0 0 20px #22D3EE, 0 0 40px rgba(6, 182, 212, 0.8);
-  animation: repulsorBeam 2.8s infinite ease-in-out;
-}
-
-.repulsorRays {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 58px;
-  height: 4px;
-  background: linear-gradient(90deg, transparent, #FFFFFF, transparent);
-  box-shadow: 0 0 12px #38BDF8;
-  animation: rayShimmer 2.8s infinite ease-in-out;
-}
-
-.repulsorWave {
-  position: absolute;
-  inset: -6px;
-  border-radius: 50%;
-  border: 1px solid rgba(165, 243, 252, 0.8);
-  box-shadow: 0 0 22px rgba(34, 211, 238, 0.6);
-  animation: repulsorRipple 2.8s infinite ease-out;
-}
-
-@keyframes repulsorBeam {
-  0%, 100% {
-    transform: scale(0.95);
-    box-shadow: 0 0 16px #22D3EE, 0 0 32px rgba(6, 182, 212, 0.7);
-  }
-  50% {
-    transform: scale(1.15);
-    box-shadow: 0 0 26px #A5F3FC, 0 0 50px rgba(34, 211, 238, 0.95);
-  }
-}
-
-@keyframes rayShimmer {
-  0%, 100% {
-    opacity: 0.6;
-    transform: translate(-50%, -50%) rotate(0deg) scaleX(0.85);
-  }
-  50% {
-    opacity: 1;
-    transform: translate(-50%, -50%) rotate(15deg) scaleX(1.2);
-  }
-}
-
-@keyframes repulsorRipple {
-  0% {
-    transform: scale(0.8);
-    opacity: 0.9;
-  }
-  100% {
-    transform: scale(1.6);
-    opacity: 0;
-  }
-}
-
-/* 3. Helmet Eyes Light */
-.helmetEyesLight {
-  top: 21.9%;
-  left: 41.5%;
-  width: 20px;
-  height: 10px;
-}
-
-.eyeGlow {
-  position: absolute;
-  inset: 0;
-  border-radius: 4px;
-  background: radial-gradient(ellipse, #FFFFFF 0%, #A5F3FC 50%, transparent 85%);
-  box-shadow: 0 0 12px #38BDF8, 0 0 20px rgba(56, 189, 248, 0.8);
-  animation: eyeBlink 4s infinite ease-in-out;
-}
-
-@keyframes eyeBlink {
-  0%, 94%, 98%, 100% {
-    opacity: 0.95;
-    transform: scale(1);
-  }
-  96% {
-    opacity: 0.3;
-    transform: scale(0.95);
-  }
+  background: radial-gradient(circle, #FFFFFF 10%, #67E8F9 50%, transparent 90%);
+  box-shadow: 0 0 10px #22D3EE, 0 0 18px rgba(6, 182, 212, 0.7);
+  animation: arcPulse 2.4s infinite ease-in-out;
 }
 
 /* ================= 3D ELEVATED TELEMETRY CHIPS ================= */
@@ -433,20 +459,20 @@
   margin-top: 0.1rem;
 }
 
-/* Position of Chips */
+/* Position of Chips around the full-body figure */
 .chipVelocity {
-  top: 55px;
-  left: 12px;
+  top: 45px;
+  left: 10px;
 }
 
 .chipDirect {
-  top: 140px;
+  top: 195px;
   right: 8px;
 }
 
 .chipZeroBloat {
-  bottom: 58px;
-  left: 14px;
+  bottom: 60px;
+  left: 10px;
 }
 
 /* Bottom Diagnostics Spec Bar */
@@ -496,7 +522,7 @@
 /* ================= RESPONSIVE MOBILE MEDIA QUERIES ================= */
 @media (max-width: 900px) {
   .heroVisualWrapper {
-    max-width: 460px;
+    max-width: 440px;
     margin: 0 auto;
     width: 100%;
   }
@@ -508,11 +534,11 @@
   }
 
   .suitFigureContainer {
-    height: 320px;
+    height: 380px;
   }
 
   .suitImage {
-    max-height: 300px;
+    max-height: 360px;
   }
 
   .floatingChip {
@@ -528,40 +554,28 @@
   }
 
   .chipVelocity {
-    top: 50px;
-    left: 6px;
+    top: 40px;
+    left: 4px;
   }
 
   .chipDirect {
-    top: 130px;
+    top: 175px;
     right: 4px;
   }
 
   .chipZeroBloat {
     bottom: 50px;
-    left: 6px;
-  }
-
-  .arcReactorLight {
-    width: 26px;
-    height: 26px;
-    left: 19%;
-  }
-
-  .palmRepulsorLight {
-    width: 36px;
-    height: 36px;
-    left: 82%;
+    left: 4px;
   }
 }
 
 @media (max-width: 400px) {
   .suitFigureContainer {
-    height: 280px;
+    height: 330px;
   }
 
   .suitImage {
-    max-height: 260px;
+    max-height: 310px;
   }
 
   .stageFooter {

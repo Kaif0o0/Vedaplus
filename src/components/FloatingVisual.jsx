@@ -55,37 +55,44 @@ export default function FloatingVisual() {
             </div>
           </div>
 
-          {/* Spatial Layer 2: Floating 3D Iron Man Suit */}
+          {/* Spatial Layer 2: Full-Body 3D Iron Man Suit with Anti-Gravity Float */}
           <div className={`${styles.suitFigureContainer} ${styles.antiGravityFloat}`}>
-            <picture>
-              <source srcSet="/ironman_suit.webp" type="image/webp" />
-              <img
-                src="/ironman_suit.png"
-                alt="VedaPlus High-Performance Website Architecture"
-                className={styles.suitImage}
-                draggable="false"
-              />
-            </picture>
+            <div className={styles.suitArtWrapper}>
+              <picture>
+                <source srcSet="/ironman_suit.webp" type="image/webp" />
+                <img
+                  src="/ironman_suit.png"
+                  alt="VedaPlus High-Performance Website Architecture"
+                  className={styles.suitImage}
+                  draggable="false"
+                />
+              </picture>
 
-            {/* Glowing Light Node 1: Chest Arc Reactor (Left: 16.5%, Top: 66.2%) */}
-            <div className={`${styles.lightNode} ${styles.arcReactorLight}`}>
-              <span className={styles.coreFlare} />
-              <span className={styles.energyPulseWave} />
+              {/* Exact Light Node 1: Helmet Optical Sensors (Left: 56.4%, Top: 8.5%) */}
+              <div className={`${styles.lightNode} ${styles.helmetEyesLight}`}>
+                <span className={styles.eyeGlow} />
+              </div>
+
+              {/* Exact Light Node 2: Raised Palm Repulsor (Left: 80.8%, Top: 12.4%) */}
+              <div className={`${styles.lightNode} ${styles.palmRepulsorLight}`}>
+                <span className={styles.repulsorCore} />
+                <span className={styles.repulsorRays} />
+                <span className={styles.repulsorWave} />
+              </div>
+
+              {/* Exact Light Node 3: Chest Arc Reactor (Left: 36.8%, Top: 20.0%) */}
+              <div className={`${styles.lightNode} ${styles.arcReactorLight}`}>
+                <span className={styles.coreFlare} />
+                <span className={styles.energyPulseWave} />
+              </div>
+
+              {/* Exact Light Node 4: Lower Hand Repulsor (Left: 18.6%, Top: 40.9%) */}
+              <div className={`${styles.lightNode} ${styles.lowerRepulsorLight}`}>
+                <span className={styles.coreFlareSmall} />
+              </div>
             </div>
 
-            {/* Glowing Light Node 2: Palm Repulsor Blast (Left: 86.4%, Top: 33.9%) */}
-            <div className={`${styles.lightNode} ${styles.palmRepulsorLight}`}>
-              <span className={styles.repulsorCore} />
-              <span className={styles.repulsorRays} />
-              <span className={styles.repulsorWave} />
-            </div>
-
-            {/* Glowing Light Node 3: Helmet Optical Sensors (Left: 38.6%, Top: 21.9%) */}
-            <div className={`${styles.lightNode} ${styles.helmetEyesLight}`}>
-              <span className={styles.eyeGlow} />
-            </div>
-
-            {/* Bottom Soft Shadow Cushion */}
+            {/* Ground Contact Shadow Cushion under Boots */}
             <div className={styles.suitShadowCushion} />
           </div>
 
