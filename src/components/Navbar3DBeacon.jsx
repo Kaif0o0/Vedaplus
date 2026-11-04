@@ -2,21 +2,25 @@ import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import styles from './Navbar3DBeacon.module.css';
 
-export default function Navbar3DBeacon({ size = 32 }) {
+export default function Navbar3DBeacon({ size = 38 }) {
   const mountRef = useRef(null);
 
   useEffect(() => {
     const container = mountRef.current;
     if (!container) return;
 
-    // Dimensions
+    // Clean up any stale child canvases to avoid duplicate WebGL contexts in React 19
+    while (container.firstChild) {
+      container.removeChild(container.firstChild);
+    }
+
     const width = size;
     const height = size;
 
-    // Scene, Camera, Renderer
+    // 1. Scene, Camera, Renderer
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
-    camera.position.z = 3.6;
+    camera.position.set(0, 0, 4.4);
 
     let renderer;
     try {
@@ -30,57 +34,94 @@ export default function Navbar3DBeacon({ size = 32 }) {
     }
 
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     container.appendChild(renderer.domElement);
 
-    // Group for combined rotation
-    const group = new THREE.Group();
-    scene.add(group);
+    // 2. Lights for authentic 3D shading & metallic reflections
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.9);
+    scene.add(ambientLight);
 
-    // 1. Inner Icosahedron (Geometric Crystal Core)
-    const innerGeo = new THREE.IcosahedronGeometry(0.85, 0);
-    const innerWire = new THREE.WireframeGeometry(innerGeo);
-    const innerMat = new THREE.LineBasicMaterial({
-      color: 0xF59E0B, // Marigold Amber
-      linewidth: 1.5,
+    const dirLight = new THREE.DirectionalLight(0xfde68a, 2.2);
+    dirLight.position.set(3, 4, 4);
+    scene.add(dirLight);
+
+    const rimLight = new THREE.DirectionalLight(0x60a5fa, 0.6);
+    rimLight.position.set(-3, -2, -2);
+    scene.add(rimLight);
+
+    const pointLight = new THREE.PointLight(0xf59e0b, 1.8, 8);
+    pointLight.position.set(0, 0, 0);
+    scene.add(pointLight);
+
+    // Root Group
+    const rootGroup = new THREE.Group();
+    scene.add(rootGroup);
+
+    // 3. Central 3D Faceted Crystal Core (Shaded Octahedron with Gold Edges)
+    const crystalGeo = new THREE.OctahedronGeometry(0.85, 0);
+    const crystalMat = new THREE.MeshPhongMaterial({
+      color: 0xf59e0b,
+      emissive: 0xb45309,
+      emissiveIntensity: 0.35,
+      specular: 0xfde68a,
+      shininess: 90,
       transparent: true,
-      opacity: 0.9,
+      opacity: 0.88,
+      flatShading: true,
     });
-    const innerMesh = new THREE.LineSegments(innerWire, innerMat);
-    group.add(innerMesh);
+    const crystalMesh = new THREE.Mesh(crystalGeo, crystalMat);
+    rootGroup.add(crystalMesh);
 
-    // 2. Central Pulse Core (Glowing Point)
-    const coreGeo = new THREE.SphereGeometry(0.2, 12, 12);
-    const coreMat = new THREE.MeshBasicMaterial({
-      color: 0xF59E0B,
-      wireframe: false,
+    // Golden wireframe precision overlay on crystal edges
+    const edgesGeo = new THREE.EdgesGeometry(crystalGeo);
+    const edgesMat = new THREE.LineBasicMaterial({
+      color: 0xfde68a,
+      transparent: true,
+      opacity: 0.95,
     });
+    const edgesMesh = new THREE.LineSegments(edgesGeo, edgesMat);
+    crystalMesh.add(edgesMesh);
+
+    // Central Glowing Energy Core (Internal Pulse Sphere)
+    const coreGeo = new THREE.SphereGeometry(0.24, 16, 16);
+    const coreMat = new THREE.MeshBasicMaterial({ color: 0xfffbeb });
     const coreMesh = new THREE.Mesh(coreGeo, coreMat);
-    group.add(coreMesh);
+    crystalMesh.add(coreMesh);
 
-    // 3. Outer Orbital Gyro Ring (Torus)
-    const ringGeo = new THREE.TorusGeometry(1.22, 0.025, 8, 36);
-    const ringMat = new THREE.MeshBasicMaterial({
-      color: 0xFBBF24,
-      transparent: true,
-      opacity: 0.55,
+    // 4. Inner Gyroscopic Orbital Ring (Gold/Amber)
+    const ring1Geo = new THREE.TorusGeometry(1.22, 0.034, 12, 48);
+    const ring1Mat = new THREE.MeshStandardMaterial({
+      color: 0xf59e0b,
+      roughness: 0.25,
+      metalness: 0.85,
     });
-    const ringMesh = new THREE.Mesh(ringGeo, ringMat);
-    ringMesh.rotation.x = Math.PI / 3;
-    group.add(ringMesh);
+    const ring1Mesh = new THREE.Mesh(ring1Geo, ring1Mat);
+    ring1Mesh.rotation.x = Math.PI / 3;
+    rootGroup.add(ring1Mesh);
 
-    // 4. Secondary Counter-Orbital Ring
-    const ringGeo2 = new THREE.TorusGeometry(1.36, 0.02, 8, 36);
-    const ringMat2 = new THREE.MeshBasicMaterial({
-      color: 0x0F172A,
-      transparent: true,
-      opacity: 0.8,
+    // 5. Outer Counter-Orbital Ring (Midnight Dark Slate with Gold Beacon Nodes)
+    const ring2Geo = new THREE.TorusGeometry(1.42, 0.026, 12, 48);
+    const ring2Mat = new THREE.MeshStandardMaterial({
+      color: 0x1e293b,
+      roughness: 0.3,
+      metalness: 0.75,
     });
-    const ringMesh2 = new THREE.Mesh(ringGeo2, ringMat2);
-    ringMesh2.rotation.y = Math.PI / 4;
-    group.add(ringMesh2);
+    const ring2Mesh = new THREE.Mesh(ring2Geo, ring2Mat);
+    ring2Mesh.rotation.y = Math.PI / 4;
+    rootGroup.add(ring2Mesh);
 
-    // Hover acceleration variables
+    // 2 Mini Gold Satellite Nodes on Outer Ring
+    const nodeGeo = new THREE.SphereGeometry(0.065, 8, 8);
+    const nodeMat = new THREE.MeshBasicMaterial({ color: 0xfbbf24 });
+    const nodeA = new THREE.Mesh(nodeGeo, nodeMat);
+    nodeA.position.set(1.42, 0, 0);
+    ring2Mesh.add(nodeA);
+
+    const nodeB = new THREE.Mesh(nodeGeo, nodeMat);
+    nodeB.position.set(-1.42, 0, 0);
+    ring2Mesh.add(nodeB);
+
+    // 6. Interactive Hover Acceleration (Works on both beacon & parent brand link)
     let isHovered = false;
     let speedMult = 1.0;
 
@@ -91,32 +132,43 @@ export default function Navbar3DBeacon({ size = 32 }) {
       isHovered = false;
     };
 
-    container.addEventListener('mouseenter', onEnter);
-    container.addEventListener('mouseleave', onLeave);
-    container.addEventListener('touchstart', onEnter, { passive: true });
-    container.addEventListener('touchend', onLeave, { passive: true });
+    const parentLink = container.closest('a');
+    const hoverTarget = parentLink || container;
 
-    // Animation Loop
+    hoverTarget.addEventListener('mouseenter', onEnter);
+    hoverTarget.addEventListener('mouseleave', onLeave);
+
+    // 7. Visibility Observer (Pause render loop when off-screen)
+    let isVisible = true;
+    const visibilityObserver = new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting;
+    });
+    visibilityObserver.observe(container);
+
+    // 8. Animation Loop
     let animId;
     let clock = new THREE.Clock();
 
     const animate = () => {
       animId = requestAnimationFrame(animate);
+      if (!isVisible) return;
 
       const delta = clock.getDelta();
-      const targetSpeed = isHovered ? 2.8 : 1.0;
+      const targetSpeed = isHovered ? 2.6 : 1.0;
       speedMult += (targetSpeed - speedMult) * 0.08;
 
-      innerMesh.rotation.x += 0.9 * delta * speedMult;
-      innerMesh.rotation.y += 1.2 * delta * speedMult;
+      // Crystal multi-axis spin
+      crystalMesh.rotation.y += 1.1 * delta * speedMult;
+      crystalMesh.rotation.x += 0.6 * delta * speedMult;
 
-      ringMesh.rotation.z += 0.7 * delta * speedMult;
-      ringMesh2.rotation.x -= 0.6 * delta * speedMult;
-      ringMesh2.rotation.y += 0.8 * delta * speedMult;
+      // Gyro rings counter-rotation
+      ring1Mesh.rotation.z += 0.9 * delta * speedMult;
+      ring2Mesh.rotation.x -= 0.7 * delta * speedMult;
+      ring2Mesh.rotation.y += 0.85 * delta * speedMult;
 
-      // Subtle pulse
-      const t = clock.getElapsedTime() * 3;
-      const pulse = 1 + Math.sin(t) * 0.08;
+      // Internal energy pulse
+      const t = clock.getElapsedTime() * 3.5;
+      const pulse = 1 + Math.sin(t) * 0.12;
       coreMesh.scale.set(pulse, pulse, pulse);
 
       renderer.render(scene, camera);
@@ -124,23 +176,26 @@ export default function Navbar3DBeacon({ size = 32 }) {
 
     animate();
 
-    // Cleanup
+    // 9. Complete Resource Cleanup
     return () => {
       cancelAnimationFrame(animId);
-      container.removeEventListener('mouseenter', onEnter);
-      container.removeEventListener('mouseleave', onLeave);
-      container.removeEventListener('touchstart', onEnter);
-      container.removeEventListener('touchend', onLeave);
+      visibilityObserver.disconnect();
 
-      innerGeo.dispose();
-      innerWire.dispose();
-      innerMat.dispose();
+      hoverTarget.removeEventListener('mouseenter', onEnter);
+      hoverTarget.removeEventListener('mouseleave', onLeave);
+
+      crystalGeo.dispose();
+      crystalMat.dispose();
+      edgesGeo.dispose();
+      edgesMat.dispose();
       coreGeo.dispose();
       coreMat.dispose();
-      ringGeo.dispose();
-      ringMat.dispose();
-      ringGeo2.dispose();
-      ringMat2.dispose();
+      ring1Geo.dispose();
+      ring1Mat.dispose();
+      ring2Geo.dispose();
+      ring2Mat.dispose();
+      nodeGeo.dispose();
+      nodeMat.dispose();
 
       if (renderer.domElement && container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);
@@ -155,7 +210,7 @@ export default function Navbar3DBeacon({ size = 32 }) {
       className={styles.beaconContainer}
       style={{ width: size, height: size }}
       title="VedaPlus 3D Tech Core"
+      aria-hidden="true"
     />
   );
 }
-

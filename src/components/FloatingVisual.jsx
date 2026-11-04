@@ -1,72 +1,31 @@
 import React, { useState } from 'react';
 import Tilt from 'react-parallax-tilt';
-import { useSpring, animated } from '@react-spring/web';
 import {
-  Coffee,
-  Sparkles,
-  Store,
-  Wrench,
+  Zap,
+  ShieldCheck,
+  Smartphone,
   Cpu,
   Wifi,
+  Sparkles,
+  ArrowUpRight,
+  Activity,
 } from 'lucide-react';
-import Interactive3DCore from './Interactive3DCore';
 import styles from './FloatingVisual.module.css';
 
 export default function FloatingVisual() {
-  const [activeNode, setActiveNode] = useState(null);
-
-  // Subtle continuous anti-gravity springs for satellites
-  const floatSpring1 = useSpring({
-    from: { y: 0, rot: -2 },
-    to: async (next) => {
-      while (true) {
-        await next({ y: -16, rot: 2, config: { duration: 3200 } });
-        await next({ y: 0, rot: -2, config: { duration: 3200 } });
-      }
-    },
-  });
-
-  const floatSpring2 = useSpring({
-    from: { y: 0, rot: 2 },
-    to: async (next) => {
-      while (true) {
-        await next({ y: 14, rot: -1.5, config: { duration: 3800 } });
-        await next({ y: 0, rot: 2, config: { duration: 3800 } });
-      }
-    },
-  });
-
-  const floatSpring3 = useSpring({
-    from: { y: -8, rot: 1 },
-    to: async (next) => {
-      while (true) {
-        await next({ y: 8, rot: -2, config: { duration: 3500 } });
-        await next({ y: -8, rot: 1, config: { duration: 3500 } });
-      }
-    },
-  });
-
-  const floatSpring4 = useSpring({
-    from: { y: 6, rot: -1 },
-    to: async (next) => {
-      while (true) {
-        await next({ y: -12, rot: 2, config: { duration: 4200 } });
-        await next({ y: 6, rot: -1, config: { duration: 4200 } });
-      }
-    },
-  });
+  const [isPowerBoosted, setIsPowerBoosted] = useState(false);
 
   return (
-    <div className={styles.antiGravityViewport}>
-      {/* Background Orbit Ring Vectors (Desktop only) */}
-      <div className={styles.orbitRingOuter} />
-      <div className={styles.orbitRingInner} />
+    <div className={styles.heroVisualWrapper}>
+      {/* Ambient Spatial Background Glows */}
+      <div className={styles.ambientSpatialGlow} />
+      <div className={styles.ambientRadialBlue} />
 
-      {/* Parallax Tilt on the Central High-Tech Hub */}
+      {/* 3D Parallax Tilt Container */}
       <Tilt
-        perspective={1200}
+        perspective={1400}
         glareEnable={true}
-        glareMaxOpacity={0.15}
+        glareMaxOpacity={0.22}
         glareColor="#F59E0B"
         glarePosition="all"
         glareBorderRadius="24px"
@@ -74,190 +33,113 @@ export default function FloatingVisual() {
         tiltMaxAngleY={10}
         scale={1.02}
         transitionSpeed={800}
-        className={styles.tiltCoreWrapper}
+        className={styles.suitTiltCard}
+        onEnter={() => setIsPowerBoosted(true)}
+        onLeave={() => setIsPowerBoosted(false)}
       >
-        <div className={styles.centralHub}>
-          {/* Header of Core Glass Panel */}
-          <div className={styles.hubHeader}>
-            <div className={styles.hubStatus}>
-              <span className={styles.hubPulseDot} />
-              <span className={styles.hubTag}>VEDAPLUS / ACTIVE</span>
+        <div className={styles.suitStage}>
+          {/* Spatial Layer 1: Background Holographic Tech Rings */}
+          <div className={styles.holoRingOuter} />
+          <div className={styles.holoRingInner} />
+          <div className={styles.holoGridMatrix} />
+
+          {/* Top Hologram Status Bar */}
+          <div className={styles.stageHeader}>
+            <div className={styles.statusGroup}>
+              <span className={styles.statusPulseDot} />
+              <span className={styles.statusLabel}>VEDAPLUS TITANIUM CORE</span>
             </div>
-            <div className={styles.hubSpecs}>
-              <Wifi size={14} className={styles.specIcon} />
-              <span>Ultra-Fast Load Speed</span>
+            <div className={styles.telemetryTag}>
+              <Activity size={13} className={styles.tagIcon} />
+              <span>100% PEAK PERFORMANCE</span>
             </div>
           </div>
 
-          {/* Central Holographic Preview */}
-          <div className={styles.hubBody}>
-            <div className={styles.hubBadge}>
-              <Cpu size={16} />
-              <span>Local Business Website Development</span>
-            </div>
-            <h3 className={styles.hubHeading}>High-Speed Website Engine</h3>
-            <p className={styles.hubDesc}>
-              Fast mobile menus, instant appointment forms, and local Google Maps search visibility built into every website.
-            </p>
+          {/* Spatial Layer 2: Floating 3D Iron Man Suit */}
+          <div className={`${styles.suitFigureContainer} ${styles.antiGravityFloat}`}>
+            <picture>
+              <source srcSet="/ironman_suit.webp" type="image/webp" />
+              <img
+                src="/ironman_suit.png"
+                alt="VedaPlus High-Performance Website Architecture"
+                className={styles.suitImage}
+                draggable="false"
+              />
+            </picture>
 
-            {/* Central Three.js Interactive 3D Model (Touch & Mouse Interactive on Mobile & Desktop) */}
-            <div className={styles.interactive3DCoreBox}>
-              <Interactive3DCore />
+            {/* Glowing Light Node 1: Chest Arc Reactor (Left: 16.5%, Top: 66.2%) */}
+            <div className={`${styles.lightNode} ${styles.arcReactorLight}`}>
+              <span className={styles.coreFlare} />
+              <span className={styles.energyPulseWave} />
             </div>
 
-            {/* Live Performance & Feature Strip */}
-            <div className={styles.telemetryGrid}>
-              <div className={styles.telemetryCard}>
-                <span className={styles.telemetryVal}>Fast</span>
-                <span className={styles.telemetryKey}>Mobile-First Loading</span>
-              </div>
-              <div className={styles.telemetryCard}>
-                <span className={styles.telemetryVal}>Clean</span>
-                <span className={styles.telemetryKey}>SEO &amp; Code Quality</span>
-              </div>
-              <div className={styles.telemetryCard}>
-                <span className={styles.telemetryVal}>Direct</span>
-                <span className={styles.telemetryKey}>WhatsApp &amp; Calls</span>
-              </div>
+            {/* Glowing Light Node 2: Palm Repulsor Blast (Left: 86.4%, Top: 33.9%) */}
+            <div className={`${styles.lightNode} ${styles.palmRepulsorLight}`}>
+              <span className={styles.repulsorCore} />
+              <span className={styles.repulsorRays} />
+              <span className={styles.repulsorWave} />
+            </div>
+
+            {/* Glowing Light Node 3: Helmet Optical Sensors (Left: 38.6%, Top: 21.9%) */}
+            <div className={`${styles.lightNode} ${styles.helmetEyesLight}`}>
+              <span className={styles.eyeGlow} />
+            </div>
+
+            {/* Bottom Soft Shadow Cushion */}
+            <div className={styles.suitShadowCushion} />
+          </div>
+
+          {/* Spatial Layer 3: Floating 3D Telemetry Chips (Elevated in Z-space) */}
+          <div className={`${styles.floatingChip} ${styles.chipVelocity}`}>
+            <div className={styles.chipIconBubble}>
+              <Zap size={14} className={styles.chipAmberIcon} />
+            </div>
+            <div className={styles.chipTextGroup}>
+              <span className={styles.chipTitle}>Fast Mobile Velocity</span>
+              <span className={styles.chipSub}>Sub-second cellular display</span>
             </div>
           </div>
+
+          <div className={`${styles.floatingChip} ${styles.chipDirect}`}>
+            <div className={styles.chipIconBubble}>
+              <Smartphone size={14} className={styles.chipAmberIcon} />
+            </div>
+            <div className={styles.chipTextGroup}>
+              <span className={styles.chipTitle}>Direct Inquiries</span>
+              <span className={styles.chipSub}>1-Tap WhatsApp &amp; Call Bridge</span>
+            </div>
+          </div>
+
+          <div className={`${styles.floatingChip} ${styles.chipZeroBloat}`}>
+            <div className={styles.chipIconBubble}>
+              <ShieldCheck size={14} className={styles.chipAmberIcon} />
+            </div>
+            <div className={styles.chipTextGroup}>
+              <span className={styles.chipTitle}>Clean Architecture</span>
+              <span className={styles.chipSub}>Zero crash alerts • Zero bloat</span>
+            </div>
+          </div>
+
+          {/* Bottom Diagnostics Spec Bar */}
+          <div className={styles.stageFooter}>
+            <div className={styles.footerSpecItem}>
+              <span className={styles.specLabel}>ENGINE</span>
+              <span className={styles.specValue}>Custom Cloud</span>
+            </div>
+            <div className={styles.specDivider} />
+            <div className={styles.footerSpecItem}>
+              <span className={styles.specLabel}>UPTIME</span>
+              <span className={styles.specValue}>24/7 Shield</span>
+            </div>
+            <div className={styles.specDivider} />
+            <div className={styles.footerSpecItem}>
+              <span className={styles.specLabel}>SPEED</span>
+              <span className={styles.specValue}>Ultra-Rapid</span>
+            </div>
+          </div>
+
         </div>
       </Tilt>
-
-      {/* Orbiting Satellites Group */}
-      <div className={styles.satellitesWrapper}>
-        {/* Orbiting Satellite 1: Food & Hospitality */}
-        <animated.div
-          style={{
-            transform: floatSpring1.y.to(
-              (y) => `translate3d(0, ${y}px, 0) rotate(${floatSpring1.rot.get()}deg)`
-            ),
-          }}
-          className={`${styles.satelliteCard} ${styles.satCafe}`}
-          onMouseEnter={() => setActiveNode('cafe')}
-          onMouseLeave={() => setActiveNode(null)}
-        >
-          <Tilt
-            tiltMaxAngleX={12}
-            tiltMaxAngleY={12}
-            scale={1.03}
-            transitionSpeed={600}
-          >
-            <div className={styles.satInner}>
-              <div className={styles.satIconBubble}>
-                <Coffee size={18} className={styles.satIcon} />
-              </div>
-              <div className={styles.satContent}>
-                <div className={styles.satHeader}>
-                  <span className={styles.satArchetype}>Food &amp; Hospitality</span>
-                  <span className={styles.satSpeed}>Digital Menu</span>
-                </div>
-                <h4 className={styles.satTitle}>Cafes &amp; Bakeries</h4>
-                <p className={styles.satSub}>Online Menus • Table Booking</p>
-              </div>
-            </div>
-          </Tilt>
-        </animated.div>
-
-        {/* Orbiting Satellite 2: Professional & Local Services */}
-        <animated.div
-          style={{
-            transform: floatSpring2.y.to(
-              (y) => `translate3d(0, ${y}px, 0) rotate(${floatSpring2.rot.get()}deg)`
-            ),
-          }}
-          className={`${styles.satelliteCard} ${styles.satClinic}`}
-          onMouseEnter={() => setActiveNode('wellness')}
-          onMouseLeave={() => setActiveNode(null)}
-        >
-          <Tilt
-            tiltMaxAngleX={12}
-            tiltMaxAngleY={12}
-            scale={1.03}
-            transitionSpeed={600}
-          >
-            <div className={styles.satInner}>
-              <div className={styles.satIconBubble}>
-                <Sparkles size={18} className={styles.satIcon} />
-              </div>
-              <div className={styles.satContent}>
-                <div className={styles.satHeader}>
-                  <span className={styles.satArchetype}>Local Services</span>
-                  <span className={styles.satSpeed}>Appointments</span>
-                </div>
-                <h4 className={styles.satTitle}>Salons &amp; Wellness</h4>
-                <p className={styles.satSub}>Direct WhatsApp • Quick Inquiries</p>
-              </div>
-            </div>
-          </Tilt>
-        </animated.div>
-
-        {/* Orbiting Satellite 3: Retail & E-commerce */}
-        <animated.div
-          style={{
-            transform: floatSpring3.y.to(
-              (y) => `translate3d(0, ${y}px, 0) rotate(${floatSpring3.rot.get()}deg)`
-            ),
-          }}
-          className={`${styles.satelliteCard} ${styles.satRetail}`}
-          onMouseEnter={() => setActiveNode('retail')}
-          onMouseLeave={() => setActiveNode(null)}
-        >
-          <Tilt
-            tiltMaxAngleX={12}
-            tiltMaxAngleY={12}
-            scale={1.03}
-            transitionSpeed={600}
-          >
-            <div className={styles.satInner}>
-              <div className={styles.satIconBubble}>
-                <Store size={18} className={styles.satIcon} />
-              </div>
-              <div className={styles.satContent}>
-                <div className={styles.satHeader}>
-                  <span className={styles.satArchetype}>Retail &amp; E-commerce</span>
-                  <span className={styles.satSpeed}>Live Catalog</span>
-                </div>
-                <h4 className={styles.satTitle}>Clothing &amp; Jewellery</h4>
-                <p className={styles.satSub}>Product Showcase • WhatsApp Orders</p>
-              </div>
-            </div>
-          </Tilt>
-        </animated.div>
-
-        {/* Orbiting Satellite 4: Professional & Local Services */}
-        <animated.div
-          style={{
-            transform: floatSpring4.y.to(
-              (y) => `translate3d(0, ${y}px, 0) rotate(${floatSpring4.rot.get()}deg)`
-            ),
-          }}
-          className={`${styles.satelliteCard} ${styles.satHospital}`}
-          onMouseEnter={() => setActiveNode('repair')}
-          onMouseLeave={() => setActiveNode(null)}
-        >
-          <Tilt
-            tiltMaxAngleX={12}
-            tiltMaxAngleY={12}
-            scale={1.03}
-            transitionSpeed={600}
-          >
-            <div className={styles.satInner}>
-              <div className={styles.satIconBubble}>
-                <Wrench size={18} className={styles.satIcon} />
-              </div>
-              <div className={styles.satContent}>
-                <div className={styles.satHeader}>
-                  <span className={styles.satArchetype}>Professional Services</span>
-                  <span className={styles.satSpeed}>Instant Calls</span>
-                </div>
-                <h4 className={styles.satTitle}>Repair &amp; Cleaning</h4>
-                <p className={styles.satSub}>Local Inquiries • Fast Response</p>
-              </div>
-            </div>
-          </Tilt>
-        </animated.div>
-      </div>
     </div>
   );
 }

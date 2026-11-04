@@ -619,7 +619,43 @@
 @media (max-width: 900px) {
   .heroContainer {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2.25rem;
+  }
+
+  /* Take 3D Visual to the top on mobile/tablet */
+  .heroVisualCol {
+    order: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Take Hero Copy below the 3D Visual and align smoothly */
+  .heroCopy {
+    order: 2;
+    align-items: center;
+    text-align: center;
+  }
+
+  .pillBadge {
+    margin: 0 auto 1.25rem;
+  }
+
+  .heroHeadline {
+    text-align: center;
+  }
+
+  .heroSubheadline {
+    text-align: center;
+    margin: 0 auto 2rem;
+  }
+
+  .heroActions {
+    justify-content: center;
+  }
+
+  .heroStatsBar {
+    margin: 0 auto;
   }
 
   .projectsGrid {
@@ -640,16 +676,17 @@
 
 @media (max-width: 640px) {
   .heroSection {
-    padding: 2.5rem 0 3.5rem;
+    padding: 2rem 0 3rem;
   }
 
   .pillBadge {
-    margin-bottom: 1.15rem;
+    margin: 0 auto 1.15rem;
   }
 
   .heroSubheadline {
     font-size: 1rem;
-    margin-bottom: 1.75rem;
+    margin: 0 auto 1.75rem;
+    text-align: center;
   }
 
   .heroActions {

@@ -18,7 +18,7 @@ import styles from './Reviews.module.css';
 const DEMO_REVIEWS = [
   {
     id: 'demo-1',
-    name: 'Kaif',
+    name: 'Rohan',
     stars: 5,
     date: '2 weeks ago',
     verified: true,
@@ -27,7 +27,7 @@ const DEMO_REVIEWS = [
   },
   {
     id: 'demo-2',
-    name: 'Mahesh',
+    name: 'Abhishek',
     stars: 5,
     date: '1 month ago',
     verified: true,
@@ -36,7 +36,7 @@ const DEMO_REVIEWS = [
   },
   {
     id: 'demo-3',
-    name: 'Ayush',
+    name: 'Akash',
     stars: 5,
     date: '3 weeks ago',
     verified: true,
@@ -303,7 +303,7 @@ export default function Reviews() {
                         type="text"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        placeholder="e.g. Kaif or Mahesh"
+                        placeholder="Enter Your Name"
                         className={`${styles.formInput} ${
                           errors.name ? styles.inputError : ''
                         }`}

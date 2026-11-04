@@ -135,7 +135,7 @@ export default function Navbar() {
           aria-label="VedaPlus Home"
           onClick={(e) => handleSectionClick(e, 'home')}
         >
-          <Navbar3DBeacon size={32} />
+          <Navbar3DBeacon size={38} />
           <span className={styles.brandNameText}>VedaPlus</span>
         </Link>
 
