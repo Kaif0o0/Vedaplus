@@ -11,6 +11,9 @@ export default function Interactive3DCore() {
     { label: '01. Food & Hospitality', sub: 'Cafes · Bakeries · Restaurants' },
     { label: '02. Retail & E-commerce', sub: 'Clothing · Cosmetics · Jewellery' },
     { label: '03. Professional Services', sub: 'Salons · Repair · Consulting' },
+    { label: '04. Students & Graduates', sub: 'Portfolios · CVs · Capstones' },
+    { label: '05. Interior Designers', sub: 'Kitchens · 3D Renders · Decor' },
+    { label: '06. Wedding Studios', sub: 'Films · Pre-Wedding · Portfolios' },
   ];
 
   useEffect(() => {

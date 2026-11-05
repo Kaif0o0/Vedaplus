@@ -86,6 +86,30 @@ export default function Contact() {
         lower.includes('consult')
       ) {
         matched = '03. Professional & Local Services (Salons, Repair, Cleaning, Consulting)';
+      } else if (
+        lower.includes('student') ||
+        lower.includes('graduate') ||
+        lower.includes('portfolio') ||
+        lower.includes('resume') ||
+        lower.includes('academic')
+      ) {
+        matched = '04. Students & Fresh Graduates (Portfolios, Resumes, Capstones, Academics)';
+      } else if (
+        lower.includes('interior') ||
+        lower.includes('modular') ||
+        lower.includes('kitchen') ||
+        lower.includes('decor') ||
+        lower.includes('renovation')
+      ) {
+        matched = '05. Interior Designers & Modular Kitchens (Modular Kitchens, Living Spaces, 3D Walkthroughs, Renovation)';
+      } else if (
+        lower.includes('photograph') ||
+        lower.includes('wedding') ||
+        lower.includes('studio') ||
+        lower.includes('shoot') ||
+        lower.includes('film')
+      ) {
+        matched = '06. Wedding Photographers & Studios (Weddings, Pre-Wedding Films, Destination, Portraiture)';
       }
       setValue('businessType', matched);
     }
@@ -494,6 +518,15 @@ export default function Contact() {
                           </option>
                           <option value="03. Professional & Local Services (Salons, Repair, Cleaning, Consulting)">
                             03. Professional &amp; Local Services (Salons, Repair, Cleaning, Consulting)
+                          </option>
+                          <option value="04. Students & Fresh Graduates (Portfolios, Resumes, Capstones, Academics)">
+                            04. Students &amp; Fresh Graduates (Portfolios, Resumes, Capstones)
+                          </option>
+                          <option value="05. Interior Designers & Modular Kitchens (Modular Kitchens, Living Spaces, 3D Walkthroughs, Renovation)">
+                            05. Interior Designers &amp; Modular Kitchens
+                          </option>
+                          <option value="06. Wedding Photographers & Studios (Weddings, Pre-Wedding Films, Destination, Portraiture)">
+                            06. Wedding Photographers &amp; Studios
                           </option>
                           <option value="Other Commercial Business">
                             Other Commercial Business

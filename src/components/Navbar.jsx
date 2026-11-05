@@ -110,8 +110,9 @@ export default function Navbar() {
   };
 
   return (
-    <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
-      {/* Top Utility Contact Bar */}
+    <>
+      <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
+        {/* Top Utility Contact Bar */}
       <div className={styles.topBar}>
         <div className={`container ${styles.topBarContainer}`}>
           <div className={styles.topBarLocation}>
@@ -300,5 +301,7 @@ export default function Navbar() {
         </div>
       </div>
     </header>
+    <div className={styles.navbarSpacer} aria-hidden="true" />
+  </>
   );
 }

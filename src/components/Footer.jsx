@@ -64,6 +64,15 @@ export default function Footer() {
             <li>
               <Link to="/contact?type=services">03. Professional &amp; Local Services</Link>
             </li>
+            <li>
+              <Link to="/contact?type=students">04. Students &amp; Fresh Graduates</Link>
+            </li>
+            <li>
+              <Link to="/contact?type=interiors">05. Interior Designers &amp; Modular Kitchens</Link>
+            </li>
+            <li>
+              <Link to="/contact?type=photography">06. Wedding Photographers &amp; Studios</Link>
+            </li>
           </ul>
         </div>
 

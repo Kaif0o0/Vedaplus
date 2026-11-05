@@ -12,15 +12,14 @@ import {
   ArrowUpRight,
   CheckCircle2,
   Zap,
-  Globe2,
-  Clock,
   ShieldCheck,
   Smartphone,
   Layers,
   Award,
   Users,
-  ExternalLink,
-  Check
+  GraduationCap,
+  Compass,
+  Camera
 } from 'lucide-react';
 import FloatingVisual from '../components/FloatingVisual';
 import ServiceCard from '../components/ServiceCard';
@@ -84,6 +83,57 @@ const SERVICES_DATA = [
       'Easy client appointment and estimate request forms',
       'Direct call and WhatsApp consultation funnels',
       'Client reviews showcase and service area mapping'
+    ]
+  },
+  {
+    id: 'students',
+    targetType: 'Students & Fresh Graduates (Portfolios, Resumes, Capstones, Academics)',
+    icon: GraduationCap,
+    archetype: '04. Students & Fresh Graduates',
+    title: 'Students & Fresh Graduates',
+    subcategories: ['Personal Portfolios', 'Interactive Resumes', 'Academic Projects', 'Global Applications'],
+    tagline: 'Stand out to top tech recruiters, hiring managers, and global universities.',
+    description: 'Ultra-fast personal portfolio websites, interactive digital resumes, project repositories, and GitHub/LinkedIn integrations built to land dream tech, design, and corporate roles.',
+    badge: 'Portfolio & CV Showcase',
+    features: [
+      'Interactive project showcase with live demos & source links',
+      'Downloadable ATS-friendly PDF resume & 1-tap contact buttons',
+      'Custom personal domain setup (yourname.dev / yourname.com)',
+      'Sub-second mobile loading speed for recruiter scans'
+    ]
+  },
+  {
+    id: 'interiors',
+    targetType: 'Interior Designers & Modular Kitchens (Modular Kitchens, Living Spaces, 3D Walkthroughs, Renovation)',
+    icon: Compass,
+    archetype: '05. Interior Designers & Modular Kitchens',
+    title: 'Interior Designers & Modular Kitchens',
+    subcategories: ['Modular Kitchens', 'Residential Interiors', 'Commercial Spaces', '3D Walkthroughs'],
+    tagline: 'Showcase luxury transformations, floorplans, and modular spaces with high-definition visual storytelling.',
+    description: 'High-converting interior design portfolio websites featuring full-screen lookbooks, modular layout cost estimators, 3D walkthrough video embeds, and direct WhatsApp site visit bookings.',
+    badge: '3D Lookbook & Estimator',
+    features: [
+      'High-definition project lookbooks with before-and-after sliders',
+      'Interactive modular kitchen layout & material inquiry funnel',
+      '1-Click WhatsApp site visit & design consultation bridge',
+      'Client video walkthroughs & verified homeowner reviews'
+    ]
+  },
+  {
+    id: 'photography',
+    targetType: 'Wedding Photographers & Studios (Weddings, Pre-Wedding Films, Destination, Portraiture)',
+    icon: Camera,
+    archetype: '06. Wedding Photographers & Studios',
+    title: 'Wedding Photographers & Studios',
+    subcategories: ['Wedding Films', 'Pre-Wedding Shoots', 'Destination Events', 'Client Proofing'],
+    tagline: 'Turn breathtaking wedding celebrations and cinematic love stories into premium, high-ticket bookings.',
+    description: 'Immersive photography portfolios with edge-to-edge 4K photo galleries, cinematic video trailer players, private client album proofing, and direct wedding date booking availability checks.',
+    badge: '4K Gallery & Date Booking',
+    features: [
+      'Edge-to-edge 4K photo showcase & video trailer embeds',
+      'Interactive wedding package breakdown & inquiry calculator',
+      'Private password-protected client album proofing portal',
+      'Instant wedding date availability checker & WhatsApp bridge'
     ]
   }
 ];
@@ -219,7 +269,7 @@ export default function Home() {
             </h1>
 
             <p className={`${styles.heroSubheadline} gsap-hero-item`}>
-              VedaPlus builds high-speed, modern websites across Food &amp; Hospitality (cafes, restaurants, hotels, bakeries), Retail &amp; E-commerce (clothing, cosmetics, grocery, jewellery), and Professional Local Services (salons, repair, cleaning, consulting). Zero bloat, instant customer inquiries, and clean responsive design.
+              VedaPlus builds high-speed, modern websites across Food &amp; Hospitality, Retail &amp; E-commerce, Professional Local Services, Students &amp; Fresh Graduates, Interior Designers, and Wedding Photography Studios. Zero bloat, instant customer inquiries, and clean responsive design.
             </p>
 
             {/* CTAs */}
@@ -284,7 +334,7 @@ export default function Home() {
                 className={`${styles.filterBtn} ${selectedFilter === 'all' ? styles.filterActive : ''}`}
                 onClick={() => setSelectedFilter('all')}
               >
-                All Categories
+                All Categories (6)
               </button>
               <button
                 className={`${styles.filterBtn} ${selectedFilter === 'hospitality' ? styles.filterActive : ''}`}
@@ -303,6 +353,24 @@ export default function Home() {
                 onClick={() => setSelectedFilter('services')}
               >
                 03. Professional &amp; Local Services
+              </button>
+              <button
+                className={`${styles.filterBtn} ${selectedFilter === 'students' ? styles.filterActive : ''}`}
+                onClick={() => setSelectedFilter('students')}
+              >
+                04. Students &amp; Fresh Graduates
+              </button>
+              <button
+                className={`${styles.filterBtn} ${selectedFilter === 'interiors' ? styles.filterActive : ''}`}
+                onClick={() => setSelectedFilter('interiors')}
+              >
+                05. Interior Designers &amp; Modular Kitchens
+              </button>
+              <button
+                className={`${styles.filterBtn} ${selectedFilter === 'photography' ? styles.filterActive : ''}`}
+                onClick={() => setSelectedFilter('photography')}
+              >
+                06. Wedding Photographers &amp; Studios
               </button>
             </div>
           </div>
@@ -342,7 +410,7 @@ export default function Home() {
                 VedaPlus was founded on a simple truth: small business owners shouldn't have to tolerate clunky, bloated websites that crash and take 8 seconds to load on mobile phones.
               </p>
               <p className={styles.aboutBodyText}>
-                We combine modern web design with down-to-earth business sense. Whether you operate in Food &amp; Hospitality, Retail &amp; E-commerce, or Professional &amp; Local Services, we build fast, clean websites that turn local passersby into lifelong customers.
+                We combine modern web design with down-to-earth business sense. Whether you operate in Food &amp; Hospitality, Retail &amp; E-commerce, Professional Services, Interior Design, Wedding Photography, or are a Student launching a standout portfolio, we build fast, clean websites that turn visitors into opportunities.
               </p>
 
               <div className={styles.aboutCheckGrid}>

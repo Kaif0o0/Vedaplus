@@ -10,6 +10,9 @@ import {
   ShieldCheck,
   Clock,
   Sparkles,
+  GraduationCap,
+  Compass,
+  Camera,
 } from 'lucide-react';
 import styles from './Marquee3D.module.css';
 
@@ -31,6 +34,24 @@ const ROW_ONE_ITEMS = [
     tag: '03. Professional & Local Services',
     text: 'Salons · Repair · Cleaning · Consulting',
     highlight: 'Instant Inquiries & Quotes',
+  },
+  {
+    icon: GraduationCap,
+    tag: '04. Students & Fresh Graduates',
+    text: 'Personal Portfolios · Interactive CVs · Capstones',
+    highlight: 'Recruiter & University Ready',
+  },
+  {
+    icon: Compass,
+    tag: '05. Interior Designers & Modular Kitchens',
+    text: 'Living Spaces · Kitchens · 3D Walkthroughs',
+    highlight: 'Lookbooks & Cost Estimators',
+  },
+  {
+    icon: Camera,
+    tag: '06. Wedding Photographers & Studios',
+    text: 'Wedding Films · Pre-Wedding · Client Proofing',
+    highlight: '4K Gallery & Date Booking',
   },
   {
     icon: MapPin,
