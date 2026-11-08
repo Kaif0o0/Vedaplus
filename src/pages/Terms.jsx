@@ -38,14 +38,14 @@ export default function Terms() {
         ease: 'power2.out',
       });
 
-      // Animate each policy card as it scrolls into view
+      // Animate each policy card as it scrolls into view (Bidirectional on scroll down and up)
       const cards = gsap.utils.toArray(`.${styles.policyCard}`);
       cards.forEach((card) => {
         gsap.from(card, {
           scrollTrigger: {
             trigger: card,
             start: 'top 92%',
-            toggleActions: 'play none none none',
+            toggleActions: 'play none none reverse',
           },
           opacity: 0,
           y: 25,

@@ -12,6 +12,11 @@
   transition: all var(--transition-normal);
 }
 
+.scrollingUp {
+  border-bottom: 2px solid rgba(245, 158, 11, 0.45);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08), 0 0 16px rgba(245, 158, 11, 0.15);
+}
+
 /* Spacer ensuring page content starts cleanly below the fixed header */
 .navbarSpacer {
   width: 100%;

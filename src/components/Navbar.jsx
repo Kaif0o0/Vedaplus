@@ -5,15 +5,23 @@ import styles from './Navbar.module.css';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [scrollDirection, setScrollDirection] = useState('down');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const isManualClickRef = useRef(false);
   const clickTimerRef = useRef(null);
+  const lastScrollYRef = useRef(0);
   const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+      setScrolled(currentScrollY > 20);
+
+      if (Math.abs(currentScrollY - lastScrollYRef.current) > 6) {
+        setScrollDirection(currentScrollY > lastScrollYRef.current ? 'down' : 'up');
+        lastScrollYRef.current = currentScrollY;
+      }
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -110,7 +118,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
+      <header className={`${styles.header} ${scrolled ? styles.scrolled : ''} ${scrollDirection === 'up' && scrolled ? styles.scrollingUp : ''}`}>
         {/* Top Utility Contact Bar */}
       <div className={styles.topBar}>
         <div className={`container ${styles.topBarContainer}`}>
@@ -157,7 +165,7 @@ export default function Navbar() {
             Home
           </Link>
           <Link
-            to="/#services"
+            to="/services"
             onClick={(e) => handleSectionClick(e, 'services')}
             className={`${styles.navLink} ${
               location.pathname === '/services' || (location.pathname === '/' && activeSection === 'services')
@@ -249,7 +257,7 @@ export default function Navbar() {
             Home
           </Link>
           <Link
-            to="/#services"
+            to="/services"
             onClick={(e) => handleSectionClick(e, 'services')}
             className={`${styles.mobileNavLink} ${
               location.pathname === '/services' || (location.pathname === '/' && activeSection === 'services')

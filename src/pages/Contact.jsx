@@ -9,11 +9,6 @@ import {
   AlertCircle,
   Loader2,
   Send,
-  Coffee,
-  Stethoscope,
-  Store,
-  Pill,
-  Sparkles,
   ShieldCheck,
   Clock,
   PhoneCall,
@@ -45,7 +40,7 @@ export default function Contact() {
     handleSubmit,
     setValue,
     reset,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm({
     defaultValues: {
       businessName: '',
@@ -203,7 +198,7 @@ export default function Contact() {
         origin: { y: 0.6 },
         colors: ['#0F172A', '#F59E0B', '#F8FAFC', '#D97706'],
       });
-    } catch (e) {
+    } catch {
       // Confetti fallback
     }
   };
@@ -228,12 +223,12 @@ export default function Contact() {
         ease: 'power2.out',
       });
 
-      // 2. Guarantee cards staggered entrance
+      // 2. Guarantee cards staggered entrance (Bidirectional on scroll down and up)
       gsap.from(`.${styles.guaranteeCard}`, {
         scrollTrigger: {
           trigger: `.${styles.guaranteeCards}`,
           start: 'top 85%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
         y: 25,
         opacity: 0,
@@ -242,12 +237,12 @@ export default function Contact() {
         ease: 'power2.out',
       });
 
-      // 3. Direct contact box entrance
+      // 3. Direct contact box entrance (Bidirectional)
       gsap.from(`.${styles.directContactBox}`, {
         scrollTrigger: {
           trigger: `.${styles.directContactBox}`,
           start: 'top 88%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
         y: 25,
         opacity: 0,
@@ -255,12 +250,12 @@ export default function Contact() {
         ease: 'power2.out',
       });
 
-      // 4. Form container entrance
+      // 4. Form container entrance (Bidirectional)
       gsap.from(`.${styles.formCard}`, {
         scrollTrigger: {
           trigger: `.${styles.formCardWrapper}`,
           start: 'top 85%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
         y: 35,
         opacity: 0,

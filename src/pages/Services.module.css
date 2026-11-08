@@ -1,0 +1,236 @@
+/* ==========================================================================
+   Services Page Styles
+   Strict 3-Color Standard: Midnight Blue (#0F172A), Marigold Amber (#F59E0B), Soft White (#F8FAFC)
+   ========================================================================== */
+
+.servicesPageWrapper {
+  min-height: 100vh;
+  background-color: #F8FAFC;
+  color: #0F172A;
+  padding: 3rem 0 5.5rem;
+  position: relative;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ================= 1. PAGE HEADER ================= */
+.pageHeader {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto 2.25rem;
+}
+
+.pillBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  padding: 0.35rem 0.95rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #D97706;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.15rem;
+}
+
+.title {
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: #0F172A;
+  margin-bottom: 1rem;
+  letter-spacing: -0.025em;
+}
+
+.amberText {
+  color: #F59E0B;
+}
+
+.description {
+  font-size: 1.08rem;
+  line-height: 1.65;
+  color: var(--color-primary-muted);
+  max-width: 680px;
+  margin: 0 auto 1.5rem;
+}
+
+/* ================= 2. FILTER PILLS ================= */
+.filterPills {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  margin: 1.5rem auto 2.5rem;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 100%;
+}
+
+.filterBtn {
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.55rem 1.25rem;
+  border-radius: var(--radius-full);
+  background: #FFFFFF;
+  color: var(--color-primary);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.filterBtn:hover {
+  border-color: var(--color-secondary);
+  color: var(--color-secondary);
+  transform: translateY(-1px);
+}
+
+.filterActive {
+  background: #0F172A;
+  color: #F8FAFC;
+  border-color: #0F172A;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.2);
+}
+
+/* ================= 3. SERVICES GRID ================= */
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.75rem;
+  margin-bottom: 3.5rem;
+  width: 100%;
+}
+
+.singleServiceCentered {
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+/* ================= 4. BOTTOM VALUE GUARANTEE & CTA ================= */
+.valueBanner {
+  background: #FFFFFF;
+  border: 1.5px solid rgba(245, 158, 11, 0.25);
+  border-radius: var(--radius-xl);
+  padding: 2.25rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow-float-md);
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.valueContent {
+  max-width: 640px;
+}
+
+.valueTitle {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin-bottom: 0.35rem;
+}
+
+.valueSubtitle {
+  font-size: 0.95rem;
+  color: var(--color-primary-muted);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.ctaBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--color-secondary);
+  color: #0F172A;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.95rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  box-shadow: var(--shadow-amber-glow);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.ctaBtn:hover {
+  background: var(--color-secondary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(245, 158, 11, 0.4);
+}
+
+/* ================= 5. RESPONSIVE BREAKPOINTS ================= */
+@media (max-width: 768px) {
+  .servicesPageWrapper {
+    padding: 1.75rem 0 3.5rem;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .title {
+    font-size: 1.85rem;
+    line-height: 1.2;
+  }
+
+  .description {
+    font-size: 0.95rem;
+    margin-bottom: 1.15rem;
+  }
+
+  .filterPills {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0.25rem 0.25rem 0.65rem;
+    margin: 1rem auto 1.75rem;
+    scrollbar-width: none;
+  }
+
+  .filterPills::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filterBtn {
+    white-space: nowrap;
+    font-size: 0.82rem;
+    padding: 0.45rem 0.95rem;
+    flex-shrink: 0;
+  }
+
+  .servicesGrid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .valueBanner {
+    flex-direction: column;
+    padding: 1.5rem 1.25rem;
+    text-align: center;
+  }
+
+  .ctaBtn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+

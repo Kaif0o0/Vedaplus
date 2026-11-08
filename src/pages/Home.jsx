@@ -178,12 +178,12 @@ export default function Home() {
         ease: 'power2.out',
       });
 
-      // 1c. Marquee Strip Scroll Reveal
+      // 1c. Marquee Strip Scroll Reveal (Bidirectional: plays on scroll down, reverses on scroll up)
       gsap.from('.gsap-marquee-wrap', {
         scrollTrigger: {
           trigger: '.gsap-marquee-wrap',
-          start: 'top 90%',
-          toggleActions: 'play none none none',
+          start: 'top 92%',
+          toggleActions: 'play none none reverse',
         },
         opacity: 0,
         y: 20,
@@ -196,7 +196,7 @@ export default function Home() {
         scrollTrigger: {
           trigger: '#services',
           start: 'top 88%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
         opacity: 0,
         y: 25,
@@ -208,8 +208,8 @@ export default function Home() {
       gsap.from('.gsap-service-card', {
         scrollTrigger: {
           trigger: '#services',
-          start: 'top 80%',
-          toggleActions: 'play none none none',
+          start: 'top 82%',
+          toggleActions: 'play none none reverse',
         },
         y: 30,
         opacity: 0,
@@ -218,12 +218,12 @@ export default function Home() {
         ease: 'power2.out',
       });
 
-      // 3. About Us Section Vertical Reveals (No horizontal shifts to prevent mobile overflow)
+      // 3. About Us Section Vertical Reveals (Bidirectional for down & up scrolling)
       gsap.from('.gsap-about-story', {
         scrollTrigger: {
           trigger: '#about-us',
           start: 'top 85%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
         y: 25,
         opacity: 0,
@@ -235,7 +235,7 @@ export default function Home() {
         scrollTrigger: {
           trigger: '#about-us',
           start: 'top 85%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
         y: 25,
         opacity: 0,
@@ -248,7 +248,7 @@ export default function Home() {
         scrollTrigger: {
           trigger: '.gsap-about-card',
           start: 'top 80%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
         opacity: 0,
         y: 15,
@@ -257,18 +257,30 @@ export default function Home() {
         ease: 'power2.out',
       });
 
-      // 4. CTA Banner Reveal
+      // 4. CTA Banner Reveal (Bidirectional)
       gsap.from('.gsap-cta-banner', {
         scrollTrigger: {
           trigger: '#contact',
           start: 'top 88%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
         scale: 0.97,
         y: 20,
         opacity: 0,
         duration: 0.7,
         ease: 'power2.out',
+      });
+
+      // 5. Scroll-linked Parallax for Hero Visual (Smooth on scroll down and scroll up)
+      gsap.to('.gsap-hero-visual', {
+        scrollTrigger: {
+          trigger: '#home',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 0.8,
+        },
+        y: 35,
+        ease: 'none',
       });
     });
 
@@ -354,7 +366,7 @@ export default function Home() {
       </section>
 
       {/* ================= 1.5 3D MARQUEE SHOWCASE ================= */}
-      <div className="gsap-marquee-wrap">
+      <div className="gsap-marquee-wrap" style={{ width: '100%', maxWidth: '100vw', overflow: 'hidden' }}>
         <Marquee3D />
       </div>
 

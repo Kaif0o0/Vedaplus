@@ -7,6 +7,8 @@
   position: relative;
   width: 100%;
   max-width: 500px;
+  overflow: hidden;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,7 +23,9 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 440px;
+  max-width: 90vw;
   height: 480px;
+  max-height: 90vw;
   background: radial-gradient(circle, rgba(245, 158, 11, 0.2) 0%, transparent 68%);
   filter: blur(55px);
   pointer-events: none;
@@ -34,7 +38,9 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 380px;
+  max-width: 85vw;
   height: 420px;
+  max-height: 85vw;
   background: radial-gradient(circle, rgba(15, 23, 42, 0.35) 0%, transparent 72%);
   filter: blur(40px);
   pointer-events: none;
@@ -44,14 +50,20 @@
 /* 2D Modern Tilt Card Container */
 .blueprintTiltCard {
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   position: relative;
   z-index: 2;
   border-radius: var(--radius-xl);
+  box-sizing: border-box;
 }
 
 .terminalStage {
   position: relative;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   background: linear-gradient(145deg, #0F172A 0%, #141E33 60%, #0B1120 100%);
   border-radius: var(--radius-xl);
   border: 1.5px solid rgba(245, 158, 11, 0.35);
@@ -75,6 +87,9 @@
   border-radius: var(--radius-md);
   padding: 0.45rem 0.75rem;
   margin-bottom: 0.85rem;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
 }
 
 .trafficDots {
@@ -217,6 +232,10 @@
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 /* Preview Tabs */
@@ -225,8 +244,17 @@
   align-items: center;
   gap: 0.35rem;
   overflow-x: auto;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   padding-bottom: 0.25rem;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.previewTabsRow::-webkit-scrollbar {
+  display: none;
 }
 
 .previewTabBtn {
@@ -240,6 +268,7 @@
   border-radius: var(--radius-sm);
   cursor: pointer;
   white-space: nowrap;
+  flex-shrink: 0;
   transition: all var(--transition-fast);
 }
 
@@ -267,6 +296,10 @@
   gap: 0.75rem;
   box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
   transition: all var(--transition-normal);
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .screenHeader {
@@ -412,8 +445,12 @@
 /* Indicators Grid */
 .indicatorsGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .indicatorCard {
@@ -424,12 +461,15 @@
   background: rgba(248, 250, 252, 0.03);
   border: 1px solid rgba(248, 250, 252, 0.08);
   border-radius: var(--radius-md);
-  padding: 0.5rem 0.4rem;
+  padding: 0.45rem 0.25rem;
+  min-width: 0;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .indValue {
   font-family: var(--font-display);
-  font-size: 0.95rem;
+  font-size: clamp(0.75rem, 3.2vw, 0.95rem);
   font-weight: 800;
   color: var(--color-secondary);
   line-height: 1.1;
@@ -437,9 +477,12 @@
 
 .indLabel {
   font-family: var(--font-mono);
-  font-size: 0.55rem;
-  color: rgba(248, 250, 252, 0.6);
+  font-size: clamp(0.48rem, 2vw, 0.55rem);
+  color: rgba(248, 250, 252, 0.65);
   margin-top: 0.2rem;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.15;
 }
 
 /* Terminal Footer */
@@ -451,6 +494,10 @@
   padding-top: 0.65rem;
   margin-top: 0.85rem;
   gap: 0.5rem;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .footerSpec {
@@ -504,51 +551,113 @@
 /* ================= RESPONSIVE MOBILE MEDIA QUERIES ================= */
 @media (max-width: 900px) {
   .heroVisualWrapper {
-    max-width: 440px;
+    max-width: 100%;
     margin: 0 auto;
     width: 100%;
   }
-}
 
-@media (max-width: 560px) {
   .terminalStage {
     padding: 1rem 0.85rem 0.85rem;
+    border-radius: var(--radius-lg);
   }
 
   .urlBar {
-    max-width: 160px;
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .heroVisualWrapper {
+    max-width: 100%;
+    width: 100%;
+    overflow: hidden;
   }
 
-  .screenTitle {
-    font-size: 0.75rem;
+  .terminalStage {
+    padding: 0.85rem 0.75rem 0.75rem;
+    border-radius: var(--radius-md);
   }
 
-  .indicatorsGrid {
+  .stageHeader {
+    flex-wrap: wrap;
     gap: 0.35rem;
   }
 
-  .indValue {
-    font-size: 0.85rem;
+  .statusLabel {
+    font-size: 0.62rem;
   }
 
-  .indLabel {
-    font-size: 0.5rem;
+  .telemetryTag {
+    font-size: 0.58rem;
+  }
+
+  .screenTitle {
+    font-size: 0.72rem;
+  }
+
+  .speedPill {
+    font-size: 0.58rem;
+    padding: 0.12rem 0.4rem;
+  }
+
+  .screenMetricRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+    padding: 0.4rem 0.55rem;
+  }
+
+  .metricItem {
+    font-size: 0.68rem;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  .vitalScoreBadge {
+    font-size: 0.58rem;
+  }
+
+  .indicatorsGrid {
+    gap: 0.3rem;
+  }
+
+  .indicatorCard {
+    padding: 0.4rem 0.2rem;
   }
 
   .terminalFooter {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 0.5rem;
+  }
+
+  .footerSpec {
+    justify-content: center;
+    font-size: 0.6rem;
   }
 
   .auditBtn {
     width: 100%;
     justify-content: center;
+    padding: 0.4rem 0.75rem;
   }
 }
 
-@media (max-width: 400px) {
-  .urlBar {
+@media (max-width: 380px) {
+  .terminalStage {
+    padding: 0.75rem 0.6rem 0.6rem;
+  }
+
+  .previewTabBtn {
+    font-size: 0.58rem;
+    padding: 0.2rem 0.4rem;
+  }
+
+  .statusLabel {
+    font-size: 0.56rem;
+  }
+
+  .telemetryTag {
     display: none;
   }
 }

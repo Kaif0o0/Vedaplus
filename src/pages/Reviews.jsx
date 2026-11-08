@@ -109,12 +109,12 @@ export default function Reviews() {
         ease: 'power2.out',
       });
 
-      // 3. Sticky Form Card scroll entrance
+      // 3. Sticky Form Card scroll entrance (Bidirectional on scroll down and up)
       gsap.from(`.${styles.formCardSticky}`, {
         scrollTrigger: {
           trigger: `.${styles.mainGrid}`,
           start: 'top 85%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
         y: 35,
         opacity: 0,
@@ -122,14 +122,14 @@ export default function Reviews() {
         ease: 'power2.out',
       });
 
-      // 4. Staggered Review Cards on Scroll
+      // 4. Staggered Review Cards on Scroll (Bidirectional)
       const cardNodes = gsap.utils.toArray(`.${styles.reviewCardWrapper}`);
       if (cardNodes.length > 0) {
         gsap.from(cardNodes, {
           scrollTrigger: {
             trigger: `.${styles.reviewsFeed}`,
             start: 'top 85%',
-            toggleActions: 'play none none none',
+            toggleActions: 'play none none reverse',
           },
           y: 30,
           opacity: 0,
@@ -139,12 +139,12 @@ export default function Reviews() {
         });
       }
 
-      // 5. CTA Banner Scroll Reveal
+      // 5. CTA Banner Scroll Reveal (Bidirectional)
       gsap.from(`.${styles.ctaBanner}`, {
         scrollTrigger: {
           trigger: `.${styles.ctaSection}`,
           start: 'top 88%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
         scale: 0.96,
         y: 25,

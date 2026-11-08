@@ -9,7 +9,6 @@ import {
   MapPin,
   ShieldCheck,
   Clock,
-  Sparkles,
   GraduationCap,
   Compass,
   Camera,

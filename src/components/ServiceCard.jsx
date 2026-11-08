@@ -5,7 +5,7 @@ import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import styles from './ServiceCard.module.css';
 
 export default function ServiceCard({
-  id,
+  id: _id,
   icon: Icon,
   archetype,
   title,
