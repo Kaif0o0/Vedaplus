@@ -1,9 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, Mail, MapPin, Phone } from 'lucide-react';
+import { ShieldCheck, Sparkles, Mail, MapPin, Phone } from 'lucide-react';
 import Logo from './Logo';
-import Footer3DUptime from './Footer3DUptime';
-import Footer3DLaunch from './Footer3DLaunch';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -21,7 +19,10 @@ export default function Footer() {
           </p>
 
           <div className={styles.statusBox}>
-            <Footer3DUptime size={44} />
+            <div className={styles.statusIconPill}>
+              <ShieldCheck size={20} className={styles.statusShieldIcon} />
+              <span className={styles.statusLiveDot} />
+            </div>
             <div className={styles.statusText}>
               <span className={styles.statusTitle}>Zero-Downtime Guarantee</span>
               <span className={styles.statusSub}>Local business continuity 24/7/365</span>
@@ -47,6 +48,9 @@ export default function Footer() {
             </li>
             <li>
               <Link to="/contact">Contact</Link>
+            </li>
+            <li>
+              <Link to="/terms">Terms &amp; Conditions</Link>
             </li>
           </ul>
         </div>
@@ -100,7 +104,9 @@ export default function Footer() {
 
           <div className={styles.ctaMiniBox}>
             <div className={styles.ctaMiniHeader}>
-              <Footer3DLaunch size={38} />
+              <div className={styles.ctaMiniIconBox}>
+                <Sparkles size={18} className={styles.ctaMiniIcon} />
+              </div>
               <span className={styles.ctaMiniLabel}>Ready to launch?</span>
             </div>
             <Link to="/contact" className={styles.ctaMiniBtn}>
@@ -115,6 +121,11 @@ export default function Footer() {
         <div className={`container ${styles.subFooterContainer}`}>
           <div className={styles.copyright}>
             © {new Date().getFullYear()} VedaPlus. All Rights Reserved. Custom Website Development.
+          </div>
+          <div className={styles.subFooterLinksGroup}>
+            <Link to="/terms" className={styles.subFooterTermsLink}>
+              Terms &amp; Conditions
+            </Link>
           </div>
           <div className={styles.paletteBadge}>
             <span className={styles.swatchPrimary} title="Royal Midnight Blue (#0F172A)" />

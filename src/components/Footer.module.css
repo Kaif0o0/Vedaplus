@@ -46,6 +46,35 @@
   max-width: 380px;
 }
 
+.statusIconPill {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.statusShieldIcon {
+  color: var(--color-secondary);
+}
+
+.statusLiveDot {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #10B981;
+  box-shadow: 0 0 8px #10B981;
+  animation: pulseGlow 2s infinite ease-in-out;
+}
+
 .statusIcon {
   color: var(--color-secondary);
   flex-shrink: 0;
@@ -182,6 +211,22 @@
   gap: 0.55rem;
 }
 
+.ctaMiniIconBox {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ctaMiniIcon {
+  color: var(--color-secondary);
+}
+
 .ctaMiniLabel {
   font-family: var(--font-display);
   font-size: 0.82rem;
@@ -226,6 +271,24 @@
 .copyright {
   font-size: 0.8rem;
   color: rgba(248, 250, 252, 0.55);
+}
+
+.subFooterLinksGroup {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.subFooterTermsLink {
+  font-size: 0.8rem;
+  color: rgba(248, 250, 252, 0.65);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.subFooterTermsLink:hover {
+  color: var(--color-secondary);
+  text-decoration: underline;
 }
 
 .paletteBadge {

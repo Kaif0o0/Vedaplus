@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import confetti from 'canvas-confetti';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
   CheckCircle2,
   AlertCircle,
@@ -21,6 +23,8 @@ import {
   CalendarCheck
 } from 'lucide-react';
 import styles from './Contact.module.css';
+
+gsap.registerPlugin(ScrollTrigger);
 
 // FormSubmit configuration: automatically delivers all form inquiries directly to vedaplus76@gmail.com
 const RECIPIENT_EMAIL = 'vedaplus76@gmail.com';
@@ -204,13 +208,84 @@ export default function Contact() {
     }
   };
 
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // 1. Breadcrumb bar & Header entrance
+      gsap.from(`.${styles.breadcrumbBar}`, {
+        y: -15,
+        opacity: 0,
+        duration: 0.6,
+        ease: 'power2.out',
+      });
+
+      gsap.from(`.${styles.headerBox}`, {
+        y: 25,
+        opacity: 0,
+        duration: 0.7,
+        delay: 0.1,
+        ease: 'power2.out',
+      });
+
+      // 2. Guarantee cards staggered entrance
+      gsap.from(`.${styles.guaranteeCard}`, {
+        scrollTrigger: {
+          trigger: `.${styles.guaranteeCards}`,
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        },
+        y: 25,
+        opacity: 0,
+        stagger: 0.12,
+        duration: 0.65,
+        ease: 'power2.out',
+      });
+
+      // 3. Direct contact box entrance
+      gsap.from(`.${styles.directContactBox}`, {
+        scrollTrigger: {
+          trigger: `.${styles.directContactBox}`,
+          start: 'top 88%',
+          toggleActions: 'play none none none',
+        },
+        y: 25,
+        opacity: 0,
+        duration: 0.7,
+        ease: 'power2.out',
+      });
+
+      // 4. Form container entrance
+      gsap.from(`.${styles.formCard}`, {
+        scrollTrigger: {
+          trigger: `.${styles.formCardWrapper}`,
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        },
+        y: 35,
+        opacity: 0,
+        duration: 0.75,
+        ease: 'power2.out',
+      });
+    }, containerRef);
+
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 150);
+
+    return () => {
+      clearTimeout(timer);
+      ctx.revert();
+    };
+  }, []);
+
   const resetFormView = () => {
     reset();
     setSubmissionState({ status: 'idle', message: '', submittedData: null });
   };
 
   return (
-    <div className={styles.contactPageWrapper}>
+    <div className={styles.contactPageWrapper} ref={containerRef}>
       <div className={`container ${styles.contactContainer}`}>
         {/* Breadcrumb / Back Link */}
         <div className={styles.breadcrumbBar}>

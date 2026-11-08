@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Tilt from 'react-parallax-tilt';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
   Star,
   CheckCircle2,
   MessageSquare,
   Send,
-  Sparkles,
   Award,
-  ArrowRight,
   ShieldCheck,
   UserCheck
 } from 'lucide-react';
 import styles from './Reviews.module.css';
+
+gsap.registerPlugin(ScrollTrigger);
 
 // Initial Demo Reviews by Kaif, Mahesh, and Ayush in simple English
 const DEMO_REVIEWS = [
@@ -74,6 +76,8 @@ export default function Reviews() {
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState('');
 
+  const containerRef = useRef(null);
+
   // Sync reviews to localStorage whenever they change
   useEffect(() => {
     try {
@@ -82,6 +86,83 @@ export default function Reviews() {
       console.warn('Could not save reviews to localStorage', e);
     }
   }, [reviews]);
+
+  // GSAP ScrollTrigger Animations for Reviews Page
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // 1. Hero Content Staggered Reveal
+      gsap.from(`.${styles.heroContent} > *`, {
+        y: 25,
+        opacity: 0,
+        stagger: 0.1,
+        duration: 0.7,
+        ease: 'power2.out',
+      });
+
+      // 2. Rating Summary Bar Stat items
+      gsap.from(`.${styles.summaryStatItem}`, {
+        y: 15,
+        opacity: 0,
+        stagger: 0.08,
+        duration: 0.6,
+        delay: 0.25,
+        ease: 'power2.out',
+      });
+
+      // 3. Sticky Form Card scroll entrance
+      gsap.from(`.${styles.formCardSticky}`, {
+        scrollTrigger: {
+          trigger: `.${styles.mainGrid}`,
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        },
+        y: 35,
+        opacity: 0,
+        duration: 0.75,
+        ease: 'power2.out',
+      });
+
+      // 4. Staggered Review Cards on Scroll
+      const cardNodes = gsap.utils.toArray(`.${styles.reviewCardWrapper}`);
+      if (cardNodes.length > 0) {
+        gsap.from(cardNodes, {
+          scrollTrigger: {
+            trigger: `.${styles.reviewsFeed}`,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+          y: 30,
+          opacity: 0,
+          stagger: 0.12,
+          duration: 0.65,
+          ease: 'power2.out',
+        });
+      }
+
+      // 5. CTA Banner Scroll Reveal
+      gsap.from(`.${styles.ctaBanner}`, {
+        scrollTrigger: {
+          trigger: `.${styles.ctaSection}`,
+          start: 'top 88%',
+          toggleActions: 'play none none none',
+        },
+        scale: 0.96,
+        y: 25,
+        opacity: 0,
+        duration: 0.7,
+        ease: 'power2.out',
+      });
+    }, containerRef);
+
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 150);
+
+    return () => {
+      clearTimeout(timer);
+      ctx.revert();
+    };
+  }, []);
 
   // Handle Form Submission
   const handleSubmit = (e) => {
@@ -150,7 +231,7 @@ export default function Reviews() {
   };
 
   return (
-    <div className={styles.reviewsPage}>
+    <div className={styles.reviewsPage} ref={containerRef}>
       {/* ================= 1. REVIEWS HERO SECTION ================= */}
       <section className={styles.heroSection}>
         <div className="container">

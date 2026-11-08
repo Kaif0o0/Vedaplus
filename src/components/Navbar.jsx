@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Mail, MapPin } from 'lucide-react';
-import Navbar3DBeacon from './Navbar3DBeacon';
 import styles from './Navbar.module.css';
 
 export default function Navbar() {
@@ -136,7 +135,10 @@ export default function Navbar() {
           aria-label="VedaPlus Home"
           onClick={(e) => handleSectionClick(e, 'home')}
         >
-          <Navbar3DBeacon size={38} />
+          <div className={styles.brandLogoBox}>
+            <img src="/logo.png" alt="VedaPlus Logo" className={styles.navLogoImg} />
+            <span className={styles.navLogoGlow} />
+          </div>
           <span className={styles.brandNameText}>VedaPlus</span>
         </Link>
 
@@ -184,6 +186,15 @@ export default function Navbar() {
             }`}
           >
             Reviews
+          </Link>
+          <Link
+            to="/terms"
+            onClick={closeDrawer}
+            className={`${styles.navLink} ${
+              location.pathname.startsWith('/terms') ? styles.activeNavLink : ''
+            }`}
+          >
+            Terms &amp; Conditions
           </Link>
           <Link
             to="/contact"
@@ -267,6 +278,15 @@ export default function Navbar() {
             }`}
           >
             Reviews
+          </Link>
+          <Link
+            to="/terms"
+            onClick={closeDrawer}
+            className={`${styles.mobileNavLink} ${
+              location.pathname.startsWith('/terms') ? styles.mobileActive : ''
+            }`}
+          >
+            Terms &amp; Conditions
           </Link>
           <Link
             to="/contact"

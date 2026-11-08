@@ -5,10 +5,7 @@ import {
   Utensils,
   ShoppingBag,
   Briefcase,
-  Store,
   Sparkles,
-  Coffee,
-  ArrowRight,
   ArrowUpRight,
   CheckCircle2,
   Zap,
@@ -24,8 +21,6 @@ import {
 import FloatingVisual from '../components/FloatingVisual';
 import ServiceCard from '../components/ServiceCard';
 import Marquee3D from '../components/Marquee3D';
-import TechGlobe3D from '../components/TechGlobe3D';
-import Cta3DPortal from '../components/Cta3DPortal';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './Home.module.css';
@@ -174,11 +169,46 @@ export default function Home() {
         ease: 'power2.out',
       });
 
-      // 2. Services Section Reveal (Clean vertical stagger)
+      // 1b. Hero Blueprint Visual Reveal
+      gsap.from('.gsap-hero-visual', {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        delay: 0.2,
+        ease: 'power2.out',
+      });
+
+      // 1c. Marquee Strip Scroll Reveal
+      gsap.from('.gsap-marquee-wrap', {
+        scrollTrigger: {
+          trigger: '.gsap-marquee-wrap',
+          start: 'top 90%',
+          toggleActions: 'play none none none',
+        },
+        opacity: 0,
+        y: 20,
+        duration: 0.65,
+        ease: 'power2.out',
+      });
+
+      // 2. Services Header & Category Filter Tabs Reveal
+      gsap.from('.gsap-services-header', {
+        scrollTrigger: {
+          trigger: '#services',
+          start: 'top 88%',
+          toggleActions: 'play none none none',
+        },
+        opacity: 0,
+        y: 25,
+        duration: 0.7,
+        ease: 'power2.out',
+      });
+
+      // 2b. Services Section Cards Stagger
       gsap.from('.gsap-service-card', {
         scrollTrigger: {
           trigger: '#services',
-          start: 'top 85%',
+          start: 'top 80%',
           toggleActions: 'play none none none',
         },
         y: 30,
@@ -211,6 +241,19 @@ export default function Home() {
         opacity: 0,
         duration: 0.7,
         delay: 0.1,
+        ease: 'power2.out',
+      });
+
+      gsap.from('.gsap-pillar', {
+        scrollTrigger: {
+          trigger: '.gsap-about-card',
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        },
+        opacity: 0,
+        y: 15,
+        stagger: 0.1,
+        duration: 0.55,
         ease: 'power2.out',
       });
 
@@ -304,19 +347,21 @@ export default function Home() {
           </div>
 
           {/* Right Column: Floating Anti-Gravity Visual Element */}
-          <div className={styles.heroVisualCol}>
+          <div className={`${styles.heroVisualCol} gsap-hero-visual`}>
             <FloatingVisual />
           </div>
         </div>
       </section>
 
       {/* ================= 1.5 3D MARQUEE SHOWCASE ================= */}
-      <Marquee3D />
+      <div className="gsap-marquee-wrap">
+        <Marquee3D />
+      </div>
 
       {/* ================= 2. SERVICES SECTION ================= */}
       <section id="services" className={styles.solutionsSection}>
         <div className="container">
-          <div className={styles.sectionHeader}>
+          <div className={`${styles.sectionHeader} gsap-services-header`}>
             <div className={styles.sectionTag}>
               <Layers size={14} />
               <span>Services</span>
@@ -450,8 +495,15 @@ export default function Home() {
                     <div className={styles.approachBadge}>The VedaPlus Approach</div>
                     <h3 className={styles.approachTitle}>Why Custom Website Development?</h3>
                   </div>
-                  <div className={styles.approach3DBox}>
-                    <TechGlobe3D size={135} />
+                  <div className={styles.approachScoreBox}>
+                    <div className={styles.approachRadialMeter}>
+                      <span className={styles.meterNumber}>99+</span>
+                      <span className={styles.meterLabel}>Speed Score</span>
+                    </div>
+                    <div className={styles.approachMetricBadge}>
+                      <Zap size={13} className={styles.metricAmberIcon} />
+                      <span>0.4s Fast Paint</span>
+                    </div>
                   </div>
                 </div>
                 <p className={styles.approachDesc}>
@@ -459,7 +511,7 @@ export default function Home() {
                 </p>
 
                 <div className={styles.approachPillars}>
-                  <div className={styles.pillarMini}>
+                  <div className={`${styles.pillarMini} gsap-pillar`}>
                     <div className={styles.pillarMiniIcon}>
                       <Zap size={20} />
                     </div>
@@ -471,7 +523,7 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <div className={styles.pillarMini}>
+                  <div className={`${styles.pillarMini} gsap-pillar`}>
                     <div className={styles.pillarMiniIcon}>
                       <Smartphone size={20} />
                     </div>
@@ -483,7 +535,7 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <div className={styles.pillarMini}>
+                  <div className={`${styles.pillarMini} gsap-pillar`}>
                     <div className={styles.pillarMiniIcon}>
                       <ShieldCheck size={20} />
                     </div>
@@ -513,8 +565,13 @@ export default function Home() {
           >
             <div className={`${styles.ctaBanner} gsap-cta-banner`}>
               <div className={styles.ctaContent}>
-                {/* 3D Interactive Launch Portal Model */}
-                <Cta3DPortal size={115} />
+                <div className={styles.ctaEmblemBox}>
+                  <div className={styles.ctaEmblemInner}>
+                    <Sparkles size={36} className={styles.ctaEmblemIcon} />
+                    <span className={styles.ctaEmblemPulse} />
+                  </div>
+                  <span className={styles.ctaEmblemTag}>FAST DISPATCH</span>
+                </div>
 
                 <div className={styles.ctaPill}>
                   <Award size={14} />

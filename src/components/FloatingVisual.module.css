@@ -1,12 +1,12 @@
 /* ==========================================================================
-   Hero Visual Component — Minimal 3D Architecture Stage
+   Hero Visual Component — Modern 2D Architecture Blueprint Terminal
    VedaPlus Strict 3-Color Standard: Midnight Blue (#0F172A), Marigold Amber (#F59E0B), Soft White (#F8FAFC)
    ========================================================================== */
 
 .heroVisualWrapper {
   position: relative;
   width: 100%;
-  max-width: 480px;
+  max-width: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,9 +20,9 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 420px;
-  height: 460px;
-  background: radial-gradient(circle, rgba(245, 158, 11, 0.22) 0%, transparent 68%);
+  width: 440px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.2) 0%, transparent 68%);
   filter: blur(55px);
   pointer-events: none;
   z-index: 1;
@@ -33,24 +33,23 @@
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 360px;
-  height: 400px;
+  width: 380px;
+  height: 420px;
   background: radial-gradient(circle, rgba(15, 23, 42, 0.35) 0%, transparent 72%);
   filter: blur(40px);
   pointer-events: none;
   z-index: 1;
 }
 
-/* 3D Parallax Tilt Card Container */
-.suitTiltCard {
+/* 2D Modern Tilt Card Container */
+.blueprintTiltCard {
   width: 100%;
   position: relative;
   z-index: 2;
-  transform-style: preserve-3d;
   border-radius: var(--radius-xl);
 }
 
-.suitStage {
+.terminalStage {
   position: relative;
   width: 100%;
   background: linear-gradient(145deg, #0F172A 0%, #141E33 60%, #0B1120 100%);
@@ -58,21 +57,100 @@
   border: 1.5px solid rgba(245, 158, 11, 0.35);
   box-shadow: 
     0 25px 60px -15px rgba(15, 23, 42, 0.55),
-    0 0 35px rgba(245, 158, 11, 0.18),
+    0 0 35px rgba(245, 158, 11, 0.15),
     inset 0 1px 0 rgba(248, 250, 252, 0.15);
-  padding: 1.15rem 1.15rem 1rem;
+  padding: 1.25rem 1.25rem 1.15rem;
   overflow: hidden;
   color: #F8FAFC;
-  transform-style: preserve-3d;
-  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
 }
 
-.suitStageBoosted {
-  border-color: rgba(245, 158, 11, 0.7);
-  box-shadow: 
-    0 25px 60px -15px rgba(15, 23, 42, 0.65),
-    0 0 45px rgba(245, 158, 11, 0.35),
-    inset 0 1px 0 rgba(248, 250, 252, 0.25);
+/* Window Browser Header */
+.windowHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(248, 250, 252, 0.08);
+  border-radius: var(--radius-md);
+  padding: 0.45rem 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.trafficDots {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.dotRed {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #EF4444;
+  opacity: 0.85;
+}
+
+.dotAmber {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #F59E0B;
+  opacity: 0.85;
+}
+
+.dotGreen {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #10B981;
+  opacity: 0.85;
+}
+
+.urlBar {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(248, 250, 252, 0.06);
+  border-radius: var(--radius-full);
+  padding: 0.2rem 0.65rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: rgba(248, 250, 252, 0.65);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 220px;
+}
+
+.lockIcon {
+  color: var(--color-secondary);
+  flex-shrink: 0;
+}
+
+.liveScoreBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #10B981;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 0.18rem 0.5rem;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.scoreDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 6px #10B981;
+  animation: pulseGlow 2s infinite ease-in-out;
 }
 
 /* Minimal Stage Header */
@@ -82,10 +160,7 @@
   justify-content: space-between;
   border-bottom: 1px solid rgba(248, 250, 252, 0.08);
   padding-bottom: 0.65rem;
-  margin-bottom: 0.25rem;
-  position: relative;
-  z-index: 10;
-  transform: translateZ(25px);
+  margin-bottom: 0.85rem;
 }
 
 .statusGroup {
@@ -106,7 +181,7 @@
 @keyframes pulseGlow {
   0%, 100% {
     transform: scale(1);
-    box-shadow: 0 0 8px var(--color-secondary);
+    box-shadow: 0 0 6px var(--color-secondary);
   }
   50% {
     transform: scale(1.35);
@@ -137,65 +212,293 @@
   color: var(--color-secondary);
 }
 
-/* Spatial Layer 1: Background Holographic Rings & Grid */
-.holoRingOuter {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 360px;
-  height: 360px;
-  border-radius: 50%;
-  border: 1px dashed rgba(245, 158, 11, 0.18);
-  pointer-events: none;
-  animation: orbitSpin 80s linear infinite;
-  z-index: 2;
+/* Terminal Body */
+.terminalBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
 }
 
-.holoRingInner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  border: 1px solid rgba(245, 158, 11, 0.12);
-  pointer-events: none;
-  animation: orbitSpin 50s linear infinite reverse;
-  z-index: 2;
-}
-
-@keyframes orbitSpin {
-  from {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  to {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
-
-.holoGridMatrix {
-  position: absolute;
-  inset: 0;
-  background-image: 
-    linear-gradient(to right, rgba(245, 158, 11, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(245, 158, 11, 0.035) 1px, transparent 1px);
-  background-size: 28px 28px;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Spatial Layer 2: 3D Model Stage Container */
-.suitFigureContainer {
-  position: relative;
-  width: 100%;
-  height: 420px;
+/* Preview Tabs */
+.previewTabsRow {
   display: flex;
   align-items: center;
-  justify-content: center;
-  z-index: 5;
-  transform-style: preserve-3d;
+  gap: 0.35rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.previewTabBtn {
+  background: rgba(248, 250, 252, 0.05);
+  border: 1px solid rgba(248, 250, 252, 0.1);
+  color: rgba(248, 250, 252, 0.7);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 0.28rem 0.6rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+.previewTabBtn:hover {
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--color-secondary);
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.previewTabActive {
+  background: rgba(245, 158, 11, 0.2);
+  border-color: var(--color-secondary);
+  color: var(--color-secondary);
+  font-weight: 700;
+}
+
+/* Device Screen Simulation */
+.deviceScreen {
+  background: #080D1A;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
+  transition: all var(--transition-normal);
+}
+
+.screenHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(248, 250, 252, 0.08);
+  padding-bottom: 0.5rem;
+}
+
+.screenTitleBox {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.screenAmberIcon {
+  color: var(--color-secondary);
+}
+
+.screenTitle {
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #F8FAFC;
+}
+
+.speedPill {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #10B981;
+  background: rgba(16, 185, 129, 0.12);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-full);
+}
+
+/* Wireframe Elements */
+.wireframeLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+}
+
+.wireNavLine {
+  width: 100%;
+  height: 4px;
+  background: rgba(245, 158, 11, 0.2);
+  border-radius: 2px;
+}
+
+.wireHeroBlock {
+  background: rgba(248, 250, 252, 0.03);
+  border: 1px dashed rgba(245, 158, 11, 0.2);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.wireHeading {
+  width: 65%;
+  height: 8px;
+  background: rgba(245, 158, 11, 0.4);
+  border-radius: 4px;
+}
+
+.wireSubheading {
+  width: 85%;
+  height: 5px;
+  background: rgba(248, 250, 252, 0.15);
+  border-radius: 3px;
+}
+
+.wireBtn {
+  width: 70px;
+  height: 12px;
+  background: var(--color-secondary);
+  border-radius: var(--radius-full);
+  margin-top: 0.2rem;
+}
+
+.wireCardsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4rem;
+}
+
+.wireMiniCard {
+  height: 32px;
+  background: rgba(248, 250, 252, 0.04);
+  border: 1px solid rgba(248, 250, 252, 0.08);
+  border-radius: 4px;
+}
+
+/* Screen Metric Row */
+.screenMetricRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: var(--radius-md);
+  padding: 0.4rem 0.65rem;
+}
+
+.metricItem {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #F8FAFC;
+}
+
+.metricCheckIcon {
+  color: var(--color-secondary);
+  flex-shrink: 0;
+}
+
+.vitalScoreBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  background: rgba(245, 158, 11, 0.15);
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.vitalZapIcon {
+  color: var(--color-secondary);
+}
+
+/* Indicators Grid */
+.indicatorsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.indicatorCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: rgba(248, 250, 252, 0.03);
+  border: 1px solid rgba(248, 250, 252, 0.08);
+  border-radius: var(--radius-md);
+  padding: 0.5rem 0.4rem;
+}
+
+.indValue {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--color-secondary);
+  line-height: 1.1;
+}
+
+.indLabel {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: rgba(248, 250, 252, 0.6);
+  margin-top: 0.2rem;
+}
+
+/* Terminal Footer */
+.terminalFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(248, 250, 252, 0.08);
+  padding-top: 0.65rem;
+  margin-top: 0.85rem;
+  gap: 0.5rem;
+}
+
+.footerSpec {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: rgba(248, 250, 252, 0.65);
+}
+
+.footerSpecDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-secondary);
+}
+
+.auditBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  color: var(--color-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.auditBtn:hover {
+  background: var(--color-secondary);
+  color: #0F172A;
+  transform: translateY(-1px);
+}
+
+.auditBtnActive {
+  background: var(--color-secondary);
+  color: #0F172A;
+  box-shadow: 0 0 14px rgba(245, 158, 11, 0.5);
+}
+
+.auditIcon {
+  flex-shrink: 0;
 }
 
 /* ================= RESPONSIVE MOBILE MEDIA QUERIES ================= */
@@ -208,17 +511,44 @@
 }
 
 @media (max-width: 560px) {
-  .suitStage {
-    padding: 1rem 0.9rem 0.85rem;
+  .terminalStage {
+    padding: 1rem 0.85rem 0.85rem;
   }
 
-  .suitFigureContainer {
-    height: 360px;
+  .urlBar {
+    max-width: 160px;
+  }
+
+  .screenTitle {
+    font-size: 0.75rem;
+  }
+
+  .indicatorsGrid {
+    gap: 0.35rem;
+  }
+
+  .indValue {
+    font-size: 0.85rem;
+  }
+
+  .indLabel {
+    font-size: 0.5rem;
+  }
+
+  .terminalFooter {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .auditBtn {
+    width: 100%;
+    justify-content: center;
   }
 }
 
 @media (max-width: 400px) {
-  .suitFigureContainer {
-    height: 310px;
+  .urlBar {
+    display: none;
   }
 }
