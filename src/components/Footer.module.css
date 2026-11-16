@@ -1,17 +1,16 @@
 .footer {
-  background-color: #0F172A;
-  color: #F8FAFC;
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
   position: relative;
   z-index: 10;
   overflow: hidden;
-  margin-top: 6rem;
+  margin-top: 5rem;
   width: 100%;
 }
 
 .topAccentBar {
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #F59E0B, transparent);
-  box-shadow: 0 0 16px rgba(245, 158, 11, 0.5);
+  height: 1px;
+  background: var(--color-secondary);
 }
 
 .footerContainer {
@@ -31,7 +30,7 @@
 .brandMission {
   font-size: 0.9rem;
   line-height: 1.65;
-  color: rgba(248, 250, 252, 0.7);
+  color: var(--color-surface);
   max-width: 380px;
 }
 
@@ -39,20 +38,20 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  background: rgba(248, 250, 252, 0.04);
-  border: 1px solid rgba(245, 158, 11, 0.25);
-  border-radius: var(--radius-md);
+  background: var(--color-secondary);
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--radius-sm);
   padding: 0.85rem 1rem;
   max-width: 380px;
 }
 
 .statusIconPill {
   position: relative;
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-sm);
-  background: rgba(15, 23, 42, 0.6);
-  border: 1px solid rgba(245, 158, 11, 0.35);
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-xs);
+  background: var(--color-primary);
+  border: 1px solid var(--color-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -60,24 +59,17 @@
 }
 
 .statusShieldIcon {
-  color: var(--color-secondary);
+  color: var(--color-accent);
 }
 
 .statusLiveDot {
   position: absolute;
   top: 4px;
   right: 4px;
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background-color: #10B981;
-  box-shadow: 0 0 8px #10B981;
-  animation: pulseGlow 2s infinite ease-in-out;
-}
-
-.statusIcon {
-  color: var(--color-secondary);
-  flex-shrink: 0;
+  background-color: var(--color-accent);
 }
 
 .statusText {
@@ -89,12 +81,12 @@
   font-family: var(--font-display);
   font-size: 0.84rem;
   font-weight: 700;
-  color: #F8FAFC;
+  color: var(--color-text-light);
 }
 
 .statusSub {
   font-size: 0.72rem;
-  color: rgba(248, 250, 252, 0.6);
+  color: var(--color-surface);
 }
 
 .linksCol {
@@ -107,7 +99,7 @@
   font-family: var(--font-display);
   font-size: 1.05rem;
   font-weight: 700;
-  color: #F8FAFC;
+  color: var(--color-text-light);
   letter-spacing: -0.01em;
   position: relative;
   padding-bottom: 0.5rem;
@@ -120,8 +112,7 @@
   left: 0;
   width: 24px;
   height: 2px;
-  background: var(--color-secondary);
-  border-radius: 2px;
+  background: var(--color-accent);
 }
 
 .linksList {
@@ -133,14 +124,14 @@
 
 .linksList a {
   font-size: 0.88rem;
-  color: rgba(248, 250, 252, 0.7);
+  color: var(--color-surface);
   transition: all var(--transition-fast);
   display: inline-block;
 }
 
 .linksList a:hover {
-  color: var(--color-secondary);
-  transform: translateX(4px);
+  color: var(--color-accent);
+  transform: translateX(3px);
 }
 
 .contactCol {
@@ -154,12 +145,12 @@
   align-items: flex-start;
   gap: 0.65rem;
   font-size: 0.88rem;
-  color: rgba(248, 250, 252, 0.75);
+  color: var(--color-surface);
   line-height: 1.5;
 }
 
 .contactIcon {
-  color: var(--color-secondary);
+  color: var(--color-accent);
   flex-shrink: 0;
   margin-top: 3px;
 }
@@ -172,33 +163,28 @@
 }
 
 .footerPhoneGroup a {
-  color: rgba(248, 250, 252, 0.85);
+  color: var(--color-surface);
   transition: color var(--transition-fast);
 }
 
 .footerPhoneGroup a:hover {
-  color: var(--color-secondary);
+  color: var(--color-accent);
 }
 
 .footerPhoneDivider {
-  color: rgba(248, 250, 252, 0.35);
-}
-
-.contactIcon {
   color: var(--color-secondary);
-  flex-shrink: 0;
 }
 
 .contactItem a:hover {
-  color: var(--color-secondary);
+  color: var(--color-accent);
 }
 
 .ctaMiniBox {
   margin-top: 0.5rem;
-  background: rgba(248, 250, 252, 0.05);
-  border: 1px solid rgba(248, 250, 252, 0.1);
+  background: var(--color-secondary);
+  border: 1px solid var(--color-secondary);
   padding: 0.75rem 0.85rem;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -212,11 +198,11 @@
 }
 
 .ctaMiniIconBox {
-  width: 32px;
-  height: 32px;
-  border-radius: var(--radius-sm);
-  background: rgba(245, 158, 11, 0.15);
-  border: 1px solid rgba(245, 158, 11, 0.35);
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-xs);
+  background: var(--color-primary);
+  border: 1px solid var(--color-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -224,13 +210,13 @@
 }
 
 .ctaMiniIcon {
-  color: var(--color-secondary);
+  color: var(--color-accent);
 }
 
 .ctaMiniLabel {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 0.82rem;
-  color: #F8FAFC;
+  color: var(--color-text-light);
   font-weight: 600;
 }
 
@@ -238,26 +224,26 @@
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  background: var(--color-secondary);
-  color: #0F172A;
-  font-family: var(--font-display);
+  background: var(--color-accent);
+  color: var(--color-primary);
+  font-family: var(--font-sans);
   font-size: 0.78rem;
   font-weight: 700;
   padding: 0.35rem 0.75rem;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-xs);
   transition: all var(--transition-fast);
 }
 
 .ctaMiniBtn:hover {
-  background: var(--color-secondary-hover);
-  transform: scale(1.05);
+  background: var(--color-background);
+  color: var(--color-primary);
 }
 
 /* Sub-Footer */
 .subFooter {
-  border-top: 1px solid rgba(248, 250, 252, 0.08);
+  border-top: 1px solid var(--color-secondary);
   padding: 1.5rem 0;
-  background: rgba(8, 13, 26, 0.7);
+  background: var(--color-primary);
 }
 
 .subFooterContainer {
@@ -270,7 +256,7 @@
 
 .copyright {
   font-size: 0.8rem;
-  color: rgba(248, 250, 252, 0.55);
+  color: var(--color-surface);
 }
 
 .subFooterLinksGroup {
@@ -281,52 +267,70 @@
 
 .subFooterTermsLink {
   font-size: 0.8rem;
-  color: rgba(248, 250, 252, 0.65);
+  color: var(--color-surface);
   text-decoration: none;
   transition: color var(--transition-fast);
 }
 
 .subFooterTermsLink:hover {
-  color: var(--color-secondary);
+  color: var(--color-accent);
   text-decoration: underline;
 }
 
 .paletteBadge {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  background: rgba(248, 250, 252, 0.05);
-  padding: 0.3rem 0.7rem;
-  border-radius: var(--radius-full);
-  border: 1px solid rgba(248, 250, 252, 0.1);
+  gap: 0.45rem;
+  background: var(--color-secondary);
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-secondary);
 }
 
 .swatchPrimary {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #0F172A;
-  border: 1px solid #F8FAFC;
+  background: #280E1B;
+  border: 1px solid #61283C;
 }
 
 .swatchSecondary {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #F59E0B;
+  background: #61283C;
+  border: 1px solid #E8D6C5;
+}
+
+.swatchAccent {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #B99162;
+  border: 1px solid #280E1B;
+}
+
+.swatchSecBg {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #E8D6C5;
+  border: 1px solid #280E1B;
 }
 
 .swatchBase {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #F8FAFC;
+  background: #FAF4ED;
+  border: 1px solid #280E1B;
 }
 
 .paletteLabel {
   font-family: var(--font-mono);
   font-size: 0.68rem;
-  color: rgba(248, 250, 252, 0.6);
+  color: var(--color-text-light);
 }
 
 @media (max-width: 960px) {

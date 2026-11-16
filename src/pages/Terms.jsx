@@ -66,7 +66,7 @@ export default function Terms() {
   }, []);
 
   const sections = [
-    { id: 'section-1', title: '1. About VedaPlus' },
+    { id: 'section-1', title: '1. About Ayukam' },
     { id: 'section-2', title: '2. Service Agreement' },
     { id: 'section-3', title: '3. Payments and Pricing' },
     { id: 'section-4', title: '4. Project Timeline and Delivery' },
@@ -100,8 +100,6 @@ export default function Terms() {
 
   return (
     <div className={styles.termsWrapper} ref={containerRef}>
-      <div className={styles.backgroundAura} />
-      
       <div className={styles.container}>
         {/* Header */}
         <header className={styles.termsHeader}>
@@ -121,7 +119,7 @@ export default function Terms() {
 
           <div className={styles.introBox}>
             <p>
-              Welcome to <strong>VedaPlus</strong>. These Terms &amp; Conditions govern your use of our website and the services provided by VedaPlus. By accessing our website, contacting us, or purchasing any of our services, you agree to these terms.
+              Welcome to <strong>Ayukam</strong>. These Terms &amp; Conditions govern your use of our website and the services provided by Ayukam. By accessing our website, contacting us, or purchasing any of our services, you agree to these terms.
             </p>
           </div>
         </header>
@@ -151,15 +149,15 @@ export default function Terms() {
 
           {/* Policy Content Sections */}
           <main className={styles.contentArea}>
-            {/* 1. About VedaPlus */}
+            {/* 1. About Ayukam */}
             <article className={styles.policyCard} id="section-1">
               <div className={styles.sectionHeader}>
                 <span className={styles.sectionBadge}>01</span>
-                <h2 className={styles.sectionTitle}>1. About VedaPlus</h2>
+                <h2 className={styles.sectionTitle}>1. About Ayukam</h2>
               </div>
               <div className={styles.cardBody}>
                 <p>
-                  VedaPlus is a web development agency providing digital solutions to individuals, students, startups, professionals, and local businesses.
+                  Ayukam is a web development agency providing digital solutions to individuals, students, startups, professionals, and local businesses.
                 </p>
                 <p>Our services may include:</p>
                 <ul>
@@ -183,7 +181,7 @@ export default function Terms() {
               </div>
               <div className={styles.cardBody}>
                 <p>
-                  Every project will be developed according to the requirements discussed and mutually agreed upon between VedaPlus and the client.
+                  Every project will be developed according to the requirements discussed and mutually agreed upon between Ayukam and the client.
                 </p>
                 <p>
                   The project scope, features, estimated delivery time, pricing, and other important details will be communicated before starting the project.
@@ -207,7 +205,7 @@ export default function Terms() {
                   <li>The remaining payment must be completed according to the agreed payment schedule.</li>
                   <li>Additional features or modifications outside the agreed scope may incur extra charges.</li>
                   <li>Domain registration, hosting, premium themes, plugins, APIs, and third-party services may involve additional costs unless explicitly included in the package.</li>
-                  <li>VedaPlus reserves the right to pause or withhold project delivery if agreed payments are not received.</li>
+                  <li>Ayukam reserves the right to pause or withhold project delivery if agreed payments are not received.</li>
                 </ul>
               </div>
             </article>
@@ -223,7 +221,7 @@ export default function Terms() {
                   <li>Estimated delivery timelines will be communicated before project commencement.</li>
                   <li>Delivery timelines depend on project complexity and client cooperation.</li>
                   <li>Delays in providing content, images, approvals, or other required information may affect the delivery date.</li>
-                  <li>VedaPlus will make reasonable efforts to deliver projects within the agreed timeframe.</li>
+                  <li>Ayukam will make reasonable efforts to deliver projects within the agreed timeframe.</li>
                   <li>Any significant changes to project requirements may result in revised delivery timelines.</li>
                 </ul>
               </div>
@@ -262,7 +260,7 @@ export default function Terms() {
                   <li>Making payments according to the agreed schedule.</li>
                 </ul>
                 <p>
-                  VedaPlus will not be responsible for delays or issues caused by incomplete, inaccurate, or late information supplied by the client.
+                  Ayukam will not be responsible for delays or issues caused by incomplete, inaccurate, or late information supplied by the client.
                 </p>
               </div>
             </article>
@@ -278,8 +276,8 @@ export default function Terms() {
                   <li>Ownership and usage rights for the completed website will be transferred according to the payment and ownership agreement.</li>
                   <li>Clients must complete all agreed payments before receiving final ownership and administrative access, unless otherwise agreed.</li>
                   <li>Third-party libraries, plugins, themes, fonts, images, and software remain subject to their respective licenses.</li>
-                  <li>VedaPlus retains ownership of its pre-existing tools, reusable components, development methods, and proprietary resources.</li>
-                  <li>VedaPlus may display completed projects in its portfolio unless the client requests confidentiality in writing.</li>
+                  <li>Ayukam retains ownership of its pre-existing tools, reusable components, development methods, and proprietary resources.</li>
+                  <li>Ayukam may display completed projects in its portfolio unless the client requests confidentiality in writing.</li>
                 </ul>
               </div>
             </article>
@@ -294,7 +292,7 @@ export default function Terms() {
                 <ul>
                   <li>Domain registration and hosting services may be provided separately or through third-party providers.</li>
                   <li>Domain and hosting renewal charges are generally the client&apos;s responsibility unless included in a service agreement.</li>
-                  <li>VedaPlus is not responsible for downtime, service interruptions, or failures caused by third-party hosting or domain providers.</li>
+                  <li>Ayukam is not responsible for downtime, service interruptions, or failures caused by third-party hosting or domain providers.</li>
                   <li>Clients are responsible for maintaining access to their domain and hosting accounts.</li>
                 </ul>
               </div>
@@ -311,7 +309,7 @@ export default function Terms() {
                   <li>Ongoing maintenance and technical support are not automatically included unless specified in the selected package or agreement.</li>
                   <li>Maintenance may include bug fixes, content updates, security updates, and technical assistance.</li>
                   <li>Additional development work or major modifications may require separate payment.</li>
-                  <li>VedaPlus is not responsible for issues caused by unauthorized modifications, third-party services, or client-side changes.</li>
+                  <li>Ayukam is not responsible for issues caused by unauthorized modifications, third-party services, or client-side changes.</li>
                 </ul>
               </div>
             </article>
@@ -324,7 +322,7 @@ export default function Terms() {
               </div>
               <div className={styles.cardBody}>
                 <p>
-                  VedaPlus may implement basic SEO practices, including website structure optimization, metadata, mobile responsiveness, and performance improvements, depending on the selected package.
+                  Ayukam may implement basic SEO practices, including website structure optimization, metadata, mobile responsiveness, and performance improvements, depending on the selected package.
                 </p>
                 <p>However:</p>
                 <ul>
@@ -344,7 +342,7 @@ export default function Terms() {
               </div>
               <div className={styles.cardBody}>
                 <p>
-                  VedaPlus may provide website development and technical assistance for students and academic projects.
+                  Ayukam may provide website development and technical assistance for students and academic projects.
                 </p>
                 <ul>
                   <li>Students are responsible for understanding their projects and complying with their institution&apos;s academic policies.</li>
@@ -380,9 +378,9 @@ export default function Terms() {
               </div>
               <div className={styles.cardBody}>
                 <p>
-                  VedaPlus will make reasonable efforts to provide reliable website development services.
+                  Ayukam will make reasonable efforts to provide reliable website development services.
                 </p>
-                <p>However, VedaPlus will not be liable for:</p>
+                <p>However, Ayukam will not be liable for:</p>
                 <ul>
                   <li>Losses caused by incorrect information provided by clients.</li>
                   <li>Third-party hosting or domain failures.</li>
@@ -403,7 +401,7 @@ export default function Terms() {
                 <h2 className={styles.sectionTitle}>14. Prohibited Use</h2>
               </div>
               <div className={styles.cardBody}>
-                <p>Clients must not use websites developed by VedaPlus for:</p>
+                <p>Clients must not use websites developed by Ayukam for:</p>
                 <ul>
                   <li>Illegal activities or fraudulent purposes.</li>
                   <li>Copyright infringement or unauthorized distribution of content.</li>
@@ -411,7 +409,7 @@ export default function Terms() {
                   <li>Any activity prohibited by applicable Indian law.</li>
                 </ul>
                 <p>
-                  VedaPlus reserves the right to refuse or discontinue services involving unlawful activities.
+                  Ayukam reserves the right to refuse or discontinue services involving unlawful activities.
                 </p>
               </div>
             </article>
@@ -424,7 +422,7 @@ export default function Terms() {
               </div>
               <div className={styles.cardBody}>
                 <p>
-                  VedaPlus respects user privacy and handles personal information according to its Privacy Policy.
+                  Ayukam respects user privacy and handles personal information according to its Privacy Policy.
                 </p>
                 <p>
                   Information submitted through contact forms, WhatsApp, email, or other communication channels may be used to respond to inquiries and provide requested services.
@@ -443,7 +441,7 @@ export default function Terms() {
               </div>
               <div className={styles.cardBody}>
                 <p>
-                  VedaPlus reserves the right to update or modify these Terms &amp; Conditions at any time.
+                  Ayukam reserves the right to update or modify these Terms &amp; Conditions at any time.
                 </p>
                 <p>
                   Updated terms will be published on this page with a revised update date. Continued use of our website and services after such changes will be subject to the updated terms, to the extent permitted by applicable law.
@@ -481,14 +479,14 @@ export default function Terms() {
                 <div className={styles.contactGrid}>
                   <div className={styles.contactField}>
                     <span className={styles.contactFieldLabel}>Company</span>
-                    <span className={styles.contactFieldValue}>VedaPlus</span>
+                    <span className={styles.contactFieldValue}>Ayukam (Ayukam Digital)</span>
                   </div>
 
                   <div className={styles.contactField}>
                     <span className={styles.contactFieldLabel}>Website</span>
                     <span className={styles.contactFieldValue}>
                       <a href="https://vedaplus-website.vercel.app/" target="_blank" rel="noopener noreferrer">
-                        vedaplus-website.vercel.app
+                        ayukam.agency
                       </a>
                     </span>
                   </div>
@@ -496,7 +494,7 @@ export default function Terms() {
                   <div className={styles.contactField}>
                     <span className={styles.contactFieldLabel}>Email</span>
                     <span className={styles.contactFieldValue}>
-                      <a href="mailto:vedaplus76@gmail.com">vedaplus76@gmail.com</a>
+                      <a href="mailto:ayukam99@gmail.com">ayukam99@gmail.com</a>
                     </span>
                   </div>
 
@@ -520,13 +518,13 @@ export default function Terms() {
             {/* Navigation Actions */}
             <div className={styles.bottomNavActions}>
               <Link to="/" className={styles.backHomeBtn}>
-                <ArrowLeft size={18} />
+                <ArrowLeft size={16} />
                 <span>Return to Home</span>
               </Link>
 
               <Link to="/contact" className={styles.contactLegalBtn}>
-                <MessageSquare size={18} />
-                <span>Contact Legal / Support Desk</span>
+                <MessageSquare size={16} />
+                <span>Contact Legal / Support Team</span>
               </Link>
             </div>
           </main>

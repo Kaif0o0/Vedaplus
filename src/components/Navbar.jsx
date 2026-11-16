@@ -6,6 +6,7 @@ import styles from './Navbar.module.css';
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [scrollDirection, setScrollDirection] = useState('down');
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const isManualClickRef = useRef(false);
@@ -14,16 +15,31 @@ export default function Navbar() {
   const location = useLocation();
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setScrolled(currentScrollY > 20);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          setScrolled(currentScrollY > 20);
 
-      if (Math.abs(currentScrollY - lastScrollYRef.current) > 6) {
-        setScrollDirection(currentScrollY > lastScrollYRef.current ? 'down' : 'up');
-        lastScrollYRef.current = currentScrollY;
+          if (Math.abs(currentScrollY - lastScrollYRef.current) > 6) {
+            setScrollDirection(currentScrollY > lastScrollYRef.current ? 'down' : 'up');
+            lastScrollYRef.current = currentScrollY;
+          }
+
+          const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+          if (scrollHeight > 0) {
+            setScrollProgress(Math.min(100, Math.max(0, (currentScrollY / scrollHeight) * 100)));
+          } else {
+            setScrollProgress(0);
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -36,19 +52,24 @@ export default function Navbar() {
 
   // Sync active section based on URL hash or path changes
   useEffect(() => {
+    let nextSection = '';
     if (location.pathname === '/about') {
-      setActiveSection('about-us');
+      nextSection = 'about-us';
     } else if (location.pathname === '/services') {
-      setActiveSection('services');
+      nextSection = 'services';
     } else if (location.pathname === '/') {
       if (location.hash) {
         const hashId = location.hash.replace('#', '');
         if (['services', 'about-us', 'home'].includes(hashId)) {
-          setActiveSection(hashId);
+          nextSection = hashId;
         }
       } else if (window.scrollY < 120) {
-        setActiveSection('home');
+        nextSection = 'home';
       }
+    }
+    if (nextSection) {
+      const raf = requestAnimationFrame(() => setActiveSection(nextSection));
+      return () => cancelAnimationFrame(raf);
     }
   }, [location.pathname, location.hash]);
 
@@ -87,7 +108,8 @@ export default function Navbar() {
 
   // Close mobile drawer upon route change
   useEffect(() => {
-    setMobileMenuOpen(false);
+    const raf = requestAnimationFrame(() => setMobileMenuOpen(false));
+    return () => cancelAnimationFrame(raf);
   }, [location.pathname]);
 
   const closeDrawer = () => setMobileMenuOpen(false);
@@ -127,27 +149,27 @@ export default function Navbar() {
             <span>Opp. Rajgurunagar Sahakari Bank, Rajgurunagar, Khed, Pune, Maharashtra – 410505</span>
           </div>
           <div className={styles.topBarRight}>
-            <a href="mailto:vedaplus76@gmail.com" className={styles.topBarLink}>
+            <a href="mailto:ayukam99@gmail.com" className={styles.topBarLink}>
               <Mail size={13} className={styles.topBarIcon} />
-              <span>vedaplus76@gmail.com</span>
+              <span>ayukam99@gmail.com</span>
             </a>
           </div>
         </div>
       </div>
 
       <div className={`container ${styles.navContainer}`}>
-        {/* Brand Name Text: VedaPlus with 3D Tech Beacon */}
+        {/* Brand Logo & Name: Ayukam Digital */}
         <Link
           to="/"
           className={styles.brandLink}
-          aria-label="VedaPlus Home"
+          aria-label="Ayukam Digital Home"
           onClick={(e) => handleSectionClick(e, 'home')}
         >
-          <div className={styles.brandLogoBox}>
-            <img src="/logo.png" alt="VedaPlus Logo" className={styles.navLogoImg} />
-            <span className={styles.navLogoGlow} />
-          </div>
-          <span className={styles.brandNameText}>VedaPlus</span>
+          <img
+            src="/logo.png"
+            alt="Ayukam Digital"
+            className={styles.brandLogoImg}
+          />
         </Link>
 
         {/* Desktop Navigation Links matching exact requested terms:
@@ -310,7 +332,7 @@ export default function Navbar() {
           <div className={styles.mobileContactSection}>
             <div className={styles.mobileContactItem}>
               <Mail size={15} className={styles.drawerAmberIcon} />
-              <a href="mailto:vedaplus76@gmail.com">vedaplus76@gmail.com</a>
+              <a href="mailto:ayukam99@gmail.com">ayukam99@gmail.com</a>
             </div>
             <div className={styles.mobileContactItem}>
               <MapPin size={15} className={styles.drawerAmberIcon} />
@@ -327,6 +349,14 @@ export default function Navbar() {
             </p>
           </div>
         </div>
+      </div>
+
+      {/* Scroll progress line attached directly below the navbar */}
+      <div className={styles.navProgressBar} aria-hidden="true">
+        <div
+          className={styles.navProgressBarFill}
+          style={{ width: `${scrollProgress}%` }}
+        />
       </div>
     </header>
     <div className={styles.navbarSpacer} aria-hidden="true" />

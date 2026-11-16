@@ -19,14 +19,10 @@ export default function ServiceCard({
   return (
     <Tilt
       perspective={1000}
-      glareEnable={true}
-      glareMaxOpacity={0.12}
-      glareColor="#F59E0B"
-      glarePosition="all"
-      glareBorderRadius="20px"
-      tiltMaxAngleX={8}
-      tiltMaxAngleY={8}
-      scale={1.02}
+      glareEnable={false}
+      tiltMaxAngleX={4}
+      tiltMaxAngleY={4}
+      scale={1.01}
       transitionSpeed={600}
       className={styles.tiltCard}
     >

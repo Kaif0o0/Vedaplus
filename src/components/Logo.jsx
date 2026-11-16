@@ -7,18 +7,14 @@ export default function Logo({ size = 'medium', className = '' }) {
     <Link
       to="/"
       className={`${styles.logoLink} ${styles[size] || ''} ${className}`}
-      aria-label="VedaPlus Studios Home"
-      title="VedaPlus Studios"
+      aria-label="Ayukam Digital Home"
+      title="Ayukam Digital"
     >
-      <div className={styles.imageCard}>
-        <img
-          src="/logo.png"
-          alt="VedaPlus Studios"
-          className={styles.logoImg}
-        />
-        {/* Ambient Amber Glow Beacon */}
-        <span className={styles.beaconGlow} />
-      </div>
+      <img
+        src="/logo.png"
+        alt="Ayukam Digital Logo"
+        className={styles.logoImg}
+      />
     </Link>
   );
 }

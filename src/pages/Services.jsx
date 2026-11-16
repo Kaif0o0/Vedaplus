@@ -298,8 +298,8 @@ export default function Services() {
             </p>
           </div>
 
-          <Link to="/contact" className={styles.ctaBtn}>
-            <span>Request Custom Specification</span>
+          <Link to="/contact" className={styles.ctaBtn} id="services-bottom-get-website-cta">
+            <span>Get Website</span>
             <ArrowRight size={18} />
           </Link>
         </section>

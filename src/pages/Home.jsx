@@ -316,7 +316,7 @@ export default function Home() {
           <div className={styles.heroCopy}>
             <div className={`${styles.pillBadge} gsap-hero-item`}>
               <span className={styles.pillPulse} />
-              <span className={styles.pillText}>VedaPlus • Custom Website Development</span>
+              <span className={styles.pillText}>Ayukam • Custom Website Development</span>
             </div>
 
             <h1 className={`${styles.heroHeadline} gsap-hero-item`}>
@@ -324,7 +324,7 @@ export default function Home() {
             </h1>
 
             <p className={`${styles.heroSubheadline} gsap-hero-item`}>
-              VedaPlus builds high-speed, modern websites across Food &amp; Hospitality, Retail &amp; E-commerce, Professional Local Services, Students &amp; Fresh Graduates, Interior Designers, and Wedding Photography Studios. Zero bloat, instant customer inquiries, and clean responsive design.
+              Ayukam builds high-speed, modern websites across Food &amp; Hospitality, Retail &amp; E-commerce, Professional Local Services, Students &amp; Fresh Graduates, Interior Designers, and Wedding Photography Studios. Zero bloat, instant customer inquiries, and clean responsive design.
             </p>
 
             {/* CTAs */}
@@ -382,7 +382,7 @@ export default function Home() {
               Website Development Services for Small Businesses
             </h2>
             <p className={styles.sectionDesc}>
-              No slow templates or generic site builders. Every VedaPlus website is custom-crafted around the exact booking, menu, catalog, or retail workflows of your local trade.
+              No slow templates or generic site builders. Every Ayukam website is custom-crafted around the exact booking, menu, catalog, or retail workflows of your local trade.
             </p>
 
             {/* Service Category Filter Tabs matching exact user specifications */}
@@ -443,7 +443,7 @@ export default function Home() {
 
           <div className={styles.servicesFooterCta}>
             <span>Need a custom solution tailored to your exact store layout?</span>
-            <Link to="/contact" className={styles.inlineCtaLink}>
+            <Link to="/contact" className={styles.inlineCtaLink} id="services-footer-get-website-cta">
               <span>Get a Website →</span>
             </Link>
           </div>
@@ -464,7 +464,7 @@ export default function Home() {
                 We Build Fast, Modern Websites for Local Businesses.
               </h2>
               <p className={styles.aboutLeadText}>
-                VedaPlus was founded on a simple truth: small business owners shouldn't have to tolerate clunky, bloated websites that crash and take 8 seconds to load on mobile phones.
+                Ayukam was founded on a simple truth: small business owners shouldn't have to tolerate clunky, bloated websites that crash and take 8 seconds to load on mobile phones.
               </p>
               <p className={styles.aboutBodyText}>
                 We combine modern web design with down-to-earth business sense. Whether you operate in Food &amp; Hospitality, Retail &amp; E-commerce, Professional Services, Interior Design, Wedding Photography, or are a Student launching a standout portfolio, we build fast, clean websites that turn visitors into opportunities.
@@ -504,7 +504,7 @@ export default function Home() {
               <div className={styles.approachCard}>
                 <div className={styles.approachHeaderRow}>
                   <div>
-                    <div className={styles.approachBadge}>The VedaPlus Approach</div>
+                    <div className={styles.approachBadge}>The Ayukam Approach</div>
                     <h3 className={styles.approachTitle}>Why Custom Website Development?</h3>
                   </div>
                   <div className={styles.approachScoreBox}>
@@ -587,7 +587,7 @@ export default function Home() {
 
                 <div className={styles.ctaPill}>
                   <Award size={14} />
-                  <span>VedaPlus • Accepting New Website Development Projects</span>
+                  <span>Ayukam • Accepting New Website Development Projects</span>
                 </div>
                 <h2 className={styles.ctaHeadline}>
                   Ready to elevate your local business with a modern website?

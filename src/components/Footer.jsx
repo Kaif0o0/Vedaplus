@@ -4,6 +4,8 @@ import { ShieldCheck, Sparkles, Mail, MapPin, Phone } from 'lucide-react';
 import Logo from './Logo';
 import styles from './Footer.module.css';
 
+const CURRENT_YEAR = 2026;
+
 export default function Footer() {
   return (
     <footer className={styles.footer}>
@@ -15,7 +17,7 @@ export default function Footer() {
         <div className={styles.brandCol}>
           <Logo size="medium" />
           <p className={styles.brandMission}>
-            VedaPlus builds high-performance, modern websites for local businesses. We create fast, clean, and mobile-friendly websites that turn local visitors into regular customers.
+            Ayukam builds high-performance, modern websites for local businesses. We create fast, clean, and mobile-friendly websites that turn local visitors into regular customers.
           </p>
 
           <div className={styles.statusBox}>
@@ -85,7 +87,7 @@ export default function Footer() {
           <h4 className={styles.colTitle}>Direct Contact</h4>
           <div className={styles.contactItem}>
             <Mail size={16} className={styles.contactIcon} />
-            <a href="mailto:vedaplus76@gmail.com">vedaplus76@gmail.com</a>
+            <a href="mailto:ayukam99@gmail.com">ayukam99@gmail.com</a>
           </div>
           <div className={styles.contactItem}>
             <Phone size={16} className={styles.contactIcon} />
@@ -93,8 +95,8 @@ export default function Footer() {
               <a href="tel:+919503956026">+91 9503956026</a>
               <span className={styles.footerPhoneDivider}>/</span>
               <a href="tel:+919226115976">+91 9226115976</a>
-              <span className={styles.footerPhoneDivider}>/</span>
-              <a href="tel:+919762874676">+91 9762874676</a>
+          
+            
             </div>
           </div>
           <div className={styles.contactItem}>
@@ -120,7 +122,7 @@ export default function Footer() {
       <div className={styles.subFooter}>
         <div className={`container ${styles.subFooterContainer}`}>
           <div className={styles.copyright}>
-            © {new Date().getFullYear()} VedaPlus. All Rights Reserved. Custom Website Development.
+            © {CURRENT_YEAR} Ayukam. All Rights Reserved. Custom Website Development.
           </div>
           <div className={styles.subFooterLinksGroup}>
             <Link to="/terms" className={styles.subFooterTermsLink}>
@@ -128,10 +130,12 @@ export default function Footer() {
             </Link>
           </div>
           <div className={styles.paletteBadge}>
-            <span className={styles.swatchPrimary} title="Royal Midnight Blue (#0F172A)" />
-            <span className={styles.swatchSecondary} title="Marigold Amber (#F59E0B)" />
-            <span className={styles.swatchBase} title="Soft Chalk White (#F8FAFC)" />
-            <span className={styles.paletteLabel}>VedaPlus 3-Spectrum Standard</span>
+            <span className={styles.swatchPrimary} title="Primary (#280E1B)" />
+            <span className={styles.swatchSecondary} title="Secondary (#61283C)" />
+            <span className={styles.swatchAccent} title="Accent (#B99162)" />
+            <span className={styles.swatchSecBg} title="Secondary BG (#E8D6C5)" />
+            <span className={styles.swatchBase} title="Main BG (#FAF4ED)" />
+            <span className={styles.paletteLabel}>Imperial Burgundy Palette</span>
           </div>
         </div>
       </div>

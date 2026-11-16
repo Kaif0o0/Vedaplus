@@ -43,30 +43,19 @@ export default function ScrollController() {
   };
 
   return (
-    <>
-      {/* Top amber scroll progress line */}
-      <div className={styles.scrollProgressBarContainer} aria-hidden="true">
-        <div
-          className={styles.scrollProgressBarFill}
-          style={{ width: `${scrollProgress}%` }}
-        />
+    <button
+      type="button"
+      onClick={scrollToTop}
+      className={`${styles.scrollTopBtn} ${isVisible ? styles.scrollTopBtnVisible : ''}`}
+      aria-label="Scroll to top of page"
+      title="Scroll to top"
+    >
+      <div className={styles.iconWrapper}>
+        <ArrowUp size={16} />
       </div>
-
-      {/* Floating Scroll to top button */}
-      <button
-        type="button"
-        onClick={scrollToTop}
-        className={`${styles.scrollTopBtn} ${isVisible ? styles.scrollTopBtnVisible : ''}`}
-        aria-label="Scroll to top of page"
-        title="Scroll to top"
-      >
-        <div className={styles.iconWrapper}>
-          <ArrowUp size={16} />
-        </div>
-        <span className={styles.btnLabel}>Top</span>
-        <span className={styles.percentBadge}>{Math.round(scrollProgress)}%</span>
-      </button>
-    </>
+      <span className={styles.btnLabel}>Top</span>
+      <span className={styles.percentBadge}>{Math.round(scrollProgress)}%</span>
+    </button>
   );
 }
 

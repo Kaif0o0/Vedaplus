@@ -41,14 +41,14 @@ Managed seamlessly with **React Router v7**:
   - Launch Timeline Selector (Fast-Track, Standard, Flexible)
   - Project Goals & Specific Requirements (character length validation)
 - **Form Validation & State Handling**: Built with `react-hook-form` with custom focus rings in Marigold Amber and inline validation error notices.
-- **Secure Direct Email Delivery**: Wired to send all client inquiries directly to `vedaplus76@gmail.com` via FormSubmit AJAX service (`https://formsubmit.co/ajax/vedaplus76@gmail.com`) with table formatting, direct reply-to, and instant WhatsApp copy dispatch.
+- **Secure Direct Email Delivery**: Wired to send all client inquiries directly to `ayukam99@gmail.com` via FormSubmit AJAX service (`https://formsubmit.co/ajax/ayukam99@gmail.com`) with table formatting, direct reply-to, and instant WhatsApp copy dispatch.
 - **Interactive Loading & Confirmation**:
   - Live animated pulse spinner during `"Sending..."` state.
   - Confetti burst powered by `canvas-confetti`.
-  - Confirmation view: *"Thank You! The VedaPulse team will review your project and get in touch within 24 hours."* with submitted business summary and 3-step next actions roadmap.
+  - Confirmation view: *"Thank You! The Ayukam team will review your project and get in touch within 24 hours."* with submitted business summary and 3-step next actions roadmap.
 - **Studio Command Details**:
   - **Phone Numbers**: `+91 9503956026`, `+91 9226115976`, `+91 9762874676`
-  - **Email**: `vedaplus76@gmail.com`
+  - **Email**: `ayukam99@gmail.com`
   - **Location**: Opp. Rajgurunagar Sarkari Bank, Rajgurunagar, Khed, Pune, Maharashtra – 410505
   - Response SLA guarantee badge (< 24h).
 

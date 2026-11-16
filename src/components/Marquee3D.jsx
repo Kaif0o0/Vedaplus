@@ -91,9 +91,6 @@ const ROW_TWO_ITEMS = [
 export default function Marquee3D() {
   return (
     <section className={styles.marquee3DSection} aria-label="Key Capabilities and Categories 3D Marquee">
-      {/* Subtle Spatial Ambient Glow */}
-      <div className={styles.ambientGlow} />
-
       {/* 3D Perspective Viewport */}
       <div className={styles.viewport3D}>
         

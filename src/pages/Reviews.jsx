@@ -25,7 +25,7 @@ const DEMO_REVIEWS = [
     date: '2 weeks ago',
     verified: true,
     review:
-      'VedaPlus created a website for my cafe. The website is very fast and works smoothly on mobile phones. My customers can see the menu and book tables easily. Very happy with their work.',
+      'Ayukam created a website for my cafe. The website is very fast and works smoothly on mobile phones. My customers can see the menu and book tables easily. Very happy with their work.',
   },
   {
     id: 'demo-2',
@@ -43,17 +43,18 @@ const DEMO_REVIEWS = [
     date: '3 weeks ago',
     verified: true,
     review:
-      'Very good experience with VedaPlus. They built a clean website for my repair and local services business. People find me on Google Maps easily now and contact directly on WhatsApp. Thank you.',
+      'Very good experience with Ayukam. They built a clean website for my repair and local services business. People find me on Google Maps easily now and contact directly on WhatsApp. Thank you.',
   },
 ];
 
-const LOCAL_STORAGE_KEY = 'vedaplus_client_reviews';
+const LOCAL_STORAGE_KEY = 'ayukam_client_reviews';
+const LEGACY_STORAGE_KEY = 'vedaplus_client_reviews';
 
 export default function Reviews() {
   // Load reviews from localStorage or fallback to demo reviews
   const [reviews, setReviews] = useState(() => {
     try {
-      const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
+      const saved = localStorage.getItem(LOCAL_STORAGE_KEY) || localStorage.getItem(LEGACY_STORAGE_KEY);
       if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
@@ -246,7 +247,7 @@ export default function Reviews() {
             </h1>
 
             <p className={styles.heroSubtitle}>
-              Read honest feedback from small business owners who got their websites developed by VedaPlus, or share your own experience using our review form below.
+              Read honest feedback from small business owners who got their websites developed by Ayukam, or share your own experience using our review form below.
             </p>
 
             {/* Quick Rating Summary Strip */}
@@ -260,7 +261,7 @@ export default function Reviews() {
                         key={star}
                         size={18}
                         className={styles.starFilled}
-                        fill="#F59E0B"
+                        fill="#B99162"
                       />
                     ))}
                   </div>
@@ -298,11 +299,7 @@ export default function Reviews() {
             <div className={styles.formCardSticky}>
               <Tilt
                 perspective={1000}
-                glareEnable={true}
-                glareMaxOpacity={0.08}
-                glareColor="#F59E0B"
-                glarePosition="all"
-                glareBorderRadius="20px"
+                glareEnable={false}
                 tiltMaxAngleX={4}
                 tiltMaxAngleY={4}
                 scale={1.01}
@@ -316,7 +313,7 @@ export default function Reviews() {
                     <div>
                       <h2 className={styles.formTitle}>Leave a Review</h2>
                       <p className={styles.formSub}>
-                        Share your feedback about your website with VedaPlus.
+                        Share your feedback about your website with Ayukam.
                       </p>
                     </div>
                   </div>
@@ -360,7 +357,7 @@ export default function Reviews() {
                                 className={
                                   isFilled ? styles.starFilledInteractive : styles.starEmptyInteractive
                                 }
-                                fill={isFilled ? '#F59E0B' : 'none'}
+                                fill={isFilled ? '#B99162' : 'none'}
                               />
                             </button>
                           );
@@ -473,7 +470,7 @@ export default function Reviews() {
                             key={s}
                             size={16}
                             className={s <= item.stars ? styles.starFilled : styles.starEmpty}
-                            fill={s <= item.stars ? '#F59E0B' : 'none'}
+                            fill={s <= item.stars ? '#B99162' : 'none'}
                           />
                         ))}
                       </div>

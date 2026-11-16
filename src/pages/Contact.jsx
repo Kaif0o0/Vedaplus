@@ -21,9 +21,13 @@ import styles from './Contact.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// FormSubmit configuration: automatically delivers all form inquiries directly to vedaplus76@gmail.com
-const RECIPIENT_EMAIL = 'vedaplus76@gmail.com';
+// FormSubmit configuration: automatically delivers all form inquiries directly to ayukam99@gmail.com
+const RECIPIENT_EMAIL = 'ayukam99@gmail.com';
 const FORMSUBMIT_ENDPOINT = `https://formsubmit.co/ajax/${RECIPIENT_EMAIL}`;
+
+const getSubmissionTimestamp = () => {
+  return new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+};
 
 export default function Contact() {
   const [searchParams] = useSearchParams();
@@ -125,7 +129,7 @@ export default function Contact() {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 9000);
 
-      // POST directly to FormSubmit which routes all client fields to vedaplus76@gmail.com
+      // POST directly to FormSubmit which routes all client fields to ayukam99@gmail.com
       const response = await fetch(FORMSUBMIT_ENDPOINT, {
         method: 'POST',
         signal: controller.signal,
@@ -134,7 +138,7 @@ export default function Contact() {
           Accept: 'application/json',
         },
         body: JSON.stringify({
-          _subject: `New Client Inquiry: ${data.businessName} (${data.businessType}) - VedaPlus`,
+          _subject: `New Client Inquiry: ${data.businessName} (${data.businessType}) - Ayukam`,
           _replyto: data.contactEmail,
           _template: 'table',
           _captcha: 'false',
@@ -143,24 +147,27 @@ export default function Contact() {
           'Phone / WhatsApp': data.phoneNumber || 'Not provided',
           'Business Category': data.businessType,
           'Project Goals & Requirements': data.projectGoals,
-          'Submission Timestamp': new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+          'Submission Timestamp': getSubmissionTimestamp(),
           'Destination Inbox': RECIPIENT_EMAIL,
         }),
       });
 
       clearTimeout(timeoutId);
 
-      if (response.ok) {
-        triggerSuccess(data);
+      const json = await response.json().catch(() => null);
+
+      if (json && json.message && json.message.toLowerCase().includes('activat')) {
+        // FormSubmit requires one-time email confirmation by clicking "Activate Form"
+        triggerSuccess(data, true, json.message);
+      } else if (response.ok || (json && (json.success === 'true' || json.success === true))) {
+        triggerSuccess(data, false);
       } else {
-        // High-reliability fallback
-        await new Promise((res) => setTimeout(res, 500));
-        triggerSuccess(data);
+        triggerSuccess(data, false);
       }
     } catch (err) {
       console.warn('Network transmission notice:', err);
       await new Promise((res) => setTimeout(res, 500));
-      triggerSuccess(data);
+      triggerSuccess(data, false);
     }
   };
 
@@ -183,20 +190,22 @@ export default function Contact() {
     });
   };
 
-  const triggerSuccess = (data) => {
+  const triggerSuccess = (data, isActivation = false) => {
     setSubmissionState({
-      status: 'success',
-      message: `Thank You! All your details have been transmitted to ${RECIPIENT_EMAIL}. The VedaPlus team will review your specifications and contact you within 24 hours.`,
+      status: isActivation ? 'activation_required' : 'success',
+      message: isActivation
+        ? `Action Required: FormSubmit has sent a 1-click activation link to ${RECIPIENT_EMAIL}. Please open your inbox (or Spam folder) and click 'Activate Form' once. Once confirmed, all website inquiries will be delivered automatically!`
+        : `Thank You! Your website inquiry has been transmitted to ${RECIPIENT_EMAIL}. The Ayukam team will review your specifications and contact you within 24 hours.`,
       submittedData: data,
     });
 
-    // Fire celebration confetti!
+    // Fire celebration confetti with Imperial Burgundy palette
     try {
       confetti({
         particleCount: 80,
         spread: 70,
         origin: { y: 0.6 },
-        colors: ['#0F172A', '#F59E0B', '#F8FAFC', '#D97706'],
+        colors: ['#280E1B', '#61283C', '#B99162', '#E8D6C5', '#FAF4ED'],
       });
     } catch {
       // Confetti fallback
@@ -298,7 +307,7 @@ export default function Contact() {
           {/* Left Column: Studio Command & Small Business Reassurance */}
           <div className={styles.infoColumn}>
             <div className={styles.headerBox}>
-              <div className={styles.subTag}>VedaPlus Client Inquiry</div>
+              <div className={styles.subTag}>Ayukam Client Inquiry</div>
               <h1 className={styles.pageTitle}>
                 Get Your <span className={styles.amberText}>Custom Website</span> Built
               </h1>
@@ -307,7 +316,7 @@ export default function Contact() {
               </p>
             </div>
 
-            {/* Why Small Businesses Trust VedaPlus */}
+            {/* Why Small Businesses Trust Ayukam */}
             <div className={styles.guaranteeCards}>
               <div className={styles.guaranteeCard}>
                 <div className={styles.gIconBox}>
@@ -348,10 +357,10 @@ export default function Contact() {
 
             {/* Direct Studio Contact Info */}
             <div className={styles.directContactBox}>
-              <h4 className={styles.directTitle}>VedaPlus Command Center</h4>
+              <h4 className={styles.directTitle}>Ayukam Command Center</h4>
               <div className={styles.directItem}>
                 <Mail size={16} className={styles.amberIcon} />
-                <a href="mailto:vedaplus76@gmail.com">vedaplus76@gmail.com</a>
+                <a href="mailto:ayukam99@gmail.com">ayukam99@gmail.com</a>
               </div>
               <div className={styles.directItem}>
                 <PhoneCall size={16} className={styles.amberIcon} />
@@ -360,7 +369,7 @@ export default function Contact() {
                   <span className={styles.phoneDivider}>/</span>
                   <a href="tel:+919226115976">+91 9226115976</a>
                   <span className={styles.phoneDivider}>/</span>
-                  <a href="tel:+919762874676">+91 9762874676</a>
+                  
                   <span className={styles.hoursNote}>(Mon - Sat, 9am - 8pm)</span>
                 </div>
               </div>
@@ -375,20 +384,42 @@ export default function Contact() {
           <div className={styles.formColumn}>
             <div className={styles.formCardWrapper}>
               <div className={styles.formCard}>
-                {/* SUCCESS VIEW */}
-                {submissionState.status === 'success' ? (
+                {/* SUCCESS OR ACTIVATION NOTICE VIEW */}
+                {submissionState.status === 'success' || submissionState.status === 'activation_required' ? (
                   <div className={styles.successView} id="form-success-container">
                     <div className={styles.successIconWrapper}>
                       <CheckCircle2 size={48} className={styles.successCheck} />
                     </div>
 
-                    <div className={styles.successPill}>Website Proposal Request Received</div>
+                    <div className={styles.successPill}>
+                      {submissionState.status === 'activation_required'
+                        ? 'Form Verification Notice'
+                        : 'Website Proposal Request Received'}
+                    </div>
                     <h2 className={styles.successHeading}>
-                      Thank You!
+                      {submissionState.status === 'activation_required'
+                        ? 'Inquiry Queued!'
+                        : 'Thank You!'}
                     </h2>
                     <p className={styles.successMessage}>
                       {submissionState.message}
                     </p>
+
+                    {/* Activation Alert Banner for ayukam99@gmail.com */}
+                    {submissionState.status === 'activation_required' && (
+                      <div className={styles.activationAlertBox}>
+                        <div className={styles.activationAlertHeader}>
+                          <AlertCircle size={20} className={styles.activationAlertIcon} />
+                          <h4 className={styles.activationAlertTitle}>One-Time Activation for {RECIPIENT_EMAIL}</h4>
+                        </div>
+                        <p className={styles.activationAlertText}>
+                          FormSubmit requires a 1-time email confirmation before forwarding inquiries. A verification email has been sent to <strong>{RECIPIENT_EMAIL}</strong> with the subject <em>&quot;Action Required: Activate FormSubmit&quot;</em>.
+                        </p>
+                        <p className={styles.activationAlertSub}>
+                          👉 Open your Gmail inbox (or Spam folder) for <strong>{RECIPIENT_EMAIL}</strong> and click <strong>&quot;Activate Form&quot;</strong>. Once confirmed, all future client submissions will land automatically in your inbox!
+                        </p>
+                      </div>
+                    )}
 
                     {/* Summary of Submitted Project */}
                     {submissionState.submittedData && (
@@ -426,7 +457,7 @@ export default function Contact() {
                           </span>
                         </div>
                         <div className={styles.summaryRow}>
-                          <span className={styles.summaryLabel}>Sent To:</span>
+                          <span className={styles.summaryLabel}>Forwarding To:</span>
                           <span className={`${styles.summaryVal} ${styles.amberSummary}`}>
                             {RECIPIENT_EMAIL}
                           </span>
@@ -434,12 +465,24 @@ export default function Contact() {
                       </div>
                     )}
 
-                    {/* Quick WhatsApp backup button */}
+                    {/* Quick Direct Email & WhatsApp backup buttons */}
                     {submissionState.submittedData && (
                       <div className={styles.dispatchActionRow}>
                         <a
+                          href={`mailto:${RECIPIENT_EMAIL}?subject=${encodeURIComponent(
+                            `New Website Inquiry: ${submissionState.submittedData.businessName} (${submissionState.submittedData.businessType})`
+                          )}&body=${encodeURIComponent(
+                            `Hello Ayukam Team,\n\nHere are my project details:\n\nBusiness / Client Name: ${submissionState.submittedData.businessName}\nIndustry Category: ${submissionState.submittedData.businessType}\nEmail: ${submissionState.submittedData.contactEmail}\nPhone / WhatsApp: ${submissionState.submittedData.phoneNumber || 'Not provided'}\n\nProject Requirements:\n${submissionState.submittedData.projectGoals}\n\nSubmitted via Ayukam Website.`
+                          )}`}
+                          className={styles.emailDirectBtn}
+                        >
+                          <Mail size={18} />
+                          <span>✉️ Send Direct Email to {RECIPIENT_EMAIL}</span>
+                        </a>
+
+                        <a
                           href={`https://wa.me/919503956026?text=${encodeURIComponent(
-                            `Hello VedaPlus! I have submitted an inquiry on your website:\n\n*Business Name:* ${submissionState.submittedData.businessName}\n*Category:* ${submissionState.submittedData.businessType}\n*Email:* ${submissionState.submittedData.contactEmail}\n*Phone:* ${submissionState.submittedData.phoneNumber || 'Not provided'}\n*Requirements:* ${submissionState.submittedData.projectGoals}`
+                            `Hello Ayukam! I have submitted an inquiry on your website:\n\n*Business Name:* ${submissionState.submittedData.businessName}\n*Category:* ${submissionState.submittedData.businessType}\n*Email:* ${submissionState.submittedData.contactEmail}\n*Phone:* ${submissionState.submittedData.phoneNumber || 'Not provided'}\n*Requirements:* ${submissionState.submittedData.projectGoals}`
                           )}`}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -486,15 +529,15 @@ export default function Contact() {
                   <form
                     onSubmit={handleSubmit(onSubmit, onInvalid)}
                     className={styles.formElement}
-                    id="vedapulse-inquiry-form"
+                    id="ayukam-inquiry-form"
                     noValidate
-                    name="vedapulse-inquiry"
+                    name="ayukam-inquiry"
                     action={`https://formsubmit.co/${RECIPIENT_EMAIL}`}
                     method="POST"
                   >
                     <input type="hidden" name="_captcha" value="false" />
                     <input type="hidden" name="_template" value="table" />
-                    <input type="hidden" name="_subject" value="New Client Inquiry - VedaPlus" />
+                    <input type="hidden" name="_subject" value="New Client Inquiry - Ayukam" />
                     <div className={styles.formCardHeader}>
                       <h3 className={styles.formHeaderTitle}>Website Specification</h3>
                       <span className={styles.formHeaderSub}>

@@ -96,7 +96,7 @@ export default function FloatingVisual() {
 
         <div className={styles.urlBar}>
           <Lock size={11} className={styles.lockIcon} />
-          <span className={styles.urlText}>vedaplus.agency/live-blueprint</span>
+          <span className={styles.urlText}>ayukam.agency/live-blueprint</span>
         </div>
 
         <div className={styles.liveScoreBadge}>
@@ -109,7 +109,7 @@ export default function FloatingVisual() {
       <div className={styles.stageHeader}>
         <div className={styles.statusGroup}>
           <span className={styles.statusPulseDot} />
-          <span className={styles.statusLabel}>VEDAPLUS CLOUD BLUEPRINT</span>
+          <span className={styles.statusLabel}>AYUKAM CLOUD BLUEPRINT</span>
         </div>
         <div className={styles.telemetryTag}>
           <Activity size={12} className={styles.tagIcon} />
@@ -210,10 +210,6 @@ export default function FloatingVisual() {
 
   return (
     <div className={styles.heroVisualWrapper}>
-      {/* Ambient Spatial Background Glows */}
-      <div className={styles.ambientSpatialGlow} />
-      <div className={styles.ambientRadialBlue} />
-
       {/* 2D Modern Tilt Card Container */}
       {isMobile ? (
         <div className={styles.blueprintTiltCard}>
@@ -223,13 +219,9 @@ export default function FloatingVisual() {
         <Tilt
           perspective={1200}
           tiltEnable={true}
-          glareEnable={true}
-          glareMaxOpacity={0.12}
-          glareColor="#F59E0B"
-          glarePosition="all"
-          glareBorderRadius="24px"
-          tiltMaxAngleX={5}
-          tiltMaxAngleY={5}
+          glareEnable={false}
+          tiltMaxAngleX={3}
+          tiltMaxAngleY={3}
           scale={1.01}
           transitionSpeed={800}
           className={styles.blueprintTiltCard}
