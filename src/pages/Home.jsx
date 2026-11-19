@@ -607,7 +607,7 @@ export default function Home() {
                       <a href="tel:+919503956026">+91 9503956026</a>
                       <span className={styles.ctaHotlineSlash}>/</span>
                       <a href="tel:+919226115976">+91 9226115976</a>
-                      <span className={styles.ctaHotlineSlash}>/</span>
+                      
                   
                     </div>
                   </div>
