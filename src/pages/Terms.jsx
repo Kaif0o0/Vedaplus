@@ -459,7 +459,7 @@ export default function Terms() {
                   <div className={styles.contactField} style={{ gridColumn: '1 / -1' }}>
                     <span className={styles.contactFieldLabel}>Studio Location</span>
                     <span className={styles.contactFieldValue}>
-                      Opp. Rajgurunagar Sarkari Bank, Rajgurunagar, Khed, Pune, Maharashtra – 410505, India
+                      Opp. Rajgurunagar Sahakari Bank, Rajgurunagar, Khed, Pune, Maharashtra – 410505, India
                     </span>
                   </div>
                 </div>

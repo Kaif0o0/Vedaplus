@@ -6,17 +6,20 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
   Star,
   CheckCircle2,
+  AlertCircle,
   MessageSquare,
   Send,
   Award,
   ShieldCheck,
-  UserCheck
+  UserCheck,
+  Loader2
 } from 'lucide-react';
+import { supabase, isSupabaseConfigured } from '../lib/supabase';
 import styles from './Reviews.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Initial Demo Reviews by Kaif, Mahesh, and Ayush in simple English
+// Initial Demo Reviews in simple English
 const DEMO_REVIEWS = [
   {
     id: 'demo-1',
@@ -50,6 +53,44 @@ const DEMO_REVIEWS = [
 const LOCAL_STORAGE_KEY = 'ayukam_client_reviews';
 const LEGACY_STORAGE_KEY = 'vedaplus_client_reviews';
 
+// Format timestamp to human-readable string
+const formatReviewDate = (dateString) => {
+  if (!dateString) return 'Recent';
+  try {
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return dateString;
+    const now = new Date();
+    const diffMs = now - date;
+    const diffSec = Math.floor(diffMs / 1000);
+    const diffMin = Math.floor(diffSec / 60);
+    const diffHours = Math.floor(diffMin / 60);
+    const diffDays = Math.floor(diffHours / 24);
+
+    if (diffDays === 0) {
+      if (diffMin < 2) return 'Just now';
+      if (diffHours < 1) return `${diffMin} min ago`;
+      return `${diffHours} hr ago`;
+    }
+    if (diffDays === 1) return 'Yesterday';
+    if (diffDays < 7) return `${diffDays} days ago`;
+    if (diffDays < 30) {
+      const weeks = Math.floor(diffDays / 7);
+      return `${weeks} ${weeks === 1 ? 'week' : 'weeks'} ago`;
+    }
+    const months = Math.floor(diffDays / 30);
+    if (months < 12) {
+      return `${months} ${months === 1 ? 'month' : 'months'} ago`;
+    }
+    return date.toLocaleDateString('en-IN', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+    });
+  } catch {
+    return dateString;
+  }
+};
+
 export default function Reviews() {
   // Load reviews from localStorage or fallback to demo reviews
   const [reviews, setReviews] = useState(() => {
@@ -73,9 +114,10 @@ export default function Reviews() {
   const [hoverStars, setHoverStars] = useState(0);
   const [review, setReview] = useState('');
 
-  // Form error and success state
+  // Form error, submission, and status states
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const containerRef = useRef(null);
 
@@ -87,6 +129,48 @@ export default function Reviews() {
       console.warn('Could not save reviews to localStorage', e);
     }
   }, [reviews]);
+
+  // Fetch reviews from Supabase on mount
+  useEffect(() => {
+    if (!isSupabaseConfigured || !supabase) return;
+
+    let isMounted = true;
+    const fetchReviews = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('reviews')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (!isMounted) return;
+
+        if (error) {
+          console.warn('Supabase fetch notice:', error.message);
+          return;
+        }
+
+        if (data && Array.isArray(data) && data.length > 0) {
+          const cloudReviews = data.map((item) => ({
+            id: String(item.id),
+            name: item.name,
+            stars: Number(item.stars),
+            review: item.review,
+            date: formatReviewDate(item.created_at),
+            verified: item.verified ?? true,
+          }));
+          setReviews(cloudReviews);
+        }
+      } catch (err) {
+        console.warn('Failed to load reviews from Supabase:', err);
+      }
+    };
+
+    fetchReviews();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   // GSAP ScrollTrigger Animations for Reviews Page
   useEffect(() => {
@@ -163,10 +247,10 @@ export default function Reviews() {
       clearTimeout(timer);
       ctx.revert();
     };
-  }, []);
+  }, [reviews.length]);
 
-  // Handle Form Submission
-  const handleSubmit = (e) => {
+  // Handle Form Submission with Supabase Integration
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = {};
 
@@ -192,29 +276,80 @@ export default function Reviews() {
     }
 
     setErrors({});
+    setIsSubmitting(true);
 
-    const newReview = {
-      id: `review-${Date.now()}`,
-      name: name.trim(),
-      stars: Number(stars),
-      review: review.trim(),
-      date: 'Just now',
-      verified: true,
-    };
+    try {
+      let savedToSupabase = false;
 
-    setReviews([newReview, ...reviews]);
-    setSuccessMessage(`Thank you, ${name.trim()}! Your review has been added.`);
+      // 1. Attempt to insert directly into Supabase 'reviews' table
+      if (isSupabaseConfigured && supabase) {
+        const { data, error } = await supabase
+          .from('reviews')
+          .insert([
+            {
+              name: name.trim(),
+              stars: Number(stars),
+              review: review.trim(),
+              verified: true,
+            },
+          ])
+          .select();
 
-    // Reset Form Fields (3 fields only)
-    setName('');
-    setStars(5);
-    setHoverStars(0);
-    setReview('');
+        if (error) {
+          console.error('Supabase review insert error:', error);
+          setErrors({
+            form: `Supabase notice: ${error.message}. Review saved to local backup.`,
+          });
+        } else if (data && data.length > 0) {
+          savedToSupabase = true;
+          const inserted = data[0];
+          const newCloudReview = {
+            id: String(inserted.id),
+            name: inserted.name,
+            stars: Number(inserted.stars),
+            review: inserted.review,
+            date: 'Just now',
+            verified: inserted.verified ?? true,
+          };
+          setReviews((prev) => [newCloudReview, ...prev.filter((r) => r.id !== newCloudReview.id)]);
+          setSuccessMessage(`Thank you, ${name.trim()}! Your review has been saved to Supabase.`);
+        }
+      }
 
-    // Clear success message after 5 seconds
-    setTimeout(() => {
-      setSuccessMessage('');
-    }, 5000);
+      // 2. Fallback to local storage if Supabase credentials are not yet configured or on network fallback
+      if (!savedToSupabase) {
+        const newLocalReview = {
+          id: `review-${Date.now()}`,
+          name: name.trim(),
+          stars: Number(stars),
+          review: review.trim(),
+          date: 'Just now',
+          verified: true,
+        };
+        setReviews((prev) => [newLocalReview, ...prev]);
+        setSuccessMessage(
+          isSupabaseConfigured
+            ? `Thank you, ${name.trim()}! Your review has been recorded.`
+            : `Thank you, ${name.trim()}! Your review has been saved. (Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to .env to sync to cloud database).`
+        );
+      }
+
+      // Reset Form Fields (3 fields only)
+      setName('');
+      setStars(5);
+      setHoverStars(0);
+      setReview('');
+
+      // Clear success message after 6 seconds
+      setTimeout(() => {
+        setSuccessMessage('');
+      }, 6000);
+    } catch (err) {
+      console.error('Submission error:', err);
+      setErrors({ form: 'An unexpected error occurred while saving your review. Please try again.' });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Calculate statistics
@@ -326,6 +461,14 @@ export default function Reviews() {
                     </div>
                   )}
 
+                  {/* Form-level Error Banner */}
+                  {errors.form && (
+                    <div className={styles.formErrorAlert}>
+                      <AlertCircle size={18} className={styles.errorIcon} />
+                      <span>{errors.form}</span>
+                    </div>
+                  )}
+
                   {/* FORM WITH ONLY 3 FIELDS: NAME, STARS, REVIEW */}
                   <form onSubmit={handleSubmit} className={styles.reviewForm} noValidate>
                     
@@ -382,6 +525,7 @@ export default function Reviews() {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         placeholder="Enter Your Name"
+                        disabled={isSubmitting}
                         className={`${styles.formInput} ${
                           errors.name ? styles.inputError : ''
                         }`}
@@ -402,6 +546,7 @@ export default function Reviews() {
                         value={review}
                         onChange={(e) => setReview(e.target.value)}
                         placeholder="Write your review in simple English..."
+                        disabled={isSubmitting}
                         className={`${styles.formTextarea} ${
                           errors.review ? styles.inputError : ''
                         }`}
@@ -411,14 +556,24 @@ export default function Reviews() {
                       )}
                     </div>
 
-                    {/* SUBMIT BUTTON */}
+                    {/* SUBMIT BUTTON WITH LOADING SPINNER */}
                     <button
                       type="submit"
+                      disabled={isSubmitting}
                       className={styles.submitBtn}
                       id="submit-review-btn"
                     >
-                      <span>Submit Review</span>
-                      <Send size={16} />
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 size={16} className={styles.spinner} />
+                          <span>Saving to Supabase...</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>Submit Review</span>
+                          <Send size={16} />
+                        </>
+                      )}
                     </button>
                   </form>
                 </div>
@@ -445,7 +600,7 @@ export default function Reviews() {
                     {/* Review Card Header */}
                     <div className={styles.cardHeader}>
                       <div className={styles.clientProfile}>
-                        {/* Avatar Initial with Midnight and Gold */}
+                        {/* Avatar Initial with Burgundy and Ivory */}
                         <div className={styles.avatarBubble}>
                           <span>{item.name ? item.name.charAt(0).toUpperCase() : 'C'}</span>
                         </div>
@@ -510,4 +665,3 @@ export default function Reviews() {
     </div>
   );
 }
-
