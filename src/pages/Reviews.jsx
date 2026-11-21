@@ -19,37 +19,6 @@ import styles from './Reviews.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Initial Demo Reviews in simple English
-const DEMO_REVIEWS = [
-  {
-    id: 'demo-1',
-    name: 'Rohan',
-    stars: 5,
-    date: '2 weeks ago',
-    verified: true,
-    review:
-      'Ayukam created a website for my cafe. The website is very fast and works smoothly on mobile phones. My customers can see the menu and book tables easily. Very happy with their work.',
-  },
-  {
-    id: 'demo-2',
-    name: 'Abhishek',
-    stars: 5,
-    date: '1 month ago',
-    verified: true,
-    review:
-      'I needed a website for my retail clothing shop. They made a clean website where I can show all my products. The team is very helpful and finished the work quickly. Great service.',
-  },
-  {
-    id: 'demo-3',
-    name: 'Akash',
-    stars: 5,
-    date: '3 weeks ago',
-    verified: true,
-    review:
-      'Very good experience with Ayukam. They built a clean website for my repair and local services business. People find me on Google Maps easily now and contact directly on WhatsApp. Thank you.',
-  },
-];
-
 const LOCAL_STORAGE_KEY = 'ayukam_client_reviews';
 const LEGACY_STORAGE_KEY = 'vedaplus_client_reviews';
 
@@ -92,20 +61,21 @@ const formatReviewDate = (dateString) => {
 };
 
 export default function Reviews() {
-  // Load reviews from localStorage or fallback to demo reviews
+  // Load reviews strictly from database / cache (filtering out any legacy dummy reviews)
   const [reviews, setReviews] = useState(() => {
     try {
       const saved = localStorage.getItem(LOCAL_STORAGE_KEY) || localStorage.getItem(LEGACY_STORAGE_KEY);
       if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed;
+          // Remove any legacy demo reviews so only genuine database reviews are displayed
+          return parsed.filter((r) => r && r.id && !String(r.id).startsWith('demo-'));
         }
       }
     } catch (e) {
       console.warn('Could not load stored reviews', e);
     }
-    return DEMO_REVIEWS;
+    return [];
   });
 
   // Exactly 3 Form Fields: Name, Stars, Review
@@ -118,6 +88,7 @@ export default function Reviews() {
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isLoadingReviews, setIsLoadingReviews] = useState(true);
 
   const containerRef = useRef(null);
 
@@ -130,38 +101,42 @@ export default function Reviews() {
     }
   }, [reviews]);
 
-  // Fetch reviews from Supabase on mount
+  // Fetch reviews directly from Supabase database on mount
   useEffect(() => {
-    if (!isSupabaseConfigured || !supabase) return;
-
     let isMounted = true;
+
     const fetchReviews = async () => {
       try {
-        const { data, error } = await supabase
-          .from('reviews')
-          .select('*')
-          .order('created_at', { ascending: false });
+        setIsLoadingReviews(true);
 
-        if (!isMounted) return;
+        if (isSupabaseConfigured && supabase) {
+          const { data, error } = await supabase
+            .from('reviews')
+            .select('*')
+            .order('created_at', { ascending: false });
 
-        if (error) {
-          console.warn('Supabase fetch notice:', error.message);
-          return;
-        }
+          if (!isMounted) return;
 
-        if (data && Array.isArray(data) && data.length > 0) {
-          const cloudReviews = data.map((item) => ({
-            id: String(item.id),
-            name: item.name,
-            stars: Number(item.stars),
-            review: item.review,
-            date: formatReviewDate(item.created_at),
-            verified: item.verified ?? true,
-          }));
-          setReviews(cloudReviews);
+          if (error) {
+            console.warn('Supabase fetch notice:', error.message);
+          } else if (data && Array.isArray(data)) {
+            const cloudReviews = data.map((item) => ({
+              id: String(item.id),
+              name: item.name,
+              stars: Number(item.stars),
+              review: item.review,
+              date: formatReviewDate(item.created_at),
+              verified: item.verified ?? true,
+            }));
+            setReviews(cloudReviews);
+          }
         }
       } catch (err) {
-        console.warn('Failed to load reviews from Supabase:', err);
+        console.warn('Failed to load reviews from database:', err);
+      } finally {
+        if (isMounted) {
+          setIsLoadingReviews(false);
+        }
       }
     };
 
@@ -298,7 +273,7 @@ export default function Reviews() {
         if (error) {
           console.error('Supabase review insert error:', error);
           setErrors({
-            form: `Supabase notice: ${error.message}. Review saved to local backup.`,
+            form: `Could not save to cloud database: ${error.message}. Saved to local backup.`,
           });
         } else if (data && data.length > 0) {
           savedToSupabase = true;
@@ -312,7 +287,7 @@ export default function Reviews() {
             verified: inserted.verified ?? true,
           };
           setReviews((prev) => [newCloudReview, ...prev.filter((r) => r.id !== newCloudReview.id)]);
-          setSuccessMessage(`Thank you, ${name.trim()}! Your review has been saved to Supabase.`);
+          setSuccessMessage(`Thank you, ${name.trim()}! Your review has been published.`);
         }
       }
 
@@ -327,11 +302,7 @@ export default function Reviews() {
           verified: true,
         };
         setReviews((prev) => [newLocalReview, ...prev]);
-        setSuccessMessage(
-          isSupabaseConfigured
-            ? `Thank you, ${name.trim()}! Your review has been recorded.`
-            : `Thank you, ${name.trim()}! Your review has been saved. (Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to .env to sync to cloud database).`
-        );
+        setSuccessMessage(`Thank you, ${name.trim()}! Your review has been published.`);
       }
 
       // Reset Form Fields (3 fields only)
@@ -594,48 +565,63 @@ export default function Reviews() {
 
             {/* REVIEWS LIST */}
             <div className={styles.reviewsFeed}>
-              {reviews.map((item) => (
-                <div key={item.id} className={styles.reviewCardWrapper}>
-                  <div className={styles.reviewCard}>
-                    {/* Review Card Header */}
-                    <div className={styles.cardHeader}>
-                      <div className={styles.clientProfile}>
-                        {/* Avatar Initial with Burgundy and Ivory */}
-                        <div className={styles.avatarBubble}>
-                          <span>{item.name ? item.name.charAt(0).toUpperCase() : 'C'}</span>
-                        </div>
-                        <div className={styles.clientMeta}>
-                          <div className={styles.nameRow}>
-                            <h3 className={styles.clientName}>{item.name}</h3>
-                            {item.verified && (
-                              <span className={styles.verifiedBadge} title="Verified Client">
-                                <UserCheck size={12} className={styles.verifiedBadgeIcon} />
-                                <span>Verified Client</span>
-                              </span>
-                            )}
-                          </div>
-                          <span className={styles.reviewDate}>{item.date}</span>
-                        </div>
-                      </div>
-
-                      {/* Stars Rating Display */}
-                      <div className={styles.starsRow} aria-label={`${item.stars} out of 5 stars`}>
-                        {[1, 2, 3, 4, 5].map((s) => (
-                          <Star
-                            key={s}
-                            size={16}
-                            className={s <= item.stars ? styles.starFilled : styles.starEmpty}
-                            fill={s <= item.stars ? '#B99162' : 'none'}
-                          />
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Review Body Text in Simple English */}
-                    <p className={styles.reviewText}>{item.review}</p>
-                  </div>
+              {isLoadingReviews ? (
+                <div className={styles.loadingReviewsState}>
+                  <Loader2 size={32} className={styles.spinner} />
+                  <p className={styles.emptyStateDesc}>Loading reviews from database...</p>
                 </div>
-              ))}
+              ) : reviews.length === 0 ? (
+                <div className={styles.emptyReviewsState}>
+                  <MessageSquare size={36} className={styles.emptyStateIcon} />
+                  <h3 className={styles.emptyStateTitle}>No Reviews Yet</h3>
+                  <p className={styles.emptyStateDesc}>
+                    Be the first client to share your experience with Ayukam! Submit your review using the form on the left.
+                  </p>
+                </div>
+              ) : (
+                reviews.map((item) => (
+                  <div key={item.id} className={styles.reviewCardWrapper}>
+                    <div className={styles.reviewCard}>
+                      {/* Review Card Header */}
+                      <div className={styles.cardHeader}>
+                        <div className={styles.clientProfile}>
+                          {/* Avatar Initial with Burgundy and Ivory */}
+                          <div className={styles.avatarBubble}>
+                            <span>{item.name ? item.name.charAt(0).toUpperCase() : 'C'}</span>
+                          </div>
+                          <div className={styles.clientMeta}>
+                            <div className={styles.nameRow}>
+                              <h3 className={styles.clientName}>{item.name}</h3>
+                              {item.verified && (
+                                <span className={styles.verifiedBadge} title="Verified Client">
+                                  <UserCheck size={12} className={styles.verifiedBadgeIcon} />
+                                  <span>Verified Client</span>
+                                </span>
+                              )}
+                            </div>
+                            <span className={styles.reviewDate}>{item.date}</span>
+                          </div>
+                        </div>
+
+                        {/* Stars Rating Display */}
+                        <div className={styles.starsRow} aria-label={`${item.stars} out of 5 stars`}>
+                          {[1, 2, 3, 4, 5].map((s) => (
+                            <Star
+                              key={s}
+                              size={16}
+                              className={s <= item.stars ? styles.starFilled : styles.starEmpty}
+                              fill={s <= item.stars ? '#B99162' : 'none'}
+                            />
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Review Body Text in Simple English */}
+                      <p className={styles.reviewText}>{item.review}</p>
+                    </div>
+                  </div>
+                ))
+              )}
             </div>
           </div>
 

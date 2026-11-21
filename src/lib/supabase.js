@@ -1,9 +1,15 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
+// Production configuration with fallback to Ayukam Supabase cloud instance
+const supabaseUrl =
+  import.meta.env.VITE_SUPABASE_URL ||
+  'https://fczgahiunphmxjimoxsm.supabase.co';
 
-// Verify that the environment variables are provided and not default placeholders
+const supabaseAnonKey =
+  import.meta.env.VITE_SUPABASE_ANON_KEY ||
+  'sb_publishable_jRcPujaC8zGkQT-AocO7Fg_xUJDP_qk';
+
+// Verify that the environment variables are provided and not placeholders
 export const isSupabaseConfigured = Boolean(
   supabaseUrl &&
   supabaseAnonKey &&

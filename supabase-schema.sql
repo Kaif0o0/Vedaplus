@@ -29,11 +29,3 @@ create policy "Allow public insert on reviews"
   for insert
   to public
   with check (true);
-
--- 5. (Optional) Insert initial demo reviews
-insert into public.reviews (name, stars, review, verified)
-values
-  ('Rohan', 5, 'Ayukam created a website for my cafe. The website is very fast and works smoothly on mobile phones. My customers can see the menu and book tables easily. Very happy with their work.', true),
-  ('Abhishek', 5, 'I needed a website for my retail clothing shop. They made a clean website where I can show all my products. The team is very helpful and finished the work quickly. Great service.', true),
-  ('Akash', 5, 'Very good experience with Ayukam. They built a clean website for my repair and local services business. People find me on Google Maps easily now and contact directly on WhatsApp. Thank you.', true)
-on conflict do nothing;
